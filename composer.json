@@ -18,7 +18,7 @@
     "require": {
         "php": ">=7",
         "quiqqer\/quiqqer": "*@dev",
-        "matomo/matomo-php-tracker": "1.*",
+        "matomo/matomo-php-tracker": "2.*",
         "npm-asset\/mustache": "2.*"
     },
     "suggest": {
