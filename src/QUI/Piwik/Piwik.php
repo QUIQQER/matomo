@@ -31,7 +31,11 @@ class Piwik
             $piwikUrl = 'https://'.$piwikUrl;
         }
 
-        $Piwik = new \PiwikTracker($piwikSideId, $piwikUrl);
+        if (\class_exists('MatomoTracker')) {
+            $Piwik = new \MatomoTracker($piwikSideId, $piwikUrl);
+        } else {
+            $Piwik = new \PiwikTracker($piwikSideId, $piwikUrl);
+        }
 
         if ($Project->getConfig('piwik.settings.token')) {
             $Piwik->setTokenAuth($Project->getConfig('piwik.settings.token'));
