@@ -11,13 +11,11 @@ class EventTracking
         \QUI\FrontendUsers\RegistrarInterface $Registrar,
         string $registrationStatus
     ) {
-        
     }
 
     public static function onQuiqqerFrontendUsersUserActivate(
         \QUI\Users\User $User,
         \QUI\FrontendUsers\RegistrarInterface $Registrar
     ) {
-
     }
 }
