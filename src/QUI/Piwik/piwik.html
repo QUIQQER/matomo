@@ -99,24 +99,24 @@
                         });
                     });
 
-                    QUI.addEvent('onQuiqqerFrontendUsersUserRegister', function (userId, registrarHash, registrarType) {
-                        require(['piwikTracker'], function (piwikTracker) {
-                            piwikTracker.then(function (Tracker) {
-                                Tracker.trackEvent('quiqqer/frontend-users', 'registration', 'register', registrarType);
-                                Tracker.trackPageView();
-                            });
-                        });
-                    });
-
-                    QUI.addEvent('onQuiqqerFrontendUsersUserActivate', function (userId, registrarHash, registrarType) {
-                            require(['piwikTracker'], function (piwikTracker) {
-                                piwikTracker.then(function (Tracker) {
-                                    Tracker.trackEvent('quiqqer/frontend-users', 'registration', 'activate', registrarType);
-                                    Tracker.trackPageView();
-                                });
-                            });
-                        }
-                    );
+                    // QUI.addEvent('onQuiqqerFrontendUsersUserRegister', function (userId, registrarHash, registrarType) {
+                    //     require(['piwikTracker'], function (piwikTracker) {
+                    //         piwikTracker.then(function (Tracker) {
+                    //             Tracker.trackEvent('quiqqer/frontend-users', 'registration', 'register', registrarType);
+                    //             Tracker.trackPageView();
+                    //         });
+                    //     });
+                    // });
+                    //
+                    // QUI.addEvent('onQuiqqerFrontendUsersUserActivate', function (userId, registrarHash, registrarType) {
+                    //         require(['piwikTracker'], function (piwikTracker) {
+                    //             piwikTracker.then(function (Tracker) {
+                    //                 Tracker.trackEvent('quiqqer/frontend-users', 'registration', 'activate', registrarType);
+                    //                 Tracker.trackPageView();
+                    //             });
+                    //         });
+                    //     }
+                    // );
 
                     if (eCommerce) {
                         require(['package/quiqqer/piwik/bin/eCommerceTracking']);
