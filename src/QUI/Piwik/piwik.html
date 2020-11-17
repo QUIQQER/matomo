@@ -86,6 +86,8 @@
                                 Tracker.setCustomUrl('/login');
                                 Tracker.trackPageView();
                             });
+                        }, function (err) {
+                            console.error('stats couldn\'t be loaded', err);
                         });
                     });
 
@@ -96,6 +98,8 @@
                                 Tracker.setCustomUrl('/logout');
                                 Tracker.trackPageView();
                             });
+                        }, function (err) {
+                            console.error('stats couldn\'t be loaded', err);
                         });
                     });
 
@@ -119,11 +123,15 @@
                     // );
 
                     if (eCommerce) {
-                        require(['package/quiqqer/piwik/bin/eCommerceTracking']);
+                        require(['package/quiqqer/piwik/bin/eCommerceTracking'], function () {
+                            // nothing
+                        }, function (err) {
+                            console.error('stats couldn\'t be loaded', err);
+                        });
                     }
                 });
             }).catch(function (e) {
-                console.error(e);
+                console.error('stats couldn\'t be loaded', e);
             });
         }
     })();
