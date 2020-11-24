@@ -19,11 +19,8 @@ QUI::$Ajax->registerFunction(
     'package_quiqqer_piwik_ajax_ecommerce_getTrackDataForOrderProcess',
     function ($orderHash) {
         try {
-            $OrderProcess = new QUI\ERP\Order\OrderProcess([
-                'orderHash' => $orderHash
-            ]);
-
-            $Order = $OrderProcess->getOrder();
+            $Orders = QUI\ERP\Order\Handler::getInstance();
+            $Order  = $Orders->getOrderByHash($orderHash);
 
             if (!$Order) {
                 return [];
