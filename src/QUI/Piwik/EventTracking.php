@@ -51,11 +51,15 @@ class EventTracking
             return;
         }
 
-        $Tracker->doTrackEvent(
-            'quiqqer/frontend-users',
-            'registration',
-            'activate',
-            $Registrar->getTitle()
-        );
+        try {
+            $Tracker->doTrackEvent(
+                'quiqqer/frontend-users',
+                'registration',
+                'activate',
+                $Registrar->getTitle()
+            );
+        } catch (\Exception $Exception) {
+            QUI\System\Log::addDebug($Exception->getTraceAsString());
+        }
     }
 }
