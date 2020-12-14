@@ -33,7 +33,7 @@ class EventTracking
                 $Registrar->getTitle()
             );
         } catch (\Exception $Exception) {
-            QUI\System\Log::addDebug($Exception->getTraceAsString());
+            QUI\System\Log::addError($Exception->getTraceAsString());
         }
     }
 
@@ -59,7 +59,7 @@ class EventTracking
                 $Registrar->getTitle()
             );
         } catch (\Exception $Exception) {
-            QUI\System\Log::addDebug($Exception->getTraceAsString());
+            QUI\System\Log::addError($Exception->getTraceAsString());
         }
     }
 }
