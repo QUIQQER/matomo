@@ -33,7 +33,8 @@ QUI::$Ajax->registerFunction(
                 'subSum'      => $calculations['subSum'],
                 'nettoSum'    => $calculations['nettoSum'],
                 'nettoSubSum' => $calculations['nettoSubSum'],
-                'vatSum'      => $calculations['vatSum']
+                'vatSum'      => $calculations['vatSum'],
+                'currency'    => $Order->getCurrency()->getCode()
             ];
         } catch (QUI\Exception $Exception) {
             QUI\System\Log::writeDebugException($Exception);

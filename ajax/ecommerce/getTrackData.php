@@ -27,6 +27,10 @@ QUI::$Ajax->registerFunction(
         $Locale = QUI::getLocale();
         $List   = $Basket->getProducts();
 
+        if (!$List) {
+            return [];
+        }
+
         $list     = $List->toArray();
         $products = $list['products'];
 
