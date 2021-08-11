@@ -19,7 +19,7 @@
     ],
     "support": {
         "email": "support@pcsg.de",
-        "url": "http:\/\/www.pcsg.de"
+        "url": "https:\/\/www.pcsg.de"
     },
     "require": {
         "php": ">=7",
