@@ -1,5 +1,5 @@
 {
-    "name": "quiqqer\/matomo",
+    "name": "quiqqer/matomo",
     "type": "quiqqer-module",
     "description": "Integrates Matomo (formerly PIWIK) in QUIQQER. Matomo is the leading open-source analytics platform that gives you more than just powerful analytics.",
     "license": "GPL-3.0+",
