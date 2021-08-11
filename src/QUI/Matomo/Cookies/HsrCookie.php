@@ -3,25 +3,25 @@
 /**
  * @author PCSG (Jan Wennrich)
  */
-namespace QUI\Piwik\Cookies;
+namespace QUI\Matomo\Cookies;
 
 use QUI;
 use QUI\GDPR\CookieInterface;
-use QUI\Piwik\CookieUtils;
+use QUI\Matomo\CookieUtils;
 
 /**
  * Class QuiqqerSessionCookie
  *
  * @package QUI\GDPR\Cookies
  */
-class SesCookie implements CookieInterface
+class HsrCookie implements CookieInterface
 {
     /**
      * @inheritDoc
      */
     public function getName(): string
     {
-        return '_pk_ses.*';
+        return '_pk_hsr.*';
     }
 
     /**
@@ -37,7 +37,7 @@ class SesCookie implements CookieInterface
      */
     public function getPurpose(): string
     {
-        return QUI::getLocale()->get('quiqqer/piwik', 'cookie.ses.purpose');
+        return QUI::getLocale()->get('quiqqer/matomo', 'cookie.hsr.purpose');
     }
 
     /**

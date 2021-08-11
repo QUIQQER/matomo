@@ -3,7 +3,7 @@
         eCommerce = {$eCommerce};
 
     (function () {
-        var u = "//{$piwikUrl}/";
+        var u = "//{$matomoUrl}/";
 
         if (typeof GDPR !== 'undefined' && !GDPR.isCookieCategoryAccepted('{$cookieCategory}')) {
             _paq.push(['disableCookies']);
@@ -12,7 +12,7 @@
         _paq.push(["trackPageView"]);
         _paq.push(["enableLinkTracking"]);
         _paq.push(["setTrackerUrl", u + "js/"]);
-        _paq.push(["setSiteId", parseInt("{$piwikSideId}")]);
+        _paq.push(["setSiteId", parseInt("{$matomoSideId}")]);
 
         var d = document,
             g = d.createElement("script"),
@@ -26,17 +26,17 @@
         s.parentNode.insertBefore(g, s);
 
         if (typeof define === 'function') {
-            window.QUIQQER_PIWIK = true;
+            window.QUIQQER_MATOMO = true;
 
-            define('piwikTracker', function () {
+            define('matomoTracker', function () {
                 var Tracker = null;
 
-                var setPiwikData = function () {
-                    Tracker = Piwik.getAsyncTracker();
-                    var u   = "//{$piwikUrl}/";
+                var setMatomoData = function () {
+                    Tracker = Matomo.getAsyncTracker();
+                    var u   = "//{$matomoUrl}/";
 
                     Tracker.setTrackerUrl(u + "js/");
-                    Tracker.setSiteId(parseInt("{$piwikSideId}"));
+                    Tracker.setSiteId(parseInt("{$matomoSideId}"));
 
                     Tracker.setDocumentTitle(
                         document.domain + "/" + document.title
@@ -46,16 +46,16 @@
                 };
 
                 return new Promise(function (resolve) {
-                    if (typeof window.Piwik !== 'undefined') {
-                        setPiwikData();
+                    if (typeof window.Matomo !== 'undefined') {
+                        setMatomoData();
                         resolve(Tracker);
                         return;
                     }
 
                     var look = function () {
                         setTimeout(function () {
-                            if (typeof window.Piwik !== 'undefined') {
-                                setPiwikData();
+                            if (typeof window.Matomo !== 'undefined') {
+                                setMatomoData();
                                 resolve(Tracker);
                                 return;
                             }
@@ -80,8 +80,8 @@
             loadQUI().then(function () {
                 require(['qui/QUI'], function (QUI) {
                     QUI.addEvent('onQuiqqerUserAuthLoginSuccess', function () {
-                        require(['piwikTracker'], function (piwikTracker) {
-                            piwikTracker.then(function (Tracker) {
+                        require(['matomoTracker'], function (matomoTracker) {
+                            matomoTracker.then(function (Tracker) {
                                 Tracker.trackEvent('quiqqer/quiqqer', 'login');
                                 Tracker.setCustomUrl('/login');
                                 Tracker.trackPageView();
@@ -92,8 +92,8 @@
                     });
 
                     QUI.addEvent('onQuiqqerUserAuthLogout', function () {
-                        require(['piwikTracker'], function (piwikTracker) {
-                            piwikTracker.then(function (Tracker) {
+                        require(['matomoTracker'], function (matomoTracker) {
+                            matomoTracker.then(function (Tracker) {
                                 Tracker.trackEvent('quiqqer/quiqqer', 'logout');
                                 Tracker.setCustomUrl('/logout');
                                 Tracker.trackPageView();
@@ -123,7 +123,7 @@
                     // );
 
                     if (eCommerce) {
-                        require(['package/quiqqer/piwik/bin/eCommerceTracking'], function () {
+                        require(['package/quiqqer/matomo/bin/eCommerceTracking'], function () {
                             // nothing
                         }, function (err) {
                             console.error('stats couldn\'t be loaded', err);

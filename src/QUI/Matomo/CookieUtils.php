@@ -3,7 +3,7 @@
 /**
  * @author PCSG (Jan Wennrich)
  */
-namespace QUI\Piwik;
+namespace QUI\Matomo;
 
 use QUI\Exception;
 use QUI\System\Log;
@@ -11,7 +11,7 @@ use QUI\System\Log;
 /**
  * Class CookieUtils
  *
- * @package QUI\Piwik
+ * @package QUI\Matomo
  */
 class CookieUtils
 {
@@ -23,7 +23,7 @@ class CookieUtils
     public static function getCookieCategorySetting(): string
     {
         try {
-            return \QUI::getRewrite()->getProject()->getConfig('piwik.settings.cookiecategory');
+            return \QUI::getRewrite()->getProject()->getConfig('matomo.settings.cookiecategory');
         } catch (Exception $Exception) {
             Log::writeException($Exception);
         }

@@ -1,22 +1,22 @@
 <quiqqer>
     <package>
         <title>
-            <locale group="quiqqer/piwik" var="package.title"/>
+            <locale group="quiqqer/matomo" var="package.title"/>
         </title>
 
         <description>
-            <locale group="quiqqer/piwik" var="package.description"/>
+            <locale group="quiqqer/matomo" var="package.description"/>
         </description>
 
         <support>
             <email><![CDATA[support@pcsg.de]]></email>
             <forum><![CDATA[https://community.quiqqer.com]]></forum>
-            <source><![CDATA[https://dev.quiqqer.com/quiqqer/package-piwik]]></source>
-            <issues><![CDATA[https://dev.quiqqer.com/quiqqer/package-piwik/issues]]></issues>
-            <wiki><![CDATA[https://dev.quiqqer.com/quiqqer/package-piwik/wikis/home]]></wiki>
+            <source><![CDATA[https://dev.quiqqer.com/quiqqer/matomo]]></source>
+            <issues><![CDATA[https://dev.quiqqer.com/quiqqer/matomo/issues]]></issues>
+            <wiki><![CDATA[https://dev.quiqqer.com/quiqqer/matomo/wikis/home]]></wiki>
         </support>
 
-        <image src="URL_OPT_DIR/quiqqer/piwik/bin/images/Logo.jpg"/>
+        <image src="URL_OPT_DIR/quiqqer/matomo/bin/images/Logo.jpg"/>
 
         <copyright>
             <name><![CDATA[PCSG - Computer & Internet Service OHG]]></name>
@@ -24,7 +24,7 @@
         </copyright>
 
         <provider>
-            <cookie src="QUI\Piwik\CookieProvider"/>
+            <cookie src="QUI\Matomo\CookieProvider"/>
         </provider>
     </package>
 </quiqqer>

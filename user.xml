@@ -2,15 +2,15 @@
 <user>
 
     <attributes>
-        <attribute encrypt="1">quiqqer.piwik.pass</attribute>
-        <attribute encrypt="1">quiqqer.piwik.login</attribute>
+        <attribute encrypt="1">quiqqer.matomo.pass</attribute>
+        <attribute encrypt="1">quiqqer.matomo.login</attribute>
     </attributes>
 
     <profile>
         <tab name="MATOMO">
             <text>Matomo</text>
             <image>fa fa-line-chart</image>
-            <template>OPT_DIR/quiqqer/piwik/template/profile.html</template>
+            <template>OPT_DIR/quiqqer/matomo/template/profile.html</template>
         </tab>
     </profile>
 
@@ -19,7 +19,7 @@
         <tab name="MATOMO">
             <text>Matomo</text>
             <image>fa fa-line-chart</image>
-            <template>OPT_DIR/quiqqer/piwik/template/profile.html</template>
+            <template>OPT_DIR/quiqqer/matomo/template/profile.html</template>
         </tab>
     </window>
 </user>

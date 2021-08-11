@@ -1,9 +1,5 @@
 <?php
 
-/**
- * This file contains package_quiqqer_piwik_ajax_ecommerce_getTrackData
- */
-
 use QUI\ERP\Products\Handler\Fields;
 use QUI\ERP\Products\Handler\Products;
 
@@ -16,7 +12,7 @@ use QUI\ERP\Order\Handler as OrderHandler;
  * @return array
  */
 QUI::$Ajax->registerFunction(
-    'package_quiqqer_piwik_ajax_ecommerce_getTrackDataForOrderProcess',
+    'package_quiqqer_matomo_ajax_ecommerce_getTrackDataForOrderProcess',
     function ($orderHash) {
         try {
             $Orders = QUI\ERP\Order\Handler::getInstance();

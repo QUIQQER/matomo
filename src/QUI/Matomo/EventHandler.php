@@ -1,13 +1,13 @@
 <?php
 
-namespace QUI\Piwik;
+namespace QUI\Matomo;
 
 use QUI;
 
 /**
  * Class EventHandler
  *
- * @package QUI\Piwik
+ * @package QUI\Matomo
  *
  * @author PCSG (Jan Wennrich)
  */
@@ -21,10 +21,10 @@ class EventHandler
     {
         $Project = $Site->getProject();
 
-        $piwikUrl    = $Project->getConfig('piwik.settings.url');
-        $piwikSiteId = Piwik::getSiteId($Project);
+        $matomoUrl    = $Project->getConfig('matomo.settings.url');
+        $matomoSiteId = Matomo::getSiteId($Project);
 
-        $langSettingsJSON = $Project->getConfig('piwik.settings.langdata');
+        $langSettingsJSON = $Project->getConfig('matomo.settings.langdata');
 
         if (!empty($langSettingsJSON)) {
             $langSettings = json_decode($langSettingsJSON, true);
@@ -33,14 +33,14 @@ class EventHandler
             if (isset($langSettings[$language])) {
                 if (isset($langSettings[$language]['url'])
                     && !empty($langSettings[$language]['url'])
-                    && empty($piwikUrl)
+                    && empty($matomoUrl)
                 ) {
-                    $piwikUrl = $langSettings[$language]['url'];
+                    $matomoUrl = $langSettings[$language]['url'];
                 }
             }
         }
 
-        if (empty($piwikUrl) || empty($piwikSiteId)) {
+        if (empty($matomoUrl) || empty($matomoSiteId)) {
             return;
         }
 
@@ -53,14 +53,14 @@ class EventHandler
         }
 
         $Engine->assign([
-            'piwikUrl'        => $piwikUrl,
-            'piwikSideId'     => $piwikSiteId,
+            'matomoUrl'        => $matomoUrl,
+            'matomoSideId'     => $matomoSiteId,
             'eCommerce'       => QUI::getPackageManager()->isInstalled('quiqqer/order') ? 1 : 0,
             'cookieCategory'  => CookieUtils::getCookieCategorySetting()
         ]);
 
         $Template->extendFooter(
-            $Engine->fetch(dirname(__FILE__).'/piwik.html')
+            $Engine->fetch(dirname(__FILE__).'/matomo.html')
         );
     }
 
@@ -95,11 +95,11 @@ class EventHandler
 
         if (isset($params['matomo.siteIds'])) {
             $siteIds = json_decode($params['matomo.siteIds'], true);
-            Piwik::setSiteIds($siteIds, $Project);
+            Matomo::setSiteIds($siteIds, $Project);
         }
 
         // region Remove language specific URLs if general URL is set
-        if (!isset($params['piwik.settings.url'])) {
+        if (!isset($params['matomo.settings.url'])) {
             return;
         }
 
@@ -110,7 +110,7 @@ class EventHandler
         }
 
         $projectName = $Project->getName();
-        $settingKey  = 'piwik.settings.langdata';
+        $settingKey  = 'matomo.settings.langdata';
 
         // Get the language data
         $languageDataJSON = $ProjectsConfig->getValue($projectName, $settingKey);

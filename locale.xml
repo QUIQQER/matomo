@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <locales>
-    <groups name="quiqqer/piwik" datatype="php,js">
+    <groups name="quiqqer/matomo" datatype="php,js">
         <locale name="package.title">
             <de><![CDATA[QUIQQER - Matomo]]></de>
             <en><![CDATA[QUIQQER - Matomo]]></en>
@@ -10,28 +10,28 @@
             <en><![CDATA[Integrates Matomo into QUIQQER. Matomo is the leading open-source analytics platform that gives you more than just powerful analytics.]]></en>
         </locale>
 
-        <locale name="piwik.settings.url">
+        <locale name="matomo.settings.url">
             <de><![CDATA[Server URL]]></de>
             <en><![CDATA[Server URL]]></en>
         </locale>
 
-        <locale name="piwik.settings.id">
+        <locale name="matomo.settings.id">
             <de><![CDATA[Allgemeine Seiten ID]]></de>
             <en><![CDATA[General Site ID]]></en>
         </locale>
 
-        <locale name="piwik.settings.token">
+        <locale name="matomo.settings.token">
             <de><![CDATA[Access Token (optional)]]></de>
             <en><![CDATA[Access Token (optional)]]></en>
         </locale>
 
-        <locale name="piwik.settings.siteIds">
+        <locale name="matomo.settings.siteIds">
             <de><![CDATA[Sprachspezifische Seiten IDs]]></de>
             <en><![CDATA[Language Specific Site IDs]]></en>
         </locale>
     </groups>
 
-    <groups name="quiqqer/piwik" datatype="js">
+    <groups name="quiqqer/matomo" datatype="js">
         <locale name="panel.error.settings.missing">
             <de><![CDATA[Matomo wurde für dieses Projekt nicht eingerichtet.<br/>Dies ist in den Einstellungen des Projekts möglich.]]></de>
             <en><![CDATA[Matomo wasn't configured for this project yet.<br/>This can be done in the project's settings.]]></en>
@@ -40,31 +40,31 @@
             <de><![CDATA[Um automatisch angemeldet zu werden, fügen Sie Ihre Matomo-Nutzerdaten zu Ihren Nutzereinstellungen hinzu.]]></de>
             <en><![CDATA[To login automatically add your Matomo-userdata to your user settings.]]></en>
         </locale>
-        <locale name="panel.piwik.title">
+        <locale name="panel.matomo.title">
             <de><![CDATA[Matomo Statistiken]]></de>
             <en><![CDATA[Matomo stats]]></en>
         </locale>
     </groups>
 
-    <groups name="quiqqer/piwik" datatype="php">
-        <locale name="piwik.settings.title">
+    <groups name="quiqqer/matomo" datatype="php">
+        <locale name="matomo.settings.title">
             <de><![CDATA[Matomo]]></de>
             <en><![CDATA[Matomo]]></en>
         </locale>
-        <locale name="piwik.settings.general.title">
+        <locale name="matomo.settings.general.title">
             <de><![CDATA[Matomo Einstellungen]]></de>
             <en><![CDATA[Matomo Settings]]></en>
         </locale>
-        <locale name="piwik.settings.projects.title">
+        <locale name="matomo.settings.projects.title">
             <de><![CDATA[Einstellungen für einzelne Projektsprachen (überschreiben allg. Einstellungen)]]></de>
             <en><![CDATA[Settings for individual project languages (overwrite general settings)]]></en>
         </locale>
-        <locale name="menu.piwik.title">
+        <locale name="menu.matomo.title">
             <de><![CDATA[Matomo Statistiken]]></de>
             <en><![CDATA[Matomo stats]]></en>
         </locale>
 
-        <locale name="piwik.settings.url.description">
+        <locale name="matomo.settings.url.description">
             <de><![CDATA[
             Die URL ihres Matomo Tracking-Servers. Bitte geben Sie diese ohne Protokoll an (zum Beispiel: stats.server.com).
             ]]></de>
@@ -73,17 +73,17 @@
             ]]></en>
         </locale>
 
-        <locale name="piwik.settings.siteIds.description">
+        <locale name="matomo.settings.siteIds.description">
             <de><![CDATA[Legen Sie individuelle Seiten IDs für jede Sprache fest (überschreibt die allgemeine Seiten ID für hier festgelegte Sprachen).]]></de>
             <en><![CDATA[Set individual page IDs for each language (overrides the general page ID for the languages specified here).]]></en>
         </locale>
 
-        <locale name="piwik.settings.id.description">
+        <locale name="matomo.settings.id.description">
             <de><![CDATA[Wird für alle Sprachen dieses Projekts genutzt, für die keine "Sprachspezifische Seiten ID" gesetzt ist.]]></de>
             <en><![CDATA[Used for all languages of this project for which no "Language Specific Site ID" is set.]]></en>
         </locale>
 
-        <locale name="piwik.settings.token.description">
+        <locale name="matomo.settings.token.description">
             <de><![CDATA[Wird zur Authentifizierung in API Anfragen verwendet. Mehr dazu <a href="https://matomo.org/faq/general/faq_114/" rel="nofollow">hier</a>.]]></de>
             <en><![CDATA[Used for authentication in API requests. More about this <a href="https://matomo.org/faq/general/faq_114/" rel="nofollow">here</a>.]]></en>
         </locale>
@@ -160,37 +160,37 @@
         </locale>
 
         <!-- region Cookie Settings -->
-        <locale name="piwik.settings.cookies.title">
+        <locale name="matomo.settings.cookies.title">
             <de><![CDATA[Matomo Cookie Einstellungen]]></de>
             <en><![CDATA[Matomo Cookie Settings]]></en>
         </locale>
 
-        <locale name="piwik.settings.cookiecategory">
+        <locale name="matomo.settings.cookiecategory">
             <de><![CDATA[Cookie Kategorie]]></de>
             <en><![CDATA[Cookie Category]]></en>
         </locale>
 
-        <locale name="piwik.settings.cookiecategory.description">
+        <locale name="matomo.settings.cookiecategory.description">
             <de><![CDATA[Nur relevant, wenn quiqqer/gdpr installiert ist. Legt die Kategorie fest, denen die Matomo-Cookies angehören.]]></de>
             <en><![CDATA[Only relevant if quiqqer/gdpr is installed. Defines the category to which the Matomo cookies belong.]]></en>
         </locale>
 
-        <locale name="piwik.settings.cookiecategory.essential">
+        <locale name="matomo.settings.cookiecategory.essential">
             <de><![CDATA[Essenziell]]></de>
             <en><![CDATA[Essential]]></en>
         </locale>
 
-        <locale name="piwik.settings.cookiecategory.preferences">
+        <locale name="matomo.settings.cookiecategory.preferences">
             <de><![CDATA[Präferenzen]]></de>
             <en><![CDATA[Preferences]]></en>
         </locale>
 
-        <locale name="piwik.settings.cookiecategory.statistics">
+        <locale name="matomo.settings.cookiecategory.statistics">
             <de><![CDATA[Statistiken]]></de>
             <en><![CDATA[Statistics]]></en>
         </locale>
 
-        <locale name="piwik.settings.cookiecategory.marketing">
+        <locale name="matomo.settings.cookiecategory.marketing">
             <de><![CDATA[Marketing]]></de>
             <en><![CDATA[Marketing]]></en>
         </locale>

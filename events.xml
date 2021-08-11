@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <events>
-    <event on="onTemplateSiteFetch" fire="\QUI\Piwik\EventHandler::onTemplateSiteFetch"/>
-    <event on="onProjectConfigSave" fire="QUI\Piwik\EventHandler::onProjectConfigSave"/>
+    <event on="onTemplateSiteFetch" fire="\QUI\Matomo\EventHandler::onTemplateSiteFetch"/>
+    <event on="onProjectConfigSave" fire="QUI\Matomo\EventHandler::onProjectConfigSave"/>
 
-    <event on="onQuiqqerFrontendUsersUserRegister" fire="QUI\Piwik\EventTracking::onQuiqqerFrontendUsersUserRegister"/>
-    <event on="onQuiqqerFrontendUsersUserActivate" fire="QUI\Piwik\EventTracking::onQuiqqerFrontendUsersUserActivate"/>
+    <event on="onQuiqqerFrontendUsersUserRegister" fire="QUI\Matomo\EventTracking::onQuiqqerFrontendUsersUserRegister"/>
+    <event on="onQuiqqerFrontendUsersUserActivate" fire="QUI\Matomo\EventTracking::onQuiqqerFrontendUsersUserActivate"/>
 </events>
