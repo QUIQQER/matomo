@@ -25,7 +25,9 @@
         "php": ">=7",
         "quiqqer\/quiqqer": "*@dev",
         "matomo/matomo-php-tracker": "3.*",
-        "quiqqer-asset\/mustache": "*"
+        "quiqqer-asset\/mustache": "*",
+        "ext-json": "*",
+        "ext-mbstring": "*"
     },
     "suggest": {
         "quiqqer/gdpr": "Makes Matomo integration GDPR-compliant, by preventing cookies until the user consented to them."
