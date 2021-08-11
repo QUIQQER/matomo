@@ -55,18 +55,7 @@ class Matomo
         if (is_null($language)) {
             $language = $Project->getLang();
         }
-
-
-        /**
-         * Doesn't work at the moment because of a bug (I guess?)
-         * @see https://dev.quiqqer.com/quiqqer/quiqqer/issues/791
-         */
-        /*
-        if (!QUI::getLocale()->exists($group, self::LOCALE_KEY_SITE_IDS)) {
-            return $Project->getConfig('piwik.settings.id');
-        }
-        */
-
+        
         $siteId = QUI::getLocale()->getByLang(
             $language,
             $group,
