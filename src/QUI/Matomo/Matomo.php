@@ -20,7 +20,7 @@ class Matomo
      * Return the Matomo client
      *
      * @param Project $Project
-     * @return \PiwikTracker
+     * @return \MatomoTracker
      */
     public static function getMatomoClient(Project $Project)
     {
@@ -55,7 +55,7 @@ class Matomo
         if (is_null($language)) {
             $language = $Project->getLang();
         }
-        
+
         $siteId = QUI::getLocale()->getByLang(
             $language,
             $group,
