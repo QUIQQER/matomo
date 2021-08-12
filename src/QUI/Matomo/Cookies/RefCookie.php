@@ -3,11 +3,11 @@
 /**
  * @author PCSG (Jan Wennrich)
  */
-namespace QUI\Piwik\Cookies;
+namespace QUI\Matomo\Cookies;
 
 use QUI;
 use QUI\GDPR\CookieInterface;
-use QUI\Piwik\CookieUtils;
+use QUI\Matomo\CookieUtils;
 
 /**
  * Class QuiqqerSessionCookie
@@ -37,7 +37,7 @@ class RefCookie implements CookieInterface
      */
     public function getPurpose(): string
     {
-        return QUI::getLocale()->get('quiqqer/piwik', 'cookie.ref.purpose');
+        return QUI::getLocale()->get('quiqqer/matomo', 'cookie.ref.purpose');
     }
 
     /**

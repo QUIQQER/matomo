@@ -1,6 +1,6 @@
 <?php
 
-namespace QUI\Piwik;
+namespace QUI\Matomo;
 
 use QUI;
 
@@ -20,7 +20,7 @@ class EventTracking
         string $registrationStatus
     ) {
         try {
-            $Tracker = Piwik::getPiwikClient(QUI::getRewrite()->getProject());
+            $Tracker = Matomo::getMatomoClient(QUI::getRewrite()->getProject());
         } catch (QUI\Exception $Exception) {
             return;
         }
@@ -46,7 +46,7 @@ class EventTracking
         \QUI\FrontendUsers\RegistrarInterface $Registrar
     ) {
         try {
-            $Tracker = Piwik::getPiwikClient(QUI::getRewrite()->getProject());
+            $Tracker = Matomo::getMatomoClient(QUI::getRewrite()->getProject());
         } catch (QUI\Exception $Exception) {
             return;
         }

@@ -1,17 +1,15 @@
-![QUIQQER Piwik](bin/images/Readme.jpg)
+![QUIQQER Matomo](bin/images/Readme.jpg)
 
 Matomo
 ========
 
-    Note: Matomo was formerly called "PIWIK"
-
-Integrates Matomo into QUIQQER. 
+Integrates Matomo analytics into QUIQQER. 
 Matomo is the leading open-source analytics platform that gives you more than just powerful analytics.
 
 
 Package name:
 
-    quiqqer/piwik
+    quiqqer/matomo
 
 
 Features
@@ -23,15 +21,15 @@ Features
 Installation
 ------------
 
-The Package name is: quiqqer/piwik
+The Package name is: quiqqer/matomo
 
 
 Contribute
 ----------
 
-- Issue Tracker: https://dev.quiqqer.com/quiqqer/package-piwik/issues
-- Source Code: https://dev.quiqqer.com/quiqqer/package-piwik
-- Wiki: https://dev.quiqqer.com/quiqqer/package-piwik/wikis/home
+- Issue Tracker: https://dev.quiqqer.com/quiqqer/matomo/issues
+- Source Code: https://dev.quiqqer.com/quiqqer/matomo
+- Wiki: https://dev.quiqqer.com/quiqqer/matomo/wikis/home
 
 
 Support

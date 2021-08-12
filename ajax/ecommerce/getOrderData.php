@@ -1,9 +1,5 @@
 <?php
 
-/**
- * This file contains package_quiqqer_piwik_ajax_ecommerce_getProductData
- */
-
 use QUI\ERP\Products\Handler\Fields;
 use QUI\ERP\Products\Handler\Products;
 
@@ -14,7 +10,7 @@ use QUI\ERP\Products\Handler\Products;
  * @return array
  */
 QUI::$Ajax->registerFunction(
-    'package_quiqqer_piwik_ajax_ecommerce_getOrderData',
+    'package_quiqqer_matomo_ajax_ecommerce_getOrderData',
     function ($orderHash) {
         try {
             $Order    = QUI\ERP\Order\Handler::getInstance()->getOrderByHash($orderHash);

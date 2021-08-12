@@ -1,6 +1,6 @@
 <?php
 
-namespace QUI\Piwik;
+namespace QUI\Matomo;
 
 use QUI\Exception;
 use QUI\Projects\Project;
@@ -10,7 +10,7 @@ use QUI\Translator;
 /**
  * Class Patches
  *
- * @package QUI\Piwik
+ * @package QUI\Matomo
  *
  * @author PCSG (Jan Wennrich)
  */
@@ -25,7 +25,7 @@ class Patches
     public static function moveSiteIdsToLocaleVariables()
     {
         try {
-            $Package = \QUI::getPackage('quiqqer/piwik');
+            $Package = \QUI::getPackage('quiqqer/matomo');
             $Config  = $Package->getConfig();
 
             $isPatchExecutedAlready = $Config->get('patches', self::SITE_IDS_TO_LOCALE_VARIABLES) == 1;
@@ -34,7 +34,7 @@ class Patches
                 $projectList = \QUI\Projects\Manager::getProjects(true);
                 foreach ($projectList as $Project) {
                     /** @var Project $Project */
-                    $langdataJSON = $Project->getConfig('piwik.settings.langdata');
+                    $langdataJSON = $Project->getConfig('matomo.settings.langdata');
 
                     if (empty($langdataJSON)) {
                         continue;
@@ -42,7 +42,7 @@ class Patches
 
                     $languageData = json_decode($langdataJSON, true);
 
-                    if (is_null($languageData) || empty($languageData)) {
+                    if (empty($languageData)) {
                         continue;
                     }
 
@@ -65,7 +65,7 @@ class Patches
 
                         Translator::addUserVar(
                             $group,
-                            Piwik::LOCALE_KEY_SITE_IDS,
+                            Matomo::LOCALE_KEY_SITE_IDS,
                             $localeVariableData
                         );
                         Translator::publish($group);

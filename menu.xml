@@ -2,9 +2,9 @@
 <menu>
     <item parent="/extras/"
           name="stats"
-          require="package/quiqqer/piwik/bin/Panel"
+          require="package/quiqqer/matomo/bin/Panel"
           icon="fa fa-line-chart"
     >
-        <locale group="quiqqer/piwik" var="menu.piwik.title"/>
+        <locale group="quiqqer/matomo" var="menu.matomo.title"/>
     </item>
 </menu>

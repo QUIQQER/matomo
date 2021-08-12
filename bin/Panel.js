@@ -1,7 +1,7 @@
 /**
- * @module package/quiqqer/piwik/bin/Panel
+ * @module package/quiqqer/matomo/bin/Panel
  */
-define('package/quiqqer/piwik/bin/Panel', [
+define('package/quiqqer/matomo/bin/Panel', [
 
     'qui/QUI',
     'qui/controls/desktop/Panel',
@@ -10,17 +10,17 @@ define('package/quiqqer/piwik/bin/Panel', [
     'Ajax',
     'Users',
 
-    'css!package/quiqqer/piwik/bin/Panel.css'
+    'css!package/quiqqer/matomo/bin/Panel.css'
 
 ], function (QUI, QUIPanel, QUISelect, QUILocale, QUIAjax, Users) {
     "use strict";
 
-    var lg = 'quiqqer/piwik';
+    var lg = 'quiqqer/matomo';
 
     return new Class({
 
         Extends: QUIPanel,
-        Type   : 'package/quiqqer/piwik/bin/Panel',
+        Type   : 'package/quiqqer/matomo/bin/Panel',
 
         Binds: [
             '$onInject'
@@ -35,7 +35,7 @@ define('package/quiqqer/piwik/bin/Panel', [
 
             // defaults
             this.setAttributes({
-                title: QUILocale.get(lg, 'panel.piwik.title')
+                title: QUILocale.get(lg, 'panel.matomo.title')
             });
 
             this.addEvents({
@@ -92,7 +92,7 @@ define('package/quiqqer/piwik/bin/Panel', [
         },
 
         /**
-         * load the iframe and the piwik data
+         * load the iframe and the matomo data
          */
         $loadFrame: function () {
             this.Loader.show();
@@ -107,20 +107,20 @@ define('package/quiqqer/piwik/bin/Panel', [
             Prom.then(function () {
                 QUIAjax.get([
                     'ajax_project_get_config',
-                    'package_quiqqer_piwik_ajax_md5'
+                    'package_quiqqer_matomo_ajax_md5'
                 ], function (config, pass) {
 
-                    var url   = config['piwik.settings.url'],
-                        id    = config['piwik.settings.id'],
-                        token = config['piwik.settings.token'];
+                    var url   = config['matomo.settings.url'],
+                        id    = config['matomo.settings.id'],
+                        token = config['matomo.settings.token'];
 
                     this.getContent()
-                        .getElements('.quiqqer-piwik-panel-nosettings,iframe')
+                        .getElements('.quiqqer-matomo-panel-nosettings,iframe')
                         .destroy();
 
                     if (url === '' || id === '') {
                         new Element('div', {
-                            'class': 'quiqqer-piwik-panel-nosettings',
+                            'class': 'quiqqer-matomo-panel-nosettings',
                             html   : QUILocale.get(lg, 'panel.error.settings.missing')
                         }).inject(this.getContent());
 
@@ -140,29 +140,29 @@ define('package/quiqqer/piwik/bin/Panel', [
                     };
 
                     var now                = new Date().getTime(),
-                        opened             = parseInt(QUI.Storage.remove('piwik-opened')),
-                        usersPiwikLogin    = User.getAttribute('quiqqer.piwik.login'),
-                        usersPiwikPassword = User.getAttribute('quiqqer.piwik.pass');
+                        opened             = parseInt(QUI.Storage.remove('matomo-opened')),
+                        usersMatomoLogin    = User.getAttribute('quiqqer.matomo.login'),
+                        usersMatomoPassword = User.getAttribute('quiqqer.matomo.pass');
 
                     if (!opened) {
                         opened = 0;
                     }
 
-                    if (!usersPiwikLogin && !usersPiwikPassword) {
+                    if (!usersMatomoLogin && !usersMatomoPassword) {
                         QUI.getMessageHandler().then(function (MH) {
                             MH.addInformation(QUILocale.get(lg, 'panel.notice.userdata.missing'));
                         });
                     }
 
-                    if (usersPiwikPassword && usersPiwikLogin && opened + 7200 < now) {
+                    if (usersMatomoPassword && usersMatomoLogin && opened + 7200 < now) {
                         frameParams.module   = 'Login';
                         frameParams.action   = 'logme';
-                        frameParams.login    = usersPiwikLogin;
+                        frameParams.login    = usersMatomoLogin;
                         frameParams.password = pass;
                     }
 
                     // session storage
-                    QUI.Storage.set('piwik-opened', now);
+                    QUI.Storage.set('matomo-opened', now);
 
                     url = url.replace('https://', '').replace('http://', '');
 
@@ -179,9 +179,9 @@ define('package/quiqqer/piwik/bin/Panel', [
 
                     this.Loader.hide();
                 }.bind(this), {
-                    'package': 'quiqqer/piwik',
+                    'package': 'quiqqer/matomo',
                     project  : this.getAttribute('project'),
-                    str      : User.getAttribute('quiqqer.piwik.pass')
+                    str      : User.getAttribute('quiqqer.matomo.pass')
                 });
             }.bind(this));
         }

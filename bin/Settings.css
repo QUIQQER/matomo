@@ -1,23 +1,23 @@
-.quiqqer-piwik-setting-projectlang {
+.quiqqer-matomo-setting-projectlang {
     clear: both;
     margin-bottom: 20px;
 }
 
-.quiqqer-piwik-setting-projectlang label {
+.quiqqer-matomo-setting-projectlang label {
     margin-bottom: 10px !important;
 }
 
-.quiqqer-piwik-setting-projectlang-flag,
-.quiqqer-piwik-setting-projectlang-text {
+.quiqqer-matomo-setting-projectlang-flag,
+.quiqqer-matomo-setting-projectlang-text {
     float: left;
     line-height: 30px;
     padding-right: 20px;
 }
 
-.quiqqer-piwik-setting-projectlang-flag {
+.quiqqer-matomo-setting-projectlang-flag {
     margin-top: 8px;
 }
 
-.quiqqer-piwik-setting-projectlang-text {
+.quiqqer-matomo-setting-projectlang-text {
     width: 140px;
 }

@@ -1,33 +1,33 @@
 /**
- * piwik settings - project lang
+ * matomo settings - project lang
  *
- * @module package/quiqqer/piwik/bin/Settings
+ * @module package/quiqqer/matomo/bin/Settings
  * @author www.pcsg.de (Henning Leutz)
  *
  * @require qui/QUI
  * @require qui/controls/Control
  * @require Locale
  * @require Mustache
- * @require text!package/quiqqer/piwik/bin/Setting.html
- * @require css!package/quiqqer/piwik/bin/Settings.css
+ * @require text!package/quiqqer/matomo/bin/Setting.html
+ * @require css!package/quiqqer/matomo/bin/Settings.css
  */
-define('package/quiqqer/piwik/bin/Settings', [
+define('package/quiqqer/matomo/bin/Settings', [
 
     'qui/QUI',
     'qui/controls/Control',
     'Locale',
     'Mustache',
-    'text!package/quiqqer/piwik/bin/Setting.html',
-    'css!package/quiqqer/piwik/bin/Settings.css'
+    'text!package/quiqqer/matomo/bin/Setting.html',
+    'css!package/quiqqer/matomo/bin/Settings.css'
 
 ], function (QUI, QUIControl, QUILocale, Mustache, templateSetting) {
     "use strict";
 
-    var lg = 'quiqqer/piwik';
+    var lg = 'quiqqer/matomo';
 
     return new Class({
         Extends: QUIControl,
-        Type   : 'package/quiqqer/piwik/bin/Settings',
+        Type   : 'package/quiqqer/matomo/bin/Settings',
 
         Binds: [
             '$onImport',
@@ -77,7 +77,7 @@ define('package/quiqqer/piwik/bin/Settings', [
                     tplData.push({
                         lang         : lang,
                         flag         : URL_BIN_DIR + '16x16/flags/' + lang + '.png',
-                        piwikIdTitle : QUILocale.get(lg, 'piwik.settings.id')
+                        matomoIdTitle : QUILocale.get(lg, 'matomo.settings.id')
                     });
                 });
 

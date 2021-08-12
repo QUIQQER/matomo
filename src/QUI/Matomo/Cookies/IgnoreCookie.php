@@ -3,25 +3,25 @@
 /**
  * @author PCSG (Jan Wennrich)
  */
-namespace QUI\Piwik\Cookies;
+namespace QUI\Matomo\Cookies;
 
 use QUI;
 use QUI\GDPR\CookieInterface;
-use QUI\Piwik\CookieUtils;
+use QUI\Matomo\CookieUtils;
 
 /**
  * Class QuiqqerSessionCookie
  *
  * @package QUI\GDPR\Cookies
  */
-class CvarCookie implements CookieInterface
+class IgnoreCookie implements CookieInterface
 {
     /**
      * @inheritDoc
      */
     public function getName(): string
     {
-        return '_pk_cvar.*';
+        return 'matomo_ignore';
     }
 
     /**
@@ -29,7 +29,11 @@ class CvarCookie implements CookieInterface
      */
     public function getOrigin(): string
     {
-        return QUI::getRequest()->getHost();
+        try {
+            return QUI::getRewrite()->getProject()->getConfig('matomo.settings.url');
+        } catch (QUI\Exception $Exception) {
+            return QUI::getRequest()->getHost();
+        }
     }
 
     /**
@@ -37,7 +41,7 @@ class CvarCookie implements CookieInterface
      */
     public function getPurpose(): string
     {
-        return QUI::getLocale()->get('quiqqer/piwik', 'cookie.cvar.purpose');
+        return QUI::getLocale()->get('quiqqer/matomo', 'cookie.ignore.purpose');
     }
 
     /**
@@ -45,11 +49,7 @@ class CvarCookie implements CookieInterface
      */
     public function getLifetime(): string
     {
-        return \sprintf(
-            '%d %s',
-            30,
-            QUI::getLocale()->get('quiqqer/quiqqer', 'minutes')
-        );
+        return QUI::getLocale()->get('quiqqer/matomo', 'cookie.ignore.lifetime');
     }
 
     /**

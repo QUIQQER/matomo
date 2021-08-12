@@ -3,25 +3,25 @@
 /**
  * @author PCSG (Jan Wennrich)
  */
-namespace QUI\Piwik\Cookies;
+namespace QUI\Matomo\Cookies;
 
 use QUI;
 use QUI\GDPR\CookieInterface;
-use QUI\Piwik\CookieUtils;
+use QUI\Matomo\CookieUtils;
 
 /**
  * Class QuiqqerSessionCookie
  *
  * @package QUI\GDPR\Cookies
  */
-class IdCookie implements CookieInterface
+class SesCookie implements CookieInterface
 {
     /**
      * @inheritDoc
      */
     public function getName(): string
     {
-        return '_pk_id.*';
+        return '_pk_ses.*';
     }
 
     /**
@@ -37,7 +37,7 @@ class IdCookie implements CookieInterface
      */
     public function getPurpose(): string
     {
-        return QUI::getLocale()->get('quiqqer/piwik', 'cookie.id.purpose');
+        return QUI::getLocale()->get('quiqqer/matomo', 'cookie.ses.purpose');
     }
 
     /**
@@ -47,8 +47,8 @@ class IdCookie implements CookieInterface
     {
         return \sprintf(
             '%d %s',
-            13,
-            QUI::getLocale()->get('quiqqer/quiqqer', 'months')
+            30,
+            QUI::getLocale()->get('quiqqer/quiqqer', 'minutes')
         );
     }
 

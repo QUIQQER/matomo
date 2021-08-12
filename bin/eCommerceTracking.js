@@ -2,15 +2,15 @@
  * initialize the e-commerce tracking
  *
  * @author www.pcsg.de (Henning Leutz)
- * @module package/quiqqer/piwik/bin/eCommerceTracking
+ * @module package/quiqqer/matomo/bin/eCommerceTracking
  */
-define('package/quiqqer/piwik/bin/eCommerceTracking', [
+define('package/quiqqer/matomo/bin/eCommerceTracking', [
 
     'qui/QUI',
     'Ajax',
-    'piwikTracker'
+    'matomoTracker'
 
-], function (QUI, QUIAjax, piwikTracker) {
+], function (QUI, QUIAjax, matomoTracker) {
     "use strict";
 
     var DEBUG          = false;
@@ -39,8 +39,8 @@ define('package/quiqqer/piwik/bin/eCommerceTracking', [
                 }
 
                 OrderProcess.getOrder().then(function (orderHash) {
-                    QUIAjax.get('package_quiqqer_piwik_ajax_ecommerce_getTrackDataForOrderProcess', resolve, {
-                        'package': 'quiqqer/piwik',
+                    QUIAjax.get('package_quiqqer_matomo_ajax_ecommerce_getTrackDataForOrderProcess', resolve, {
+                        'package': 'quiqqer/matomo',
                         orderHash: orderHash
                     });
                 });
@@ -49,8 +49,8 @@ define('package/quiqqer/piwik/bin/eCommerceTracking', [
             }
 
             require(['package/quiqqer/order/bin/frontend/Basket'], function (Basket) {
-                QUIAjax.get('package_quiqqer_piwik_ajax_ecommerce_getTrackData', resolve, {
-                    'package': 'quiqqer/piwik',
+                QUIAjax.get('package_quiqqer_matomo_ajax_ecommerce_getTrackData', resolve, {
+                    'package': 'quiqqer/matomo',
                     basketId : Basket.getId()
                 });
             });
@@ -69,7 +69,7 @@ define('package/quiqqer/piwik/bin/eCommerceTracking', [
 
         return Promise.all([
             getTrackData(OrderProcess),
-            piwikTracker
+            matomoTracker
         ]).then(function (result) {
             var i, len, product;
 
@@ -109,8 +109,8 @@ define('package/quiqqer/piwik/bin/eCommerceTracking', [
             console.log('track category view');
         }
 
-        piwikTracker.then(function (Tracker) {
-            QUIAjax.get('package_quiqqer_piwik_ajax_ecommerce_getCategoryData', function (category) {
+        matomoTracker.then(function (Tracker) {
+            QUIAjax.get('package_quiqqer_matomo_ajax_ecommerce_getCategoryData', function (category) {
                 try {
                     Tracker.setEcommerceView(false, false, category);
                     Tracker.trackPageView();
@@ -118,7 +118,7 @@ define('package/quiqqer/piwik/bin/eCommerceTracking', [
                     console.error(e);
                 }
             }, {
-                'package': 'quiqqer/piwik',
+                'package': 'quiqqer/matomo',
                 siteId   : siteId
             });
         });
@@ -134,8 +134,8 @@ define('package/quiqqer/piwik/bin/eCommerceTracking', [
             console.log('track product view');
         }
 
-        piwikTracker.then(function (Tracker) {
-            QUIAjax.get('package_quiqqer_piwik_ajax_ecommerce_getProductData', function (product) {
+        matomoTracker.then(function (Tracker) {
+            QUIAjax.get('package_quiqqer_matomo_ajax_ecommerce_getProductData', function (product) {
                 var productNo = product.productNo,
                     title     = product.title,
                     category  = product.category,
@@ -149,7 +149,7 @@ define('package/quiqqer/piwik/bin/eCommerceTracking', [
                     console.error(e);
                 }
             }, {
-                'package': 'quiqqer/piwik',
+                'package': 'quiqqer/matomo',
                 productId: productId
             });
         });
@@ -184,8 +184,8 @@ define('package/quiqqer/piwik/bin/eCommerceTracking', [
 
         lastOrderTrack = new window.Date();
 
-        piwikTracker.then(function (Tracker) {
-            QUIAjax.get('package_quiqqer_piwik_ajax_ecommerce_getOrderData', function (order) {
+        matomoTracker.then(function (Tracker) {
+            QUIAjax.get('package_quiqqer_matomo_ajax_ecommerce_getOrderData', function (order) {
                 if (order === '') {
                     if (DEBUG) {
                         console.error('track order error');
@@ -207,7 +207,7 @@ define('package/quiqqer/piwik/bin/eCommerceTracking', [
                     false
                 );
             }, {
-                'package': 'quiqqer/piwik',
+                'package': 'quiqqer/matomo',
                 orderHash: orderHash
             });
         });
@@ -217,7 +217,7 @@ define('package/quiqqer/piwik/bin/eCommerceTracking', [
      * tracks the start of a deletion process from an user
      */
     function trackUserDeleteStart() {
-        piwikTracker.then(function (Tracker) {
+        matomoTracker.then(function (Tracker) {
             Tracker.trackPageView('/profile/delete/start');
         });
     }
@@ -226,7 +226,7 @@ define('package/quiqqer/piwik/bin/eCommerceTracking', [
      * tracks the success of a deletion from an user
      */
     function trackUserDelete() {
-        piwikTracker.then(function (Tracker) {
+        matomoTracker.then(function (Tracker) {
             Tracker.trackPageView('/profile/delete/success');
         });
     }
@@ -245,7 +245,7 @@ define('package/quiqqer/piwik/bin/eCommerceTracking', [
                 console.log('track clear');
             }
 
-            piwikTracker.then(function (Tracker) {
+            matomoTracker.then(function (Tracker) {
                 Tracker.clearEcommerceCart();
                 Tracker.trackEcommerceCartUpdate(0);
             });
@@ -283,7 +283,7 @@ define('package/quiqqer/piwik/bin/eCommerceTracking', [
             console.log('track order process step', url);
         }
 
-        piwikTracker.then(function (Tracker) {
+        matomoTracker.then(function (Tracker) {
             Tracker.trackPageView(url);
         });
 
@@ -325,13 +325,13 @@ define('package/quiqqer/piwik/bin/eCommerceTracking', [
 
     // registration tracking
     QUI.addEvent('onQuiqqerFrontendUsersRegisterStart', function () {
-        piwikTracker.then(function (Tracker) {
+        matomoTracker.then(function (Tracker) {
             Tracker.trackPageView('/register/start');
         });
     });
 
     QUI.addEvent('onQuiqqerFrontendUsersRegisterSuccess', function () {
-        piwikTracker.then(function (Tracker) {
+        matomoTracker.then(function (Tracker) {
             Tracker.trackPageView('/register/success');
         });
     });

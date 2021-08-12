@@ -1,5 +1,5 @@
 {
-    "name": "quiqqer\/piwik",
+    "name": "quiqqer/matomo",
     "type": "quiqqer-module",
     "description": "Integrates Matomo (formerly PIWIK) in QUIQQER. Matomo is the leading open-source analytics platform that gives you more than just powerful analytics.",
     "license": "GPL-3.0+",
@@ -7,26 +7,34 @@
         {
             "name": "Henning Leutz",
             "email": "leutz@pcsg.de",
-            "homepage": "http:\/\/www.pcsg.de",
+            "homepage": "https:\/\/www.pcsg.de",
+            "role": "Developer"
+        },
+        {
+            "name": "Jan Wennrich",
+            "email": "wennrich@pcsg.de",
+            "homepage": "https:\/\/www.pcsg.de",
             "role": "Developer"
         }
     ],
     "support": {
         "email": "support@pcsg.de",
-        "url": "http:\/\/www.pcsg.de"
+        "url": "https:\/\/www.pcsg.de"
     },
     "require": {
         "php": ">=7",
         "quiqqer\/quiqqer": "*@dev",
-        "matomo/matomo-php-tracker": "2.*|3.*",
-        "quiqqer-asset\/mustache": "*"
+        "matomo/matomo-php-tracker": "3.*",
+        "quiqqer-asset\/mustache": "*",
+        "ext-json": "*",
+        "ext-mbstring": "*"
     },
     "suggest": {
         "quiqqer/gdpr": "Makes Matomo integration GDPR-compliant, by preventing cookies until the user consented to them."
     },
     "autoload": {
         "psr-4": {
-            "QUI\\Piwik\\": "src\/QUI\/Piwik"
+            "QUI\\Matomo\\": "src\\/QUI\\/Matomo"
         }
     }
 }

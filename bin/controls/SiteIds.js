@@ -1,5 +1,5 @@
 /**
- * @module package/quiqqer/piwik/bin/controls/SiteIds
+ * @module package/quiqqer/matomo/bin/controls/SiteIds
  *
  * @author PCSG (Jan Wennrich)
  *
@@ -8,7 +8,7 @@
  * @require package/quiqqer/translator/bin/controls/Update
  * @require Ajax
  */
-define('package/quiqqer/piwik/bin/controls/SiteIds', [
+define('package/quiqqer/matomo/bin/controls/SiteIds', [
 
     'qui/QUI',
     'qui/controls/Control',
@@ -21,7 +21,7 @@ define('package/quiqqer/piwik/bin/controls/SiteIds', [
     return new Class({
 
         Extends: QUIControl,
-        Type   : 'package/quiqqer/piwik/bin/controls/SiteIds',
+        Type   : 'package/quiqqer/matomo/bin/controls/SiteIds',
 
         Binds: [
             '$onImport',

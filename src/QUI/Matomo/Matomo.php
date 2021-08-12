@@ -1,47 +1,43 @@
 <?php
 
-namespace QUI\Piwik;
+namespace QUI\Matomo;
 
 use QUI;
 use QUI\Projects\Project;
 
 /**
- * Piwik Helper
+ * Matomo Helper
  *
- * @package QUI\Piwik
+ * @package QUI\Matomo
  *
  * @author PCSG (Jan Wennrich)
  */
-class Piwik
+class Matomo
 {
     const LOCALE_KEY_SITE_IDS = 'matomo.siteID';
 
     /**
-     * Return the piwik client
+     * Return the Matomo client
      *
      * @param Project $Project
-     * @return \PiwikTracker
+     * @return \MatomoTracker
      */
-    public static function getPiwikClient(Project $Project)
+    public static function getMatomoClient(Project $Project)
     {
-        $piwikUrl    = $Project->getConfig('piwik.settings.url');
-        $piwikSideId = $Project->getConfig('piwik.settings.id');
+        $matomoUrl    = $Project->getConfig('matomo.settings.url');
+        $matomoSideId = $Project->getConfig('matomo.settings.id');
 
-        if (\mb_strpos($piwikUrl, '://') === false) {
-            $piwikUrl = 'https://'.$piwikUrl;
+        if (\mb_strpos($matomoUrl, '://') === false) {
+            $matomoUrl = 'https://'.$matomoUrl;
         }
 
-        if (\class_exists('MatomoTracker')) {
-            $Piwik = new \MatomoTracker($piwikSideId, $piwikUrl);
-        } else {
-            $Piwik = new \PiwikTracker($piwikSideId, $piwikUrl);
+        $Matomo = new \MatomoTracker($matomoSideId, $matomoUrl);
+
+        if ($Project->getConfig('matomo.settings.token')) {
+            $Matomo->setTokenAuth($Project->getConfig('matomo.settings.token'));
         }
 
-        if ($Project->getConfig('piwik.settings.token')) {
-            $Piwik->setTokenAuth($Project->getConfig('piwik.settings.token'));
-        }
-
-        return $Piwik;
+        return $Matomo;
     }
 
 
@@ -60,17 +56,6 @@ class Piwik
             $language = $Project->getLang();
         }
 
-
-        /**
-         * Doesn't work at the moment because of a bug (I guess?)
-         * @see https://dev.quiqqer.com/quiqqer/quiqqer/issues/791
-         */
-        /*
-        if (!QUI::getLocale()->exists($group, self::LOCALE_KEY_SITE_IDS)) {
-            return $Project->getConfig('piwik.settings.id');
-        }
-        */
-
         $siteId = QUI::getLocale()->getByLang(
             $language,
             $group,
@@ -80,7 +65,7 @@ class Piwik
         // No value set for this language, therefore return the general ID
         // TODO: replace with the code above, if the mentioned bug is fixed.
         if (empty($siteId) || $siteId == '['.$group.'] '.self::LOCALE_KEY_SITE_IDS) {
-            return (int)$Project->getConfig('piwik.settings.id');
+            return (int)$Project->getConfig('matomo.settings.id');
         }
 
         return $siteId;
