@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <menu>
     <item parent="/extras/"
-          name="stats"
+          name="matomo-stats"
           require="package/quiqqer/matomo/bin/Panel"
           icon="fa fa-line-chart"
     >
