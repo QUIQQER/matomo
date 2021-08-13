@@ -79,4 +79,49 @@ class Patches
             Log::addError($Exception->getMessage(), $Exception->getContext());
         }
     }
+
+    /**
+     * Migrate settings from previous quiqqer/piwik package into this package.
+     */
+    public static function migratePiwikSettings()
+    {
+        $ProjectManager = \QUI::getProjectManager();
+        $projects       = $ProjectManager::getProjects(true);
+
+        // Configs only differ in the prefix ("piwik" or "matomo")
+        $configKeySuffixes = [
+            '.settings.url',
+            '.settings.id',
+            '.settings.token',
+            '.settings.langdata',
+            '.settings.cookiecategory',
+        ];
+
+        // Migrate settings for every project
+        foreach ($projects as $Project) {
+            $migratedSettings = [];
+
+            // Check for every config value if it has to be migrated
+            foreach ($configKeySuffixes as $configKeySuffix) {
+                /** @var Project $Project */
+                $piwikValue = $Project->getConfig('piwik' . $configKeySuffix);
+                $matomoValue = $Project->getConfig('matomo' . $configKeySuffix);
+
+                $a = 1+1;
+
+                // If Piwik value is set and no Matomo value exists...
+                if ($piwikValue && !$matomoValue) {
+                    // Add Piwik value to the settings that should be migrated
+                    $migratedSettings['matomo' . $configKeySuffix] = $piwikValue;
+                }
+            }
+
+            // TODO: Migrate locale variables for language specific site ids (see EventHandler:onProjectConfigSave)
+
+            if (!empty($migratedSettings)) {
+                // Store the migrated settings for Matomo
+                //$ProjectManager::setConfigForProject($Project->getName(), $migratedSettings);
+            }
+        }
+    }
 }
