@@ -34,7 +34,7 @@
     },
     "autoload": {
         "psr-4": {
-            "QUI\\Matomo\\": "src\\/QUI\\/Matomo"
+            "QUI\\Matomo\\": "src\/QUI\/Matomo"
         }
     }
 }
