@@ -81,7 +81,9 @@ class Patches
     }
 
     /**
-     * Migrate settings from previous quiqqer/piwik package into this package.
+     * Migrate settings from quiqqer/piwik package into this package.
+     *
+     * @throws Exception
      */
     public static function migratePiwikSettings()
     {
@@ -104,10 +106,8 @@ class Patches
             // Check for every config value if it has to be migrated
             foreach ($configKeySuffixes as $configKeySuffix) {
                 /** @var Project $Project */
-                $piwikValue = $Project->getConfig('piwik' . $configKeySuffix);
+                $piwikValue  = $Project->getConfig('piwik' . $configKeySuffix);
                 $matomoValue = $Project->getConfig('matomo' . $configKeySuffix);
-
-                $a = 1+1;
 
                 // If Piwik value is set and no Matomo value exists...
                 if ($piwikValue && !$matomoValue) {
