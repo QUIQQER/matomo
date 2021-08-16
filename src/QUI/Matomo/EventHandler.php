@@ -124,4 +124,18 @@ class EventHandler
         }
         // endregion
     }
+
+    /**
+     * Fired after the package has been installed.
+     *
+     * @param QUI\Package\Package $Package
+     */
+    public static function onPackageInstallAfter(QUI\Package\Package $Package)
+    {
+        if ($Package->getName() !== 'quiqqer/matomo') {
+            return;
+        }
+
+        Patches::migratePiwikSettings();
+    }
 }

@@ -79,4 +79,59 @@ class Patches
             Log::addError($Exception->getMessage(), $Exception->getContext());
         }
     }
+
+    /**
+     * Migrate settings from quiqqer/piwik package into this package.
+     *
+     * @throws Exception
+     */
+    public static function migratePiwikSettings()
+    {
+        $ProjectManager = \QUI::getProjectManager();
+        $projects       = $ProjectManager::getProjects(true);
+
+        // Configs only differ in the prefix ("piwik" or "matomo")
+        $configKeySuffixes = [
+            '.settings.url',
+            '.settings.id',
+            '.settings.token',
+            '.settings.langdata',
+            '.settings.cookiecategory',
+        ];
+
+        // Migrate settings for every project
+        foreach ($projects as $Project) {
+            $migratedSettings = [];
+
+            // Check for every config value if it has to be migrated
+            foreach ($configKeySuffixes as $configKeySuffix) {
+                /** @var Project $Project */
+                $piwikValue  = $Project->getConfig('piwik' . $configKeySuffix);
+                $matomoValue = $Project->getConfig('matomo' . $configKeySuffix);
+
+                // If Piwik value is set and no Matomo value exists...
+                if ($piwikValue && !$matomoValue) {
+                    // Add Piwik value to the settings that should be migrated
+                    $migratedSettings['matomo' . $configKeySuffix] = $piwikValue;
+                }
+            }
+
+            // Info:
+            // Language specific site ids don't have to be migrated.
+            // The site ids are stored in the same locale variables for quiqqer/piwik and quiqqer/matomo.
+
+            if (empty($migratedSettings)) {
+                continue;
+            }
+
+            try {
+                // Store the migrated settings for Matomo
+                $ProjectManager::setConfigForProject($Project->getName(), $migratedSettings);
+                Log::addInfo("Successfully migrated quiqqer/piwik settings to quiqqer/matomo for project '{$Project->getName()}'.");
+            } catch (\Exception $Exception) {
+                Log::addError("Could not migrate quiqqer/piwik settings to quiqqer/matomo for project '{$Project->getName()}':");
+                Log::writeException($Exception);
+            }
+        }
+    }
 }
