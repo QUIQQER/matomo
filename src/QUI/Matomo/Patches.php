@@ -116,11 +116,21 @@ class Patches
                 }
             }
 
-            // TODO: Migrate locale variables for language specific site ids (see EventHandler:onProjectConfigSave)
+            // Info:
+            // Language specific site ids don't have to be migrated.
+            // The site ids are stored in the same locale variables for quiqqer/piwik and quiqqer/matomo.
 
-            if (!empty($migratedSettings)) {
+            if (empty($migratedSettings)) {
+                continue;
+            }
+
+            try {
                 // Store the migrated settings for Matomo
-                //$ProjectManager::setConfigForProject($Project->getName(), $migratedSettings);
+                $ProjectManager::setConfigForProject($Project->getName(), $migratedSettings);
+                Log::addInfo("Successfully migrated quiqqer/piwik settings to quiqqer/matomo for project '{$Project->getName()}'.");
+            } catch (\Exception $Exception) {
+                Log::addError("Could not migrate quiqqer/piwik settings to quiqqer/matomo for project '{$Project->getName()}':");
+                Log::writeException($Exception);
             }
         }
     }
