@@ -84,8 +84,8 @@
         </locale>
 
         <locale name="matomo.settings.token.description">
-            <de><![CDATA[Wird zur Authentifizierung in API Anfragen verwendet. Mehr dazu <a href="https://matomo.org/faq/general/faq_114/" rel="nofollow">hier</a>.]]></de>
-            <en><![CDATA[Used for authentication in API requests. More about this <a href="https://matomo.org/faq/general/faq_114/" rel="nofollow">here</a>.]]></en>
+            <de><![CDATA[Wird zur Authentifizierung in API Anfragen verwendet. Mehr dazu <a href="https://matomo.org/faq/general/faq_114/" target="_blank" rel="noopener">hier</a>.]]></de>
+            <en><![CDATA[Used for authentication in API requests. More about this <a href="https://matomo.org/faq/general/faq_114/" target="_blank" rel="noopener">here</a>.]]></en>
         </locale>
 
         <locale name="user.profile.title">
