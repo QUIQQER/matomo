@@ -96,6 +96,10 @@
             <de><![CDATA[Matomo Passwort]]></de>
             <en><![CDATA[Matomo password]]></en>
         </locale>
+        <locale name="user.profile.pass.description">
+            <de><![CDATA[Um den Matomo-Login via Benutzername & Passwort zu nutzen müssen neue Matomo-Instanzen mit Version 4.4.0 oder neuer wie folgt konfiguriert werden: <pre>[General]<br>login_allow_logme = 1</pre> Mehr dazu <a href="https://matomo.org/faq/how-to/faq_30/" target="_blank" rel="noopener">hier</a>.]]></de>
+            <en><![CDATA[To use Matomo login via username & password new Matomo instances with version 4.4.0 or newer must be configured as follows: <pre>[General]<br>login_allow_logme = 1</pre> More <a href="https://matomo.org/faq/how-to/faq_30/" target="_blank" rel="noopener">here</a>.]]></en>
+        </locale>
         <locale name="user.profile.login">
             <de><![CDATA[Matomo Benutzername]]></de>
             <en><![CDATA[Matomo username]]></en>
