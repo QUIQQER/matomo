@@ -114,6 +114,8 @@ define('package/quiqqer/matomo/bin/Panel', [
                         id    = config['matomo.settings.id'],
                         token = config['matomo.settings.token'];
 
+                    var useTokenForStatisticsDisplay = config['matomo.settings.useTokenForStatisticsDisplay'];
+
                     this.getContent()
                         .getElements('.quiqqer-matomo-panel-nosettings,iframe')
                         .destroy();
@@ -148,17 +150,29 @@ define('package/quiqqer/matomo/bin/Panel', [
                         opened = 0;
                     }
 
-                    if (!usersMatomoLogin && !usersMatomoPassword) {
+                    if (!useTokenForStatisticsDisplay && !usersMatomoLogin && !usersMatomoPassword) {
                         QUI.getMessageHandler().then(function (MH) {
                             MH.addInformation(QUILocale.get(lg, 'panel.notice.userdata.missing'));
                         });
                     }
 
-                    if (usersMatomoPassword && usersMatomoLogin && opened + 7200 < now) {
+                    if (useTokenForStatisticsDisplay && !token) {
+                        QUI.getMessageHandler().then(function (MH) {
+                            MH.addInformation(QUILocale.get(lg, 'panel.notice.token.missing'));
+                        });
+                    }
+
+                    if (!useTokenForStatisticsDisplay && usersMatomoPassword && usersMatomoLogin && opened + 7200 < now) {
                         frameParams.module   = 'Login';
                         frameParams.action   = 'logme';
                         frameParams.login    = usersMatomoLogin;
                         frameParams.password = pass;
+                    }
+
+                    if (useTokenForStatisticsDisplay && token) {
+                        frameParams.module = 'LoginTokenAuth';
+                        frameParams.action = 'logme';
+                        frameParams.token_auth = token;
                     }
 
                     // session storage
@@ -166,7 +180,7 @@ define('package/quiqqer/matomo/bin/Panel', [
 
                     url = url.replace('https://', '').replace('http://', '');
 
-                    var src = '//' + url + '/index.php?' + Object.toQueryString(frameParams);
+                    var src = 'https://' + url + '/index.php?' + Object.toQueryString(frameParams);
 
                     new Element('iframe', {
                         src   : src,

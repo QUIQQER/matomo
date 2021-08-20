@@ -25,6 +25,15 @@
             <en><![CDATA[Access Token (optional)]]></en>
         </locale>
 
+        <locale name="matomo.settings.useTokenForStatisticsDisplay">
+            <de><![CDATA[Access Token auch zum Anzeigen der Matomo-Statistiken in der Administration verwenden]]></de>
+            <en><![CDATA[Use Access Token also for displaying Matomo statistics in administration]]></en>
+        </locale>
+        <locale name="matomo.settings.useTokenForStatisticsDisplay.description">
+            <de><![CDATA[<br>Hinweis: In der Matomo-Instanz muss das <a href="https://plugins.matomo.org/LoginTokenAuth" target="_blank" rel="noopener">LoginTokenAuth Plugin</a> aktiviert sein. Zudem darf das Token NICHT von einem Super-User der Matomo Instanz stammen.<br>Soll der Token-Login nicht verwendet werden, können stattdessen Matomo Zugangsdaten in den QUIQQER Benutzerprofil hinterlegt werden.]]></de>
+            <en><![CDATA[<br>Note: In the Matomo instance, the <a href="https://plugins.matomo.org/LoginTokenAuth" target="_blank" rel="noopener">LoginTokenAuth plugin</a> must be enabled. In addition, the token must NOT come from a super-user of the Matomo instance.<br>If the token login is not to be used, Matomo credentials can be stored in the QUIQQER user profile instead.]]></en>
+        </locale>
+
         <locale name="matomo.settings.siteIds">
             <de><![CDATA[Sprachspezifische Seiten IDs]]></de>
             <en><![CDATA[Language Specific Site IDs]]></en>
@@ -37,8 +46,12 @@
             <en><![CDATA[Matomo wasn't configured for this project yet.<br/>This can be done in the project's settings.]]></en>
         </locale>
         <locale name="panel.notice.userdata.missing">
-            <de><![CDATA[Um automatisch angemeldet zu werden, fügen Sie Ihre Matomo-Nutzerdaten zu Ihren Nutzereinstellungen hinzu.]]></de>
-            <en><![CDATA[To login automatically add your Matomo-userdata to your user settings.]]></en>
+            <de><![CDATA[Um automatisch angemeldet zu werden, fügen Sie Ihre Matomo-Nutzerdaten zu Ihren Nutzereinstellungen hinzu oder aktivieren Sie den Token-Login in den Projekteinstellungen.]]></de>
+            <en><![CDATA[To login automatically add your Matomo-userdata to your user settings or activate the token login in the project settings.]]></en>
+        </locale>
+        <locale name="panel.notice.token.missing">
+            <de><![CDATA[Um automatisch angemeldet zu werden, müssen Sie in den Projekteinstellungen einen Matomo-Token hinterlegen oder den Token-Login deaktivieren.]]></de>
+            <en><![CDATA[To be logged in automatically, you need to store a Matomo token in the project settings or deactivate the token login.]]></en>
         </locale>
         <locale name="panel.matomo.title">
             <de><![CDATA[Matomo Statistiken]]></de>
@@ -84,8 +97,8 @@
         </locale>
 
         <locale name="matomo.settings.token.description">
-            <de><![CDATA[Wird zur Authentifizierung in API Anfragen verwendet. Mehr dazu <a href="https://matomo.org/faq/general/faq_114/" rel="nofollow">hier</a>.]]></de>
-            <en><![CDATA[Used for authentication in API requests. More about this <a href="https://matomo.org/faq/general/faq_114/" rel="nofollow">here</a>.]]></en>
+            <de><![CDATA[Wird zur Authentifizierung in API Anfragen verwendet. Mehr dazu <a href="https://matomo.org/faq/general/faq_114/" target="_blank" rel="noopener">hier</a>.]]></de>
+            <en><![CDATA[Used for authentication in API requests. More about this <a href="https://matomo.org/faq/general/faq_114/" target="_blank" rel="noopener">here</a>.]]></en>
         </locale>
 
         <locale name="user.profile.title">
@@ -95,6 +108,10 @@
         <locale name="user.profile.pass">
             <de><![CDATA[Matomo Passwort]]></de>
             <en><![CDATA[Matomo password]]></en>
+        </locale>
+        <locale name="user.profile.pass.description">
+            <de><![CDATA[Um den Matomo-Login via Benutzername & Passwort zu nutzen müssen neue Matomo-Instanzen mit Version 4.4.0 oder neuer wie folgt konfiguriert werden: <pre>[General]<br>login_allow_logme = 1</pre> Mehr dazu <a href="https://matomo.org/faq/how-to/faq_30/" target="_blank" rel="noopener">hier</a>.]]></de>
+            <en><![CDATA[To use Matomo login via username & password new Matomo instances with version 4.4.0 or newer must be configured as follows: <pre>[General]<br>login_allow_logme = 1</pre> More <a href="https://matomo.org/faq/how-to/faq_30/" target="_blank" rel="noopener">here</a>.]]></en>
         </locale>
         <locale name="user.profile.login">
             <de><![CDATA[Matomo Benutzername]]></de>
