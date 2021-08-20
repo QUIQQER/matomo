@@ -166,7 +166,7 @@ define('package/quiqqer/matomo/bin/Panel', [
 
                     url = url.replace('https://', '').replace('http://', '');
 
-                    var src = '//' + url + '/index.php?' + Object.toQueryString(frameParams);
+                    var src = 'https://' + url + '/index.php?' + Object.toQueryString(frameParams);
 
                     new Element('iframe', {
                         src   : src,
