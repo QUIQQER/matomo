@@ -14,6 +14,10 @@
                     <conf name="token">
                         <type><![CDATA[string]]></type>
                     </conf>
+                    <conf name="useTokenForStatisticsDisplay">
+                        <type><![CDATA[bool]]></type>
+                        <defaultvalue>0</defaultvalue>
+                    </conf>
                     <conf name="langdata">
                         <type><![CDATA[string]]></type>
                     </conf>
@@ -90,6 +94,15 @@
                                     <locale group="quiqqer/matomo"
                                             var="matomo.settings.token.description"
                                     />
+                                </description>
+                            </input>
+
+                            <input conf="matomo.settings.useTokenForStatisticsDisplay" type="checkbox">
+                                <text>
+                                    <locale group="quiqqer/matomo" var="matomo.settings.useTokenForStatisticsDisplay"/>
+                                </text>
+                                <description>
+                                    <locale group="quiqqer/matomo" var="matomo.settings.useTokenForStatisticsDisplay.description"/>
                                 </description>
                             </input>
                         </settings>
