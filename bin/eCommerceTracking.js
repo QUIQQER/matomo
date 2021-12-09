@@ -13,8 +13,34 @@ define('package/quiqqer/matomo/bin/eCommerceTracking', [
 ], function (QUI, QUIAjax, matomoTracker) {
     "use strict";
 
-    var DEBUG          = false;
-    var lastOrderTrack = null;
+    const DEBUG = false;
+    let lastOrderTrack = null;
+
+    function trackBasket(Basket) {
+        if (!parseInt(QUIQQER_USER.id)) {
+            return new Promise(function (resolve) {
+                let products = [];
+                let basketProducts = Basket.getProducts();
+
+                for (let i = 0, len = basketProducts.length; i < len; i++) {
+                    products.push(basketProducts[i].getAttributes());
+                }
+
+                QUIAjax.get('package_quiqqer_matomo_ajax_ecommerce_getTrackData', resolve, {
+                    'package': 'quiqqer/matomo',
+                    basketId : Basket.getId(),
+                    products : JSON.encode(products)
+                });
+            });
+        }
+
+        return new Promise(function (resolve) {
+            QUIAjax.get('package_quiqqer_matomo_ajax_ecommerce_getTrackData', resolve, {
+                'package': 'quiqqer/matomo',
+                basketId : Basket.getId()
+            });
+        });
+    }
 
     /**
      * Return the tracking data for the basket
@@ -28,13 +54,15 @@ define('package/quiqqer/matomo/bin/eCommerceTracking', [
                     var Node = document.getElement('[data-qui="package/quiqqer/order/bin/frontend/controls/OrderProcess"]');
 
                     if (!Node) {
-                        return resolve([]);
+                        trackBasket(OrderProcess).then(resolve);
+                        return;
                     }
 
                     OrderProcess = QUI.Controls.getById(Node.get('data-quiid'));
 
                     if (!OrderProcess) {
-                        return resolve([]);
+                        trackBasket(OrderProcess).then(resolve);
+                        return;
                     }
                 }
 
@@ -49,10 +77,7 @@ define('package/quiqqer/matomo/bin/eCommerceTracking', [
             }
 
             require(['package/quiqqer/order/bin/frontend/Basket'], function (Basket) {
-                QUIAjax.get('package_quiqqer_matomo_ajax_ecommerce_getTrackData', resolve, {
-                    'package': 'quiqqer/matomo',
-                    basketId : Basket.getId()
-                });
+                trackBasket(Basket).then(resolve);
             });
         });
     }
