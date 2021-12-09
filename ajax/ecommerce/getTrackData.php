@@ -13,21 +13,26 @@ use QUI\ERP\Order\Handler as OrderHandler;
  */
 QUI::$Ajax->registerFunction(
     'package_quiqqer_matomo_ajax_ecommerce_getTrackData',
-    function ($basketId) {
-        try {
-            $Basket = OrderHandler::getInstance()->getBasketById($basketId);
-        } catch (QUI\Exception $Exception) {
-            return [];
+    function ($basketId, $products) {
+        if (!QUI::getUserBySession()->getId()) {
+            $Basket = new QUI\ERP\Order\Basket\BasketGuest();
+            $Basket->import(\json_decode($products, true));
+        } else {
+            try {
+                $Basket = OrderHandler::getInstance()->getBasketById($basketId);
+            } catch (QUI\Exception $Exception) {
+                return [];
+            }
         }
 
         $Locale = QUI::getLocale();
-        $List   = $Basket->getProducts();
+        $List = $Basket->getProducts();
 
         if (!$List) {
             return [];
         }
 
-        $list     = $List->toArray();
+        $list = $List->toArray();
         $products = $list['products'];
 
         // generate result
@@ -37,14 +42,14 @@ QUI::$Ajax->registerFunction(
             $Product = Products::getProduct($product['id']);
 
             // categories
-            $Category   = $Product->getCategory();
+            $Category = $Product->getCategory();
             $categories = $Product->getCategories();
 
-            $category   = '';
+            $category = '';
             $categoryId = '';
 
             if ($Category) {
-                $category   = $Category->getTitle($Locale);
+                $category = $Category->getTitle($Locale);
                 $categoryId = $Category->getId();
             }
 
@@ -74,17 +79,20 @@ QUI::$Ajax->registerFunction(
             ];
         }
 
-        $result['sum']          = $list['sum'];
-        $result['subSum']       = $list['subSum'];
-        $result['nettoSum']     = $list['nettoSum'];
-        $result['nettoSubSum']  = $list['nettoSubSum'];
-        $result['vatArray']     = $list['vatArray'];
-        $result['vatText']      = $list['vatText'];
-        $result['isEuVat']      = $list['isEuVat'];
-        $result['isNetto']      = $list['isNetto'];
+        $result['sum'] = $list['sum'];
+        $result['subSum'] = $list['subSum'];
+        $result['nettoSum'] = $list['nettoSum'];
+        $result['nettoSubSum'] = $list['nettoSubSum'];
+        $result['vatArray'] = $list['vatArray'];
+        $result['vatText'] = $list['vatText'];
+        $result['isEuVat'] = $list['isEuVat'];
+        $result['isNetto'] = $list['isNetto'];
         $result['currencyData'] = $list['currencyData'];
 
         return $result;
     },
-    ['basketId']
+    [
+        'basketId',
+        'products'
+    ]
 );
