@@ -51,7 +51,11 @@ define('package/quiqqer/matomo/bin/eCommerceTracking', [
         return new Promise(function (resolve) {
             if (typeof OrderProcess !== 'undefined') {
                 if (typeOf(OrderProcess) === 'package/quiqqer/order/bin/frontend/classes/Basket') {
-                    var Node = document.getElement('[data-qui="package/quiqqer/order/bin/frontend/controls/OrderProcess"]');
+                    const Node = document.getElement('[data-qui="package/quiqqer/order/bin/frontend/controls/OrderProcess"]');
+
+                    if (!OrderProcess.isLoaded()) {
+                        return;
+                    }
 
                     if (!Node) {
                         trackBasket(OrderProcess).then(resolve);
@@ -96,11 +100,11 @@ define('package/quiqqer/matomo/bin/eCommerceTracking', [
             getTrackData(OrderProcess),
             matomoTracker
         ]).then(function (result) {
-            var i, len, product;
+            let i, len, product;
 
-            var data     = result[0],
-                Tracker  = result[1],
-                products = data.products;
+            const data     = result[0],
+                  Tracker  = result[1],
+                  products = data.products;
 
             if (!products || !products.length) {
                 return;
@@ -161,10 +165,10 @@ define('package/quiqqer/matomo/bin/eCommerceTracking', [
 
         matomoTracker.then(function (Tracker) {
             QUIAjax.get('package_quiqqer_matomo_ajax_ecommerce_getProductData', function (product) {
-                var productNo = product.productNo,
-                    title     = product.title,
-                    category  = product.category,
-                    price     = product.price;
+                const productNo = product.productNo,
+                      title     = product.title,
+                      category  = product.category,
+                      price     = product.price;
 
                 try {
                     Tracker.setEcommerceView(productNo, title, category, price);
@@ -298,7 +302,7 @@ define('package/quiqqer/matomo/bin/eCommerceTracking', [
     // trackEcommerceOrder
 
     QUI.addEvent('onQuiqqerOrderProcessOpenStep', function (OrderProcess, step) {
-        var url = '/' + step;
+        let url = '/' + step;
 
         if (QUIQQER_SITE.url !== '' && QUIQQER_SITE.url !== '/') {
             url = QUIQQER_SITE.url + url;
@@ -367,7 +371,7 @@ define('package/quiqqer/matomo/bin/eCommerceTracking', [
     }
 
     if (QUI.getAttribute('QUIQQER_VERIFIER_SUCCESS')) {
-        var verifier = QUI.getAttribute('QUIQQER_VERIFIER_SUCCESS');
+        const verifier = QUI.getAttribute('QUIQQER_VERIFIER_SUCCESS');
 
         if (verifier === 'QUIFrontendUsersUserDeleteConfirmVerification') {
             trackUserDelete();
