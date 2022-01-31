@@ -29,6 +29,9 @@
         "ext-json": "*",
         "ext-mbstring": "*"
     },
+    "conflict": {
+        "quiqqer/piwik": "*"
+    },
     "suggest": {
         "quiqqer/gdpr": "Makes Matomo integration GDPR-compliant, by preventing cookies until the user consented to them."
     },
