@@ -16,6 +16,11 @@ class Matomo
 {
     const LOCALE_KEY_SITE_IDS = 'matomo.siteID';
 
+    const LOCALE_KEY_TAG_MANAGER_CODES = 'matomo.settings.tagmanager.code.languages.value';
+
+    const CONFIG_KEY_GENERAL_TAG_MANAGER_CODE = 'matomo.settings.tagmanager.code.general';
+    const CONFIG_KEY_TAG_MANAGER_ENABLED = 'matomo.settings.tagmanager.enabled';
+
     /**
      * Return the Matomo client
      *
@@ -78,9 +83,89 @@ class Matomo
      * @param array $siteIds - e.g.: ['de' => 40, 'en' => 41, 'fr' => 42]
      * @param Project $Project
      */
-    public static function setSiteIds($siteIds, Project $Project)
+    public static function setSiteIds(array $siteIds, Project $Project): void
     {
-        $localeKey   = self::LOCALE_KEY_SITE_IDS;
+        static::storeLocaleVariableBasedData(static::LOCALE_KEY_SITE_IDS, $siteIds, $Project);
+    }
+
+
+    /**
+     * Stores the given Tag Manager Codes in the system (as locale variables).
+     *
+     * @param array $tagManagerCodes - e.g.: ['de' => 40, 'en' => 41, 'fr' => 42]
+     * @param Project $Project
+     */
+    public static function setTagManagerCodes(array $tagManagerCodes, Project $Project): void
+    {
+        static::storeLocaleVariableBasedData(static::LOCALE_KEY_TAG_MANAGER_CODES, $tagManagerCodes, $Project);
+    }
+
+
+    public static function setGeneralTagManagerCode(string $code, Project $Project): bool
+    {
+        try {
+            $ProjectsConfig = QUI\Projects\Manager::getConfig();
+            $ProjectsConfig->setValue(
+                $Project->getName(),
+                static::CONFIG_KEY_GENERAL_TAG_MANAGER_CODE,
+                json_encode(htmlentities($code))
+            );
+            $ProjectsConfig->save();
+        } catch (QUI\Exception $Exception) {
+            return false;
+        }
+
+        return true;
+    }
+
+
+    public static function getGeneralTagManagerCode(Project $Project): string
+    {
+        try {
+            $value = $Project->getConfig(static::CONFIG_KEY_GENERAL_TAG_MANAGER_CODE);
+            return html_entity_decode(json_decode($value, true));
+        } catch (QUI\Exception $Exception) {
+            return '';
+        }
+    }
+
+
+    /**
+     * Returns the Tag Manager Code for a given project and language
+     *
+     * @param Project $Project
+     * @param $language
+     * @return string
+     */
+    public static function getTagManagerCode(Project $Project, $language = null): string
+    {
+        $group = self::getLocaleGroup($Project);
+
+        if (is_null($language)) {
+            $language = $Project->getLang();
+        }
+
+        $tagManagerCode = QUI::getLocale()->getByLang(
+            $language,
+            $group,
+            self::LOCALE_KEY_TAG_MANAGER_CODES
+        );
+
+        // No value set for this language, therefore return the general TagManager code
+        if (empty($tagManagerCode) || $tagManagerCode == '['.$group.'] '.self::LOCALE_KEY_SITE_IDS) {
+            $tagManagerCode = static::getGeneralTagManagerCode($Project);
+        }
+
+        return $tagManagerCode;
+    }
+
+    public static function isTagManagerEnabled(Project $Project): bool
+    {
+        return boolval($Project->getConfig(static::CONFIG_KEY_TAG_MANAGER_ENABLED));
+    }
+
+    protected static function storeLocaleVariableBasedData(string $localeKey, array $values, Project $Project): void
+    {
         $localeGroup = self::getLocaleGroup($Project);
 
         try {
@@ -98,7 +183,7 @@ class Matomo
                 $localeGroup,
                 $localeKey,
                 $localeGroup,
-                $siteIds
+                $values
             );
             QUI\Translator::publish($localeGroup);
         } catch (QUI\Exception $Exception) {
