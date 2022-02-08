@@ -63,39 +63,6 @@ define('package/quiqqer/matomo/bin/controls/GeneralTagManagerCodeInput', [
                 projectName   : this.$Project.getName(),
                 'package': 'quiqqer/matomo'
             });
-        },
-
-        /**
-         * Return the input value
-         * @returns {String}
-         */
-        getValue: function () {
-            console.log('getvalue');
-            return JSON.stringify(this.getData());
-        },
-
-        /**
-         * Return the real data
-         *
-         * @returns {Object}
-         */
-        getData: function () {
-            console.log('get data');
-
-            return this.$Elm.value;
-        },
-
-        /**
-         * Set data
-         *
-         * @param data
-         */
-        setData: function (data) {
-            if (!this.$Textarea) {
-                return;
-            }
-
-            this.$Textarea.value = JSON.decode(data);
-        },
+        }
     });
 });
