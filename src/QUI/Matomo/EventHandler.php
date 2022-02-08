@@ -19,49 +19,8 @@ class EventHandler
      */
     public static function onTemplateSiteFetch($Template, $Site)
     {
-        $Project = $Site->getProject();
-
-        $matomoUrl    = $Project->getConfig('matomo.settings.url');
-        $matomoSiteId = Matomo::getSiteId($Project);
-
-        $langSettingsJSON = $Project->getConfig('matomo.settings.langdata');
-
-        if (!empty($langSettingsJSON)) {
-            $langSettings = json_decode($langSettingsJSON, true);
-            $language     = $Project->getLang();
-
-            if (isset($langSettings[$language])) {
-                if (isset($langSettings[$language]['url'])
-                    && !empty($langSettings[$language]['url'])
-                    && empty($matomoUrl)
-                ) {
-                    $matomoUrl = $langSettings[$language]['url'];
-                }
-            }
-        }
-
-        if (empty($matomoUrl) || empty($matomoSiteId)) {
-            return;
-        }
-
-        try {
-            $Engine = QUI::getTemplateManager()->getEngine();
-        } catch (QUI\Exception $Exception) {
-            QUI\System\Log::addDebug($Exception->getMessage());
-
-            return;
-        }
-
-        $Engine->assign([
-            'matomoUrl'        => $matomoUrl,
-            'matomoSideId'     => $matomoSiteId,
-            'eCommerce'       => QUI::getPackageManager()->isInstalled('quiqqer/order') ? 1 : 0,
-            'cookieCategory'  => CookieUtils::getCookieCategorySetting()
-        ]);
-
-        $Template->extendFooter(
-            $Engine->fetch(dirname(__FILE__).'/matomo.html')
-        );
+        TemplateExtender::extendHeader($Template, $Site);
+        TemplateExtender::extendFooter($Template, $Site);
     }
 
     /**
@@ -82,6 +41,15 @@ class EventHandler
         if (isset($params['matomo.siteIds'])) {
             $siteIds = json_decode($params['matomo.siteIds'], true);
             Matomo::setSiteIds($siteIds, $Project);
+        }
+
+        if (isset($params[Matomo::CONFIG_KEY_GENERAL_TAG_MANAGER_CODE])) {
+            Matomo::setGeneralTagManagerCode($params[Matomo::CONFIG_KEY_GENERAL_TAG_MANAGER_CODE], $Project);
+        }
+
+        if (isset($params['matomo.settings.tagmanager.code.languages'])) {
+            $tagManagerCodes = json_decode($params['matomo.settings.tagmanager.code.languages'], true);
+            Matomo::setTagManagerCodes($tagManagerCodes, $Project);
         }
 
         // region Remove language specific URLs if general URL is set

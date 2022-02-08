@@ -26,6 +26,17 @@
                         <defaultvalue><![CDATA[statistics]]></defaultvalue>
                     </conf>
                 </section>
+                <section name="matomo.settings.tagmanager">
+                    <conf name="enabled">
+                        <type><![CDATA[boolean]]></type>
+                    </conf>
+                    <conf name="code.general">
+                        <type><![CDATA[string]]></type>
+                    </conf>
+                    <conf name="code.languages">
+                        <type><![CDATA[string]]></type>
+                    </conf>
+                </section>
             </config>
 
             <window>
@@ -132,6 +143,36 @@
                                     <locale group="quiqqer/matomo" var="matomo.settings.cookiecategory.marketing"/>
                                 </option>
                             </select>
+                        </settings>
+
+                        <settings>
+                            <title>
+                                <locale group="quiqqer/matomo" var="matomo.settings.tagmanager.title"/>
+                            </title>
+
+                            <input conf="matomo.settings.tagmanager.enabled" type="checkbox">
+                                <text>
+                                    <locale group="quiqqer/matomo" var="matomo.settings.tagmanager.enabled.text"/>
+                                </text>
+                            </input>
+
+                            <input type="hidden" data-qui="package/quiqqer/matomo/bin/controls/GeneralTagManagerCodeInput">
+                                <text>
+                                    <locale group="quiqqer/matomo" var="matomo.settings.tagmanager.code.general"/>
+                                </text>
+                                <description>
+                                    <locale group="quiqqer/matomo" var="matomo.settings.tagmanager.code.general.description"/>
+                                </description>
+                            </input>
+
+                            <input type="hidden" data-qui="package/quiqqer/matomo/bin/controls/TagManagerCodesLanguages">
+                                <text>
+                                    <locale group="quiqqer/matomo" var="matomo.settings.tagmanager.code.languages"/>
+                                </text>
+                                <description>
+                                    <locale group="quiqqer/matomo" var="matomo.settings.tagmanager.code.languages.description"/>
+                                </description>
+                            </input>
                         </settings>
                     </category>
                 </categories>

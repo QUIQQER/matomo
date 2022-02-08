@@ -79,7 +79,7 @@
 
         <locale name="matomo.settings.url.description">
             <de><![CDATA[
-            Die URL ihres Matomo Tracking-Servers. Bitte geben Sie diese ohne Protokoll an (zum Beispiel: stats.server.com).
+            Die URL Ihres Matomo Tracking-Servers. Bitte geben Sie diese ohne Protokoll an (zum Beispiel: stats.server.com).
             ]]></de>
             <en><![CDATA[
             The URL of your Matomo tracking-server. Please enter it without the protocol for example: stats.server.com).
@@ -99,6 +99,31 @@
         <locale name="matomo.settings.token.description">
             <de><![CDATA[Wird zur Authentifizierung in API Anfragen verwendet. Mehr dazu <a href="https://matomo.org/faq/general/faq_114/" target="_blank" rel="noopener">hier</a>.]]></de>
             <en><![CDATA[Used for authentication in API requests. More about this <a href="https://matomo.org/faq/general/faq_114/" target="_blank" rel="noopener">here</a>.]]></en>
+        </locale>
+
+        <locale name="matomo.settings.tagmanager.title">
+            <de><![CDATA[Matomo Tag Manager]]></de>
+            <en><![CDATA[Matomo Tag Manager]]></en>
+        </locale>
+        <locale name="matomo.settings.tagmanager.enabled.text">
+            <de><![CDATA[Tag Manager aktivieren]]></de>
+            <en><![CDATA[Enable tag manager]]></en>
+        </locale>
+        <locale name="matomo.settings.tagmanager.code.general">
+            <de><![CDATA[Allgemeiner Tag Manager Code]]></de>
+            <en><![CDATA[General Tag Manager Code]]></en>
+        </locale>
+        <locale name="matomo.settings.tagmanager.code.general.description" html="true">
+            <de><![CDATA[Wird für alle Sprachen dieses Projekts genutzt, für die kein "Sprachspezifischer Tag Manager Code" gesetzt ist.<br>Folgen Sie der <a href="https://matomo.org/docs/tag-manager/" target="_blank" rel="noopener noreferrer">Matomo Dokumentation</a>, um einen Tag-Manager-Code zu generieren.]]></de>
+            <en><![CDATA[Used for all languages of this project for which no "Language Specific Tag Manager Code" is set.<br>Follow the <a href="https://matomo.org/docs/tag-manager/" target="_blank" rel="noopener noreferrer">Matomo docs</a> to generate your tag manager codes.]]></en>
+        </locale>
+        <locale name="matomo.settings.tagmanager.code.languages">
+            <de><![CDATA[Sprachspezifische Tag Manager Codes]]></de>
+            <en><![CDATA[Language Specific Tag Manager Codes]]></en>
+        </locale>
+        <locale name="matomo.settings.tagmanager.code.languages.description" html="true">
+            <de><![CDATA[Legen Sie individuelle Tag Manager Codes für jede Sprache fest (überschreibt den allgemeinen Tag Manager Code für hier festgelegte Sprachen).<br>Folgen Sie der <a href="https://matomo.org/docs/tag-manager/" target="_blank" rel="noopener noreferrer">Matomo Dokumentation</a>, um einen Tag-Manager-Code zu generieren.]]></de>
+            <en><![CDATA[Set individual page IDs for each language (overrides the general Tag Manager code for the languages specified here).<br>Follow the <a href="https://matomo.org/docs/tag-manager/" target="_blank" rel="noopener noreferrer">Matomo docs</a> to generate your tag manager codes.]]></en>
         </locale>
 
         <locale name="user.profile.title">
