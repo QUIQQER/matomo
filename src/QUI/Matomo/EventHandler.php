@@ -3,6 +3,7 @@
 namespace QUI\Matomo;
 
 use QUI;
+use function is_array;
 
 /**
  * Class EventHandler
@@ -49,7 +50,10 @@ class EventHandler
 
         if (isset($params['matomo.settings.tagmanager.code.languages'])) {
             $tagManagerCodes = json_decode($params['matomo.settings.tagmanager.code.languages'], true);
-            Matomo::setTagManagerCodes($tagManagerCodes, $Project);
+
+            if (is_array($tagManagerCodes)) {
+                Matomo::setTagManagerCodes($tagManagerCodes, $Project);
+            }
         }
 
         // region Remove language specific URLs if general URL is set
