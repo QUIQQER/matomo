@@ -39,11 +39,11 @@ class EventTracking
 
     /**
      * @param QUI\Users\User $User
-     * @param QUI\FrontendUsers\RegistrarInterface $Registrar
+     * @param QUI\FrontendUsers\RegistrarInterface|bool $Registrar
      */
     public static function onQuiqqerFrontendUsersUserActivate(
         \QUI\Users\User $User,
-        \QUI\FrontendUsers\RegistrarInterface $Registrar
+        $Registrar = null
     ) {
         try {
             $Tracker = Matomo::getMatomoClient(QUI::getRewrite()->getProject());
@@ -51,12 +51,18 @@ class EventTracking
             return;
         }
 
+        $trackingRegistrar = '';
+
+        if ($Registrar) {
+            $trackingRegistrar = $Registrar->getTitle();
+        }
+        
         try {
             $Tracker->doTrackEvent(
                 'quiqqer/frontend-users',
                 'registration',
                 'activate',
-                $Registrar->getTitle()
+                $trackingRegistrar
             );
         } catch (\Exception $Exception) {
             QUI\System\Log::addError($Exception->getTraceAsString());
