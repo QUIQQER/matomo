@@ -145,15 +145,24 @@ class Matomo
             $language = $Project->getLang();
         }
 
+        // If locale variable does not exist, return general tag manager code
+        if (!QUI::getLocale()->exists(
+                $group,
+                self::LOCALE_KEY_TAG_MANAGER_CODES
+            )) {
+            return static::getGeneralTagManagerCode($Project);
+        }
+
+        // Get tag manager code from locale variable
         $tagManagerCode = QUI::getLocale()->getByLang(
             $language,
             $group,
             self::LOCALE_KEY_TAG_MANAGER_CODES
         );
 
-        // No value set for this language, therefore return the general TagManager code
-        if (empty($tagManagerCode) || $tagManagerCode == '['.$group.'] '.self::LOCALE_KEY_SITE_IDS) {
-            $tagManagerCode = static::getGeneralTagManagerCode($Project);
+        // Value for this language is empty, return the general TagManager code
+        if (empty($tagManagerCode)) {
+            return static::getGeneralTagManagerCode($Project);
         }
 
         return $tagManagerCode;
