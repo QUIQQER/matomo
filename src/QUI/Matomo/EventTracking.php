@@ -29,10 +29,10 @@ class EventTracking
             $Tracker->doTrackEvent(
                 'quiqqer/frontend-users',
                 'registration',
-                'register',
-                $Registrar->getTitle()
+                'register'
             );
         } catch (\Exception $Exception) {
+            QUI\System\Log::addError($Exception->getMessage());
             QUI\System\Log::addError($Exception->getTraceAsString());
         }
     }
@@ -51,20 +51,14 @@ class EventTracking
             return;
         }
 
-        $trackingRegistrar = '';
-
-        if ($Registrar) {
-            $trackingRegistrar = $Registrar->getTitle();
-        }
-        
         try {
             $Tracker->doTrackEvent(
                 'quiqqer/frontend-users',
                 'registration',
-                'activate',
-                $trackingRegistrar
+                'activate'
             );
         } catch (\Exception $Exception) {
+            QUI\System\Log::addError($Exception->getMessage());
             QUI\System\Log::addError($Exception->getTraceAsString());
         }
     }
