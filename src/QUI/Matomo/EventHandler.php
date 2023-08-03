@@ -3,6 +3,7 @@
 namespace QUI\Matomo;
 
 use QUI;
+
 use function is_array;
 
 /**
@@ -68,7 +69,7 @@ class EventHandler
         }
 
         $projectName = $Project->getName();
-        $settingKey  = 'matomo.settings.langdata';
+        $settingKey = 'matomo.settings.langdata';
 
         // Get the language data
         $languageDataJSON = $ProjectsConfig->getValue($projectName, $settingKey);

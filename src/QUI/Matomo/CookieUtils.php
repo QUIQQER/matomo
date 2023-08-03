@@ -3,6 +3,7 @@
 /**
  * @author PCSG (Jan Wennrich)
  */
+
 namespace QUI\Matomo;
 
 use QUI\Exception;
