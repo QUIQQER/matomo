@@ -1,22 +1,20 @@
 <?php
 
-use QUI\ERP\Products\Handler\Fields;
-use QUI\ERP\Products\Handler\Products;
-
-use QUI\ERP\Order\Handler as OrderHandler;
-
 /**
  * Return the data from the watchlist
  *
  * @param integer $watchlistId
  * @return array
  */
+
+use QUI\ERP\Products\Handler\Products;
+
 QUI::$Ajax->registerFunction(
     'package_quiqqer_matomo_ajax_ecommerce_getTrackDataForOrderProcess',
     function ($orderHash) {
         try {
             $Orders = QUI\ERP\Order\Handler::getInstance();
-            $Order  = $Orders->getOrderByHash($orderHash);
+            $Order = $Orders->getOrderByHash($orderHash);
 
             if (!$Order) {
                 return [];
@@ -31,15 +29,15 @@ QUI::$Ajax->registerFunction(
             return [];
         }
 
-        $Locale   = QUI::getLocale();
-        $list     = $Articles->toArray();
+        $Locale = QUI::getLocale();
+        $list = $Articles->toArray();
         $articles = $list['articles'];
 
         // generate result
         $result = [];
 
         foreach ($articles as $article) {
-            $category   = '';
+            $category = '';
             $categoryId = '';
             $categories = '';
 
@@ -47,18 +45,18 @@ QUI::$Ajax->registerFunction(
                 $Product = Products::getProduct((int)$article['id']);
 
                 // categories
-                $Category   = $Product->getCategory();
+                $Category = $Product->getCategory();
                 $categories = $Product->getCategories();
 
                 if ($Category) {
-                    $category   = $Category->getTitle($Locale);
+                    $category = $Category->getTitle($Locale);
                     $categoryId = $Category->getId();
                 }
 
-                $categories = \array_map(function ($Category) use ($Locale) {
+                $categories = array_map(function ($Category) use ($Locale) {
                     /* @var $Category \QUI\ERP\Products\Category\Category */
                     return [
-                        'id'    => $Category->getId(),
+                        'id' => $Category->getId(),
                         'title' => $Category->getTitle($Locale)
                     ];
                 }, $categories);
@@ -69,24 +67,24 @@ QUI::$Ajax->registerFunction(
 
 
             $result['products'][] = [
-                'id'         => $article['id'],
-                'category'   => $category,
+                'id' => $article['id'],
+                'category' => $category,
                 'categoryId' => $categoryId,
                 'categories' => $categories,
-                'title'      => $article['title'],
-                'productNo'  => $article['articleNo'],
-                'price'      => $article['sum']
+                'title' => $article['title'],
+                'productNo' => $article['articleNo'],
+                'price' => $article['sum']
             ];
         }
 
-        $result['sum']          = $list['calculations']['sum'];
-        $result['subSum']       = $list['calculations']['subSum'];
-        $result['nettoSum']     = $list['calculations']['nettoSum'];
-        $result['nettoSubSum']  = $list['calculations']['nettoSubSum'];
-        $result['vatArray']     = $list['calculations']['vatArray'];
-        $result['vatText']      = $list['calculations']['vatText'];
-        $result['isEuVat']      = $list['calculations']['isEuVat'];
-        $result['isNetto']      = $list['calculations']['isNetto'];
+        $result['sum'] = $list['calculations']['sum'];
+        $result['subSum'] = $list['calculations']['subSum'];
+        $result['nettoSum'] = $list['calculations']['nettoSum'];
+        $result['nettoSubSum'] = $list['calculations']['nettoSubSum'];
+        $result['vatArray'] = $list['calculations']['vatArray'];
+        $result['vatText'] = $list['calculations']['vatText'];
+        $result['isEuVat'] = $list['calculations']['isEuVat'];
+        $result['isNetto'] = $list['calculations']['isNetto'];
         $result['currencyData'] = $list['calculations']['currencyData'];
 
         return $result;

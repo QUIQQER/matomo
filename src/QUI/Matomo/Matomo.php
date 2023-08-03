@@ -15,9 +15,7 @@ use QUI\Projects\Project;
 class Matomo
 {
     const LOCALE_KEY_SITE_IDS = 'matomo.siteID';
-
     const LOCALE_KEY_TAG_MANAGER_CODES = 'matomo.settings.tagmanager.code.languages.value';
-
     const CONFIG_KEY_GENERAL_TAG_MANAGER_CODE = 'matomo.settings.tagmanager.code.general';
     const CONFIG_KEY_TAG_MANAGER_ENABLED = 'matomo.settings.tagmanager.enabled';
 
@@ -29,11 +27,11 @@ class Matomo
      */
     public static function getMatomoClient(Project $Project)
     {
-        $matomoUrl    = $Project->getConfig('matomo.settings.url');
+        $matomoUrl = $Project->getConfig('matomo.settings.url');
         $matomoSideId = $Project->getConfig('matomo.settings.id');
 
         if (\mb_strpos($matomoUrl, '://') === false) {
-            $matomoUrl = 'https://'.$matomoUrl;
+            $matomoUrl = 'https://' . $matomoUrl;
         }
 
         $Matomo = new \MatomoTracker($matomoSideId, $matomoUrl);
@@ -69,7 +67,7 @@ class Matomo
 
         // No value set for this language, therefore return the general ID
         // TODO: replace with the code above, if the mentioned bug is fixed.
-        if (empty($siteId) || $siteId == '['.$group.'] '.self::LOCALE_KEY_SITE_IDS) {
+        if (empty($siteId) || $siteId == '[' . $group . '] ' . self::LOCALE_KEY_SITE_IDS) {
             return (int)$Project->getConfig('matomo.settings.id');
         }
 
@@ -146,10 +144,12 @@ class Matomo
         }
 
         // If locale variable does not exist, return general tag manager code
-        if (!QUI::getLocale()->exists(
+        if (
+            !QUI::getLocale()->exists(
                 $group,
                 self::LOCALE_KEY_TAG_MANAGER_CODES
-            )) {
+            )
+        ) {
             return static::getGeneralTagManagerCode($Project);
         }
 
@@ -208,6 +208,6 @@ class Matomo
      */
     private static function getLocaleGroup(Project $Project)
     {
-        return 'project/'.$Project->getName();
+        return 'project/' . $Project->getName();
     }
 }

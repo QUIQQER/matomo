@@ -26,17 +26,18 @@ class TemplateExtender
     {
         $Project = $Site->getProject();
 
-        $matomoUrl    = $Project->getConfig('matomo.settings.url');
+        $matomoUrl = $Project->getConfig('matomo.settings.url');
         $matomoSiteId = Matomo::getSiteId($Project);
 
         $langSettingsJSON = $Project->getConfig('matomo.settings.langdata');
 
         if (!empty($langSettingsJSON)) {
             $langSettings = json_decode($langSettingsJSON, true);
-            $language     = $Project->getLang();
+            $language = $Project->getLang();
 
             if (isset($langSettings[$language])) {
-                if (isset($langSettings[$language]['url'])
+                if (
+                    isset($langSettings[$language]['url'])
                     && !empty($langSettings[$language]['url'])
                     && empty($matomoUrl)
                 ) {
