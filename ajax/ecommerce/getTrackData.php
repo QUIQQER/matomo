@@ -1,22 +1,22 @@
 <?php
 
-use QUI\ERP\Products\Handler\Fields;
-use QUI\ERP\Products\Handler\Products;
-
-use QUI\ERP\Order\Handler as OrderHandler;
-
 /**
  * Return the data from the watchlist
  *
  * @param integer $watchlistId
  * @return array
  */
+
+use QUI\ERP\Order\Handler as OrderHandler;
+use QUI\ERP\Products\Handler\Fields;
+use QUI\ERP\Products\Handler\Products;
+
 QUI::$Ajax->registerFunction(
     'package_quiqqer_matomo_ajax_ecommerce_getTrackData',
     function ($basketId, $products) {
         if (!QUI::getUserBySession()->getId()) {
             $Basket = new QUI\ERP\Order\Basket\BasketGuest();
-            $Basket->import(\json_decode($products, true));
+            $Basket->import(json_decode($products, true));
         } else {
             try {
                 $Basket = OrderHandler::getInstance()->getBasketById($basketId);
@@ -56,7 +56,7 @@ QUI::$Ajax->registerFunction(
             $categories = array_map(function ($Category) use ($Locale) {
                 /* @var $Category \QUI\ERP\Products\Category\Category */
                 return [
-                    'id'    => $Category->getId(),
+                    'id' => $Category->getId(),
                     'title' => $Category->getTitle($Locale)
                 ];
             }, $categories);
@@ -69,13 +69,13 @@ QUI::$Ajax->registerFunction(
             }
 
             $result['products'][] = [
-                'id'         => $Product->getId(),
-                'category'   => $category,
+                'id' => $Product->getId(),
+                'category' => $category,
                 'categoryId' => $categoryId,
                 'categories' => $categories,
-                'title'      => $Product->getTitle($Locale),
-                'productNo'  => $Product->getField(Fields::FIELD_PRODUCT_NO)->getValue(),
-                'price'      => $price
+                'title' => $Product->getTitle($Locale),
+                'productNo' => $Product->getField(Fields::FIELD_PRODUCT_NO)->getValue(),
+                'price' => $price
             ];
         }
 
