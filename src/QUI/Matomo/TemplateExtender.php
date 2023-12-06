@@ -17,6 +17,9 @@ class TemplateExtender
     {
         $Project = $Site->getProject();
 
+        // data layer bridge
+        $Template->extendHeader('<script src="' . URL_OPT_DIR . 'quiqqer/matomo/bin/dataLayer.js"></script>');
+
         if (Matomo::isTagManagerEnabled($Project)) {
             $Template->extendHeader(Matomo::getTagManagerCode($Project), 0);
         }
