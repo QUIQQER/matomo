@@ -15,14 +15,7 @@ class TemplateExtender
 {
     public static function extendHeader(QUI\Template $Template, QUI\Interfaces\Projects\Site $Site)
     {
-        $Project = $Site->getProject();
-
-        // data layer bridge
         $Template->extendHeader('<script src="' . URL_OPT_DIR . 'quiqqer/matomo/bin/dataLayer.js"></script>');
-
-        if (Matomo::isTagManagerEnabled($Project)) {
-            $Template->extendHeader(Matomo::getTagManagerCode($Project), 0);
-        }
     }
 
     public static function extendFooter(QUI\Template $Template, QUI\Interfaces\Projects\Site $Site)
@@ -39,11 +32,7 @@ class TemplateExtender
             $language = $Project->getLang();
 
             if (isset($langSettings[$language])) {
-                if (
-                    isset($langSettings[$language]['url'])
-                    && !empty($langSettings[$language]['url'])
-                    && empty($matomoUrl)
-                ) {
+                if (!empty($langSettings[$language]['url']) && empty($matomoUrl)) {
                     $matomoUrl = $langSettings[$language]['url'];
                 }
             }

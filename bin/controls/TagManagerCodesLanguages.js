@@ -7,30 +7,32 @@ define('package/quiqqer/matomo/bin/controls/TagManagerCodesLanguages', [
 
     'qui/QUI',
     'qui/controls/Control',
-    'controls/lang/InputMultiLang',
-    'Ajax'
+    'qui/controls/buttons/Select',
 
-], function (QUI, QUIControl, InputMultiLang, QUIAjax) {
-    "use strict";
+    'css!package/quiqqer/matomo/bin/controls/TagManagerCodesLanguages.css'
+
+], function(QUI, QUIControl, QUISelect) {
+    'use strict';
 
     return new Class({
 
         Extends: QUIControl,
-        Type   : 'package/quiqqer/matomo/bin/controls/TagManagerCodesLanguages',
+        Type: 'package/quiqqer/matomo/bin/controls/TagManagerCodesLanguages',
 
         Binds: [
             '$onImport',
+            '$showLanguageSnippet',
             'setProject'
         ],
 
-        initialize: function (options) {
+        initialize: function(options) {
             this.$Elm = null;
+            this.$SnippetContainer = null;
             this.$Languages = null;
             this.$Project = null;
 
             this.addEvents({
-                onImport: this.$onImport,
-                onInject: this.$onInject
+                onImport: this.$onImport
             });
 
             this.parent(options);
@@ -41,7 +43,7 @@ define('package/quiqqer/matomo/bin/controls/TagManagerCodesLanguages', [
          *
          * @param {Object} Project
          */
-        setProject: function (Project) {
+        setProject: function(Project) {
             this.$Project = Project;
 
             if (!this.$Languages) {
@@ -52,38 +54,71 @@ define('package/quiqqer/matomo/bin/controls/TagManagerCodesLanguages', [
         /**
          * event : on import
          */
-        $onImport: function () {
+        $onImport: function() {
             if (!this.$Project) {
                 return;
             }
 
-            var localeVar   = 'matomo.settings.tagmanager.code.languages.value',
-                localeGroup = 'project/' + this.$Project.getName();
+            console.log(this.getElm());
 
-            QUIAjax.get([
-                'ajax_system_getAvailableLanguages',
-                'package_quiqqer_translator_ajax_getVarData'
-            ], function (languages, translations) {
-                var i, len, lang;
-                var data = {};
+            const Container = new Element('div').wraps(this.getElm());
 
-                for (i = 0, len = languages.length; i < len; i++) {
-                    lang = languages[i];
+            Container.addClass('field-container-field');
+            Container.addClass('quiqqer-matomo-snippet-language');
 
-                    if (lang in translations && translations[lang] !== '') {
-                        data[lang] = translations[lang];
-                    }
+            this.$Languages = new QUISelect({
+                events: {
+                    onChange: this.$showLanguageSnippet
+                },
+                styles: {
+                    marginBottom: 10,
+                    width: '100%'
                 }
+            }).inject(Container);
 
-                this.$Languages = new InputMultiLang({
-                    value: JSON.encode(data),
-                    name : 'matomo.settings.tagmanager.code.languages'
-                }).inject(this.$Elm, 'after');
+            this.$SnippetContainer = new Element('div', {
+                styles: {
+                    minHeight: 240
+                }
+            }).inject(Container);
 
-            }.bind(this), {
-                'package': 'quiqqer/translator',
-                'group'  : localeGroup,
-                'var'    : localeVar
+            this.$Languages.disable();
+
+            const project = this.$Project.getName();
+
+            this.$Project.getConfig().then((config) => {
+                config.langs.trim(',').split(',').forEach((language) => {
+                    this.$Languages.appendChild(
+                        project + ' ( ' + language + ' )',
+                        language,
+                        URL_BIN_DIR + '16x16/flags/' + language + '.png'
+                    );
+                });
+
+                this.$Languages.enable();
+            });
+        },
+
+        $showLanguageSnippet: function() {
+            const language = this.$Languages.getValue();
+
+            if (language === '') {
+                this.$SnippetContainer.set('html', '');
+                return;
+            }
+
+            this.$Languages.disable();
+            this.$SnippetContainer.set('html', '');
+
+            const Textarea = new Element('textarea', {
+                'data-qui': 'package/quiqqer/html-snippets/bin/backend/controls/SnippetInput',
+                'data-qui-options-snippet': 'matomo-tm-' + language,
+                'data-qui-options-event': 'onQuiqqer::template::header::begin'
+            }).inject(this.$SnippetContainer);
+
+            QUI.parse(this.$SnippetContainer).then(() => {
+                this.$Languages.enable();
+                QUI.Controls.getById(Textarea.get('data-quiid')).setProject(this.$Project);
             });
         }
     });
