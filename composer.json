@@ -27,6 +27,7 @@
     "matomo/matomo-php-tracker": "3.*",
     "quiqqer-asset\/mustache": "*",
     "quiqqer/data-layer": "^1|*@dev",
+    "quiqqer/html-snippets": "^1|*@dev",
     "ext-json": "*",
     "ext-mbstring": "*"
   },

@@ -1,0 +1,9 @@
+.quiqqer-matomo-snippet-language .quiqqer-html-snippet-input {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+.quiqqer-matomo-snippet-language .quiqqer-html-snippet-input textarea {
+    border: none;
+}
