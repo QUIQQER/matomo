@@ -2,40 +2,33 @@
  * @module package/quiqqer/matomo/bin/controls/SiteIds
  *
  * @author PCSG (Jan Wennrich)
- *
- * @require qui/QUI
- * @require qui/controls/Control
- * @require package/quiqqer/translator/bin/controls/Update
- * @require Ajax
+ * @author www.pcsg.de (Henning Leutz)
  */
 define('package/quiqqer/matomo/bin/controls/SiteIds', [
 
     'qui/QUI',
     'qui/controls/Control',
-    'controls/lang/InputMultiLang',
-    'Ajax'
+    'package/quiqqer/translator/bin/controls/Update'
 
-], function (QUI, QUIControl, InputMultiLang, QUIAjax) {
-    "use strict";
+], function(QUI, QUIControl, TranslatorUpdate) {
+    'use strict';
 
     return new Class({
 
         Extends: QUIControl,
-        Type   : 'package/quiqqer/matomo/bin/controls/SiteIds',
+        Type: 'package/quiqqer/matomo/bin/controls/SiteIds',
 
         Binds: [
             '$onImport',
             'setProject'
         ],
 
-        initialize: function (options) {
+        initialize: function(options) {
             this.$Elm = null;
-            this.$Languages = null;
             this.$Project = null;
 
             this.addEvents({
-                onImport: this.$onImport,
-                onInject: this.$onInject
+                onImport: this.$onImport
             });
 
             this.parent(options);
@@ -46,7 +39,7 @@ define('package/quiqqer/matomo/bin/controls/SiteIds', [
          *
          * @param {Object} Project
          */
-        setProject: function (Project) {
+        setProject: function(Project) {
             this.$Project = Project;
 
             if (!this.$Languages) {
@@ -57,39 +50,20 @@ define('package/quiqqer/matomo/bin/controls/SiteIds', [
         /**
          * event : on import
          */
-        $onImport: function () {
+        $onImport: function() {
             if (!this.$Project) {
                 return;
             }
 
-            var localeVar   = 'matomo.siteID',
-                localeGroup = 'project/' + this.$Project.getName();
-
-            QUIAjax.get([
-                'ajax_system_getAvailableLanguages',
-                'package_quiqqer_translator_ajax_getVarData'
-            ], function (languages, translations) {
-                var i, len, lang;
-                var data = {};
-
-                for (i = 0, len = languages.length; i < len; i++) {
-                    lang = languages[i];
-
-                    if (lang in translations && translations[lang] !== '') {
-                        data[lang] = translations[lang];
+            new TranslatorUpdate({
+                'group': 'project/' + this.$Project.getName(),
+                'var': 'matomo.siteID',
+                events: {
+                    onChange: () => {
+                        this.$Languages.save();
                     }
                 }
-
-                this.$Languages = new InputMultiLang({
-                    value: JSON.encode(data),
-                    name : 'matomo.siteIds'
-                }).inject(this.$Elm, 'after');
-
-            }.bind(this), {
-                'package': 'quiqqer/translator',
-                'group'  : localeGroup,
-                'var'    : localeVar
-            });
+            }).inject(this.$Elm);
         }
     });
 });
