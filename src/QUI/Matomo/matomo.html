@@ -1,59 +1,61 @@
 <script type="text/javascript">
-    var _paq      = _paq || [],
+    const _paq = _paq || [],
         eCommerce = {$eCommerce};
 
-    (function () {
-        var u = "//{$matomoUrl}/";
+    (function() {
+        const u = '//{$matomoUrl}/';
 
         if (typeof GDPR !== 'undefined' && !GDPR.isCookieCategoryAccepted('{$cookieCategory}')) {
             _paq.push(['disableCookies']);
         }
 
-        _paq.push(["trackPageView"]);
-        _paq.push(["enableLinkTracking"]);
-        _paq.push(["setTrackerUrl", u + "js/"]);
-        _paq.push(["setSiteId", parseInt("{$matomoSideId}")]);
+        _paq.push(['trackPageView']);
+        _paq.push(['enableLinkTracking']);
+        _paq.push(['setTrackerUrl', u + 'js/']);
+        _paq.push(['setSiteId', parseInt('{$matomoSideId}')]);
 
-        var d = document,
-            g = d.createElement("script"),
-            s = d.getElementsByTagName("script")[0];
+        if (typeof Matomo !== 'undefined') {
+            const d = document,
+                g = d.createElement('script'),
+                s = d.getElementsByTagName('script')[0];
 
-        g.type  = "text/javascript";
-        g.async = true;
-        g.defer = true;
-        g.src   = u + "js/";
+            g.type = 'text/javascript';
+            g.async = true;
+            g.defer = true;
+            g.src = u + 'js/';
 
-        s.parentNode.insertBefore(g, s);
+            s.parentNode.insertBefore(g, s);
+        }
 
         if (typeof define === 'function') {
             window.QUIQQER_MATOMO = true;
 
-            define('matomoTracker', function () {
-                var Tracker = null;
+            define('matomoTracker', function() {
+                let Tracker = null;
 
-                var setMatomoData = function () {
+                const setMatomoData = function() {
                     Tracker = Matomo.getAsyncTracker();
-                    var u   = "//{$matomoUrl}/";
+                    const u = '//{$matomoUrl}/';
 
-                    Tracker.setTrackerUrl(u + "js/");
-                    Tracker.setSiteId(parseInt("{$matomoSideId}"));
+                    Tracker.setTrackerUrl(u + 'js/');
+                    Tracker.setSiteId(parseInt('{$matomoSideId}'));
 
                     Tracker.setDocumentTitle(
-                        document.domain + "/" + document.title
+                        document.domain + '/' + document.title
                     );
 
                     Tracker.enableLinkTracking();
                 };
 
-                return new Promise(function (resolve) {
+                return new Promise(function(resolve) {
                     if (typeof window.Matomo !== 'undefined') {
                         setMatomoData();
                         resolve(Tracker);
                         return;
                     }
 
-                    var look = function () {
-                        setTimeout(function () {
+                    const look = function() {
+                        setTimeout(function() {
                             if (typeof window.Matomo !== 'undefined') {
                                 setMatomoData();
                                 resolve(Tracker);
@@ -69,7 +71,7 @@
             });
 
             // add global quiqqer events
-            var loadQUI = function () {
+            let loadQUI = function() {
                 return Promise.resolve();
             };
 
@@ -77,41 +79,41 @@
                 loadQUI = whenQuiLoaded;
             }
 
-            loadQUI().then(function () {
-                require(['qui/QUI'], function (QUI) {
-                    QUI.addEvent('onQuiqqerUserAuthLoginSuccess', function () {
-                        require(['matomoTracker'], function (matomoTracker) {
-                            matomoTracker.then(function (Tracker) {
+            loadQUI().then(function() {
+                require(['qui/QUI'], function(QUI) {
+                    QUI.addEvent('onQuiqqerUserAuthLoginSuccess', function() {
+                        require(['matomoTracker'], function(matomoTracker) {
+                            matomoTracker.then(function(Tracker) {
                                 Tracker.trackEvent('quiqqer/quiqqer', 'login');
                                 Tracker.setCustomUrl('/login');
                                 Tracker.trackPageView();
                             });
-                        }, function (err) {
+                        }, function(err) {
                             console.error('stats couldn\'t be loaded', err);
                         });
                     });
 
-                    QUI.addEvent('onQuiqqerUserAuthLogout', function () {
-                        require(['matomoTracker'], function (matomoTracker) {
-                            matomoTracker.then(function (Tracker) {
+                    QUI.addEvent('onQuiqqerUserAuthLogout', function() {
+                        require(['matomoTracker'], function(matomoTracker) {
+                            matomoTracker.then(function(Tracker) {
                                 Tracker.trackEvent('quiqqer/quiqqer', 'logout');
                                 Tracker.setCustomUrl('/logout');
                                 Tracker.trackPageView();
                             });
-                        }, function (err) {
+                        }, function(err) {
                             console.error('stats couldn\'t be loaded', err);
                         });
                     });
 
                     if (eCommerce) {
-                        require(['package/quiqqer/matomo/bin/eCommerceTracking'], function () {
+                        require(['package/quiqqer/matomo/bin/eCommerceTracking'], function() {
                             // nothing
-                        }, function (err) {
+                        }, function(err) {
                             console.error('stats couldn\'t be loaded', err);
                         });
                     }
                 });
-            }).catch(function (e) {
+            }).catch(function(e) {
                 console.error('stats couldn\'t be loaded', e);
             });
         }
