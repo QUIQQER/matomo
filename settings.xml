@@ -25,6 +25,10 @@
                         <type><![CDATA[string]]></type>
                         <defaultvalue><![CDATA[statistics]]></defaultvalue>
                     </conf>
+                    <conf name="trackToPaq">
+                        <type><![CDATA[bool]]></type>
+                        <defaultvalue><![CDATA[1]]></defaultvalue>
+                    </conf>
                 </section>
                 <section name="matomo.settings.tagmanager">
                     <conf name="enabled">
@@ -105,6 +109,16 @@
                                     <locale group="quiqqer/matomo"
                                             var="matomo.settings.token.description"
                                     />
+                                </description>
+                            </input>
+
+                            <input conf="matomo.settings.trackToPaq" type="checkbox">
+                                <text>
+                                    <locale group="quiqqer/matomo" var="matomo.settings.trackToPaq"/>
+                                </text>
+                                <description>
+                                    <locale group="quiqqer/matomo"
+                                            var="matomo.settings.trackToPaq.description"/>
                                 </description>
                             </input>
 
