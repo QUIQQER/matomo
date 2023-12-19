@@ -6,8 +6,10 @@
             <en><![CDATA[QUIQQER - Matomo]]></en>
         </locale>
         <locale name="package.description">
-            <de><![CDATA[Integriert Matomo in QUIQQER. Matomo ist die führende Open-Source-Analytics-Plattform, die Ihnen mehr als nur leistungsstarke Analytik bietet.]]></de>
-            <en><![CDATA[Integrates Matomo into QUIQQER. Matomo is the leading open-source analytics platform that gives you more than just powerful analytics.]]></en>
+            <de>
+                <![CDATA[Integriert Matomo in QUIQQER. Matomo ist die führende Open-Source-Analytics-Plattform, die Ihnen mehr als nur leistungsstarke Analytik bietet.]]></de>
+            <en>
+                <![CDATA[Integrates Matomo into QUIQQER. Matomo is the leading open-source analytics platform that gives you more than just powerful analytics.]]></en>
         </locale>
 
         <locale name="matomo.settings.url">
@@ -30,8 +32,10 @@
             <en><![CDATA[Use Access Token also for displaying Matomo statistics in administration]]></en>
         </locale>
         <locale name="matomo.settings.useTokenForStatisticsDisplay.description">
-            <de><![CDATA[<br>Hinweis: In der Matomo-Instanz muss das <a href="https://plugins.matomo.org/LoginTokenAuth" target="_blank" rel="noopener">LoginTokenAuth Plugin</a> aktiviert sein. Zudem darf das Token NICHT von einem Super-User der Matomo Instanz stammen.<br>Soll der Token-Login nicht verwendet werden, können stattdessen Matomo Zugangsdaten in den QUIQQER Benutzerprofil hinterlegt werden.]]></de>
-            <en><![CDATA[<br>Note: In the Matomo instance, the <a href="https://plugins.matomo.org/LoginTokenAuth" target="_blank" rel="noopener">LoginTokenAuth plugin</a> must be enabled. In addition, the token must NOT come from a super-user of the Matomo instance.<br>If the token login is not to be used, Matomo credentials can be stored in the QUIQQER user profile instead.]]></en>
+            <de>
+                <![CDATA[<br>Hinweis: In der Matomo-Instanz muss das <a href="https://plugins.matomo.org/LoginTokenAuth" target="_blank" rel="noopener">LoginTokenAuth Plugin</a> aktiviert sein. Zudem darf das Token NICHT von einem Super-User der Matomo Instanz stammen.<br>Soll der Token-Login nicht verwendet werden, können stattdessen Matomo Zugangsdaten in den QUIQQER Benutzerprofil hinterlegt werden.]]></de>
+            <en>
+                <![CDATA[<br>Note: In the Matomo instance, the <a href="https://plugins.matomo.org/LoginTokenAuth" target="_blank" rel="noopener">LoginTokenAuth plugin</a> must be enabled. In addition, the token must NOT come from a super-user of the Matomo instance.<br>If the token login is not to be used, Matomo credentials can be stored in the QUIQQER user profile instead.]]></en>
         </locale>
 
         <locale name="matomo.settings.siteIds">
@@ -42,16 +46,22 @@
 
     <groups name="quiqqer/matomo" datatype="js">
         <locale name="panel.error.settings.missing">
-            <de><![CDATA[Matomo wurde für dieses Projekt nicht eingerichtet.<br/>Dies ist in den Einstellungen des Projekts möglich.]]></de>
-            <en><![CDATA[Matomo wasn't configured for this project yet.<br/>This can be done in the project's settings.]]></en>
+            <de>
+                <![CDATA[Matomo wurde für dieses Projekt nicht eingerichtet.<br/>Dies ist in den Einstellungen des Projekts möglich.]]></de>
+            <en>
+                <![CDATA[Matomo wasn't configured for this project yet.<br/>This can be done in the project's settings.]]></en>
         </locale>
         <locale name="panel.notice.userdata.missing">
-            <de><![CDATA[Um automatisch angemeldet zu werden, fügen Sie Ihre Matomo-Nutzerdaten zu Ihren Nutzereinstellungen hinzu oder aktivieren Sie den Token-Login in den Projekteinstellungen.]]></de>
-            <en><![CDATA[To login automatically add your Matomo-userdata to your user settings or activate the token login in the project settings.]]></en>
+            <de>
+                <![CDATA[Um automatisch angemeldet zu werden, fügen Sie Ihre Matomo-Nutzerdaten zu Ihren Nutzereinstellungen hinzu oder aktivieren Sie den Token-Login in den Projekteinstellungen.]]></de>
+            <en>
+                <![CDATA[To login automatically add your Matomo-userdata to your user settings or activate the token login in the project settings.]]></en>
         </locale>
         <locale name="panel.notice.token.missing">
-            <de><![CDATA[Um automatisch angemeldet zu werden, müssen Sie in den Projekteinstellungen einen Matomo-Token hinterlegen oder den Token-Login deaktivieren.]]></de>
-            <en><![CDATA[To be logged in automatically, you need to store a Matomo token in the project settings or deactivate the token login.]]></en>
+            <de>
+                <![CDATA[Um automatisch angemeldet zu werden, müssen Sie in den Projekteinstellungen einen Matomo-Token hinterlegen oder den Token-Login deaktivieren.]]></de>
+            <en>
+                <![CDATA[To be logged in automatically, you need to store a Matomo token in the project settings or deactivate the token login.]]></en>
         </locale>
         <locale name="panel.matomo.title">
             <de><![CDATA[Matomo Statistiken]]></de>
@@ -87,18 +97,23 @@
         </locale>
 
         <locale name="matomo.settings.siteIds.description">
-            <de><![CDATA[Legen Sie individuelle Seiten IDs für jede Sprache fest (überschreibt die allgemeine Seiten ID für hier festgelegte Sprachen).]]></de>
-            <en><![CDATA[Set individual page IDs for each language (overrides the general page ID for the languages specified here).]]></en>
+            <de>
+                <![CDATA[Legen Sie individuelle Seiten IDs für jede Sprache fest (überschreibt die allgemeine Seiten ID für hier festgelegte Sprachen).]]></de>
+            <en>
+                <![CDATA[Set individual page IDs for each language (overrides the general page ID for the languages specified here).]]></en>
         </locale>
 
         <locale name="matomo.settings.id.description">
-            <de><![CDATA[Wird für alle Sprachen dieses Projekts genutzt, für die keine "Sprachspezifische Seiten ID" gesetzt ist.]]></de>
+            <de>
+                <![CDATA[Wird für alle Sprachen dieses Projekts genutzt, für die keine "Sprachspezifische Seiten ID" gesetzt ist.]]></de>
             <en><![CDATA[Used for all languages of this project for which no "Language Specific Site ID" is set.]]></en>
         </locale>
 
         <locale name="matomo.settings.token.description">
-            <de><![CDATA[Wird zur Authentifizierung in API Anfragen verwendet. Mehr dazu <a href="https://matomo.org/faq/general/faq_114/" target="_blank" rel="noopener">hier</a>.]]></de>
-            <en><![CDATA[Used for authentication in API requests. More about this <a href="https://matomo.org/faq/general/faq_114/" target="_blank" rel="noopener">here</a>.]]></en>
+            <de>
+                <![CDATA[Wird zur Authentifizierung in API Anfragen verwendet. Mehr dazu <a href="https://matomo.org/faq/general/faq_114/" target="_blank" rel="noopener">hier</a>.]]></de>
+            <en>
+                <![CDATA[Used for authentication in API requests. More about this <a href="https://matomo.org/faq/general/faq_114/" target="_blank" rel="noopener">here</a>.]]></en>
         </locale>
 
         <locale name="matomo.settings.tagmanager.title">
@@ -114,16 +129,34 @@
             <en><![CDATA[General Tag Manager Code]]></en>
         </locale>
         <locale name="matomo.settings.tagmanager.code.general.description" html="true">
-            <de><![CDATA[Wird für alle Sprachen dieses Projekts genutzt, für die kein "Sprachspezifischer Tag Manager Code" gesetzt ist.<br>Folgen Sie der <a href="https://matomo.org/docs/tag-manager/" target="_blank" rel="noopener noreferrer">Matomo Dokumentation</a>, um einen Tag-Manager-Code zu generieren.]]></de>
-            <en><![CDATA[Used for all languages of this project for which no "Language Specific Tag Manager Code" is set.<br>Follow the <a href="https://matomo.org/docs/tag-manager/" target="_blank" rel="noopener noreferrer">Matomo docs</a> to generate your tag manager codes.]]></en>
+            <de>
+                <![CDATA[Wird für alle Sprachen dieses Projekts genutzt, für die kein "Sprachspezifischer Tag Manager Code" gesetzt ist.<br>Folgen Sie der <a href="https://matomo.org/docs/tag-manager/" target="_blank" rel="noopener noreferrer">Matomo Dokumentation</a>, um einen Tag-Manager-Code zu generieren.]]></de>
+            <en>
+                <![CDATA[Used for all languages of this project for which no "Language Specific Tag Manager Code" is set.<br>Follow the <a href="https://matomo.org/docs/tag-manager/" target="_blank" rel="noopener noreferrer">Matomo docs</a> to generate your tag manager codes.]]></en>
         </locale>
         <locale name="matomo.settings.tagmanager.code.languages">
             <de><![CDATA[Sprachspezifische Tag Manager Codes]]></de>
             <en><![CDATA[Language Specific Tag Manager Codes]]></en>
         </locale>
         <locale name="matomo.settings.tagmanager.code.languages.description" html="true">
-            <de><![CDATA[Legen Sie individuelle Tag Manager Codes für jede Sprache fest (überschreibt den allgemeinen Tag Manager Code für hier festgelegte Sprachen).<br>Folgen Sie der <a href="https://matomo.org/docs/tag-manager/" target="_blank" rel="noopener noreferrer">Matomo Dokumentation</a>, um einen Tag-Manager-Code zu generieren.]]></de>
-            <en><![CDATA[Set individual page IDs for each language (overrides the general Tag Manager code for the languages specified here).<br>Follow the <a href="https://matomo.org/docs/tag-manager/" target="_blank" rel="noopener noreferrer">Matomo docs</a> to generate your tag manager codes.]]></en>
+            <de>
+                <![CDATA[Legen Sie individuelle Tag Manager Codes für jede Sprache fest (überschreibt den allgemeinen Tag Manager Code für hier festgelegte Sprachen).<br>Folgen Sie der <a href="https://matomo.org/docs/tag-manager/" target="_blank" rel="noopener noreferrer">Matomo Dokumentation</a>, um einen Tag-Manager-Code zu generieren.]]></de>
+            <en>
+                <![CDATA[Set individual page IDs for each language (overrides the general Tag Manager code for the languages specified here).<br>Follow the <a href="https://matomo.org/docs/tag-manager/" target="_blank" rel="noopener noreferrer">Matomo docs</a> to generate your tag manager codes.]]></en>
+        </locale>
+        <locale name="matomo.settings.trackToPaq">
+            <de><![CDATA[Data Layer immer an Matomo senden]]></de>
+            <en><![CDATA[Always push data layer to Matomo]]></en>
+        </locale>
+        <locale name="matomo.settings.trackToPaq.description">
+            <de><![CDATA[Die Option 'Data Layer immer an Matomo senden' bewirkt, dass alle Variablen des Data Layers automatisch an Matomo übertragen werden.
+            Dies vereinfacht die Datenanalyse, indem Nutzerinteraktionen und Website-Informationen nahtlos erfasst werden.
+            Sollte jedoch der Tag Manager manuell konfiguriert werden, empfiehlt es sich, diese Option zu deaktivieren,
+            um Konflikte oder Datenüberschneidungen zu vermeiden.]]></de>
+            <en><![CDATA[The option 'Always send data layer to Matomo' causes all variables of the data layer to be automatically transferred to Matomo.
+            This simplifies data analysis by seamlessly capturing user interactions and website information.
+            However, if the Tag Manager is configured manually, it is recommended to deactivate this option,
+            to avoid conflicts or data overlaps.]]></en>
         </locale>
 
         <locale name="user.profile.title">
@@ -135,8 +168,10 @@
             <en><![CDATA[Matomo password]]></en>
         </locale>
         <locale name="user.profile.pass.description">
-            <de><![CDATA[Um den Matomo-Login via Benutzername & Passwort zu nutzen müssen neue Matomo-Instanzen mit Version 4.4.0 oder neuer wie folgt konfiguriert werden: <pre>[General]<br>login_allow_logme = 1</pre> Mehr dazu <a href="https://matomo.org/faq/how-to/faq_30/" target="_blank" rel="noopener">hier</a>.]]></de>
-            <en><![CDATA[To use Matomo login via username & password new Matomo instances with version 4.4.0 or newer must be configured as follows: <pre>[General]<br>login_allow_logme = 1</pre> More <a href="https://matomo.org/faq/how-to/faq_30/" target="_blank" rel="noopener">here</a>.]]></en>
+            <de>
+                <![CDATA[Um den Matomo-Login via Benutzername & Passwort zu nutzen müssen neue Matomo-Instanzen mit Version 4.4.0 oder neuer wie folgt konfiguriert werden: <pre>[General]<br>login_allow_logme = 1</pre> Mehr dazu <a href="https://matomo.org/faq/how-to/faq_30/" target="_blank" rel="noopener">hier</a>.]]></de>
+            <en>
+                <![CDATA[To use Matomo login via username & password new Matomo instances with version 4.4.0 or newer must be configured as follows: <pre>[General]<br>login_allow_logme = 1</pre> More <a href="https://matomo.org/faq/how-to/faq_30/" target="_blank" rel="noopener">here</a>.]]></en>
         </locale>
         <locale name="user.profile.login">
             <de><![CDATA[Matomo Benutzername]]></de>
@@ -145,13 +180,16 @@
 
         <!-- region cookies -->
         <locale name="cookie.id.purpose">
-            <de><![CDATA[Wird verwendet, um Details über den Benutzer zu speichern (z.B. eine eindeutige Besucher-ID)]]></de>
+            <de>
+                <![CDATA[Wird verwendet, um Details über den Benutzer zu speichern (z.B. eine eindeutige Besucher-ID)]]></de>
             <en><![CDATA[Used to store details about the user (e.g. a unique visitor ID)]]></en>
         </locale>
 
         <locale name="cookie.ref.purpose">
-            <de><![CDATA[Wird verwendet, um Zuordnungsinformationen zu speichern (z.B. der Referrer, der ursprünglich auf die Seite geführt hat).]]></de>
-            <en><![CDATA[Used to store the attribution information (e.g. the referrer initially used to visit the website).]]></en>
+            <de>
+                <![CDATA[Wird verwendet, um Zuordnungsinformationen zu speichern (z.B. der Referrer, der ursprünglich auf die Seite geführt hat).]]></de>
+            <en>
+                <![CDATA[Used to store the attribution information (e.g. the referrer initially used to visit the website).]]></en>
         </locale>
 
         <locale name="cookie.ses.purpose">
@@ -175,7 +213,8 @@
         </locale>
 
         <locale name="cookie.consent.purpose">
-            <de><![CDATA[Wird verwendet, um sich daran zu erinnern, dass die Zustimmung durch den Benutzer gegeben wurde.]]></de>
+            <de>
+                <![CDATA[Wird verwendet, um sich daran zu erinnern, dass die Zustimmung durch den Benutzer gegeben wurde.]]></de>
             <en><![CDATA[Used to remember that consent was given by the user.]]></en>
         </locale>
         <locale name="cookie.consent.lifetime">
@@ -193,7 +232,8 @@
         </locale>
 
         <locale name="cookie.sessid.purpose">
-            <de><![CDATA[Wird erstellt, wenn die Opt-Out-Funktion verwendet wird. Hilft bei der Vermeidung von CSRF-Sicherheitsproblemen.]]></de>
+            <de>
+                <![CDATA[Wird erstellt, wenn die Opt-Out-Funktion verwendet wird. Hilft bei der Vermeidung von CSRF-Sicherheitsproblemen.]]></de>
             <en><![CDATA[Created when opt-out feature is used. Helps prevent CSRF security issues.]]></en>
         </locale>
         <locale name="cookie.sessid.lifetime">
@@ -213,8 +253,10 @@
         </locale>
 
         <locale name="matomo.settings.cookiecategory.description">
-            <de><![CDATA[Nur relevant, wenn quiqqer/gdpr installiert ist. Legt die Kategorie fest, denen die Matomo-Cookies angehören.]]></de>
-            <en><![CDATA[Only relevant if quiqqer/gdpr is installed. Defines the category to which the Matomo cookies belong.]]></en>
+            <de>
+                <![CDATA[Nur relevant, wenn quiqqer/gdpr installiert ist. Legt die Kategorie fest, denen die Matomo-Cookies angehören.]]></de>
+            <en>
+                <![CDATA[Only relevant if quiqqer/gdpr is installed. Defines the category to which the Matomo cookies belong.]]></en>
         </locale>
 
         <locale name="matomo.settings.cookiecategory.essential">
