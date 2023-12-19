@@ -15,6 +15,10 @@ class TemplateExtender
 {
     public static function extendHeader(QUI\Template $Template, QUI\Interfaces\Projects\Site $Site)
     {
+        $Project = $Site->getProject();
+        $trackToPaq = $Project->getConfig('matomo.settings.trackToPaq') ? 1 : 0;
+
+        $Template->extendHeader('<script data-no-cache="1">window.MATOMO_TRACK_TO_PAQ = ' . $trackToPaq . ';</script>');
         $Template->extendHeader('<script src="' . URL_OPT_DIR . 'quiqqer/matomo/bin/dataLayer.js"></script>');
     }
 
