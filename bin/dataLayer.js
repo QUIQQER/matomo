@@ -18,9 +18,7 @@ window.whenQuiLoaded().then(() => {
 
     window.dataLayer = window.dataLayer || [];
     window._mtm = window._mtm || [];
-    window._mtm = window._mtm.concat(window.dataLayer);
-
-
+    
     let i, len, convertedValue;
 
     if (window.MATOMO_TRACK_TO_PAQ) {
@@ -28,7 +26,7 @@ window.whenQuiLoaded().then(() => {
 
         for (i = 0, len = window.dataLayer.length; i < len; i++) {
             convertedValue = mapDataLayerToPaq(window.dataLayer[i]);
-            
+
             if (convertedValue) {
                 window._paq.push(convertedValue);
             }
