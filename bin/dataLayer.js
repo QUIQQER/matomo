@@ -6,19 +6,23 @@ window.whenQuiLoaded().then(() => {
             return false;
         }
 
+        if (typeof value[2] === 'undefined') {
+            value[2] = {};
+        }
+
         let category = 'QUIQQER Matomo';
 
         if (typeof value[2].category !== 'undefined') {
             category = value[2].category;
         }
-
+        
         return ['trackEvent', category, value[1], '', value[2]];
     };
 
 
     window.dataLayer = window.dataLayer || [];
     window._mtm = window._mtm || [];
-    
+
     let i, len, convertedValue;
 
     if (window.MATOMO_TRACK_TO_PAQ) {
