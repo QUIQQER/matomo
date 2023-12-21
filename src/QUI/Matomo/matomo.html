@@ -14,7 +14,7 @@
         _paq.push(['setTrackerUrl', u + 'js/']);
         _paq.push(['setSiteId', parseInt('{$matomoSideId}')]);
 
-        if (typeof Matomo !== 'undefined') {
+        if (typeof Matomo === 'undefined') {
             const d = document,
                 g = d.createElement('script'),
                 s = d.getElementsByTagName('script')[0];
