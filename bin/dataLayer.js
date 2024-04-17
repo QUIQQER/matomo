@@ -19,6 +19,32 @@ window.whenQuiLoaded().then(() => {
         return ['trackEvent', category, value[1], '', value[2]];
     };
 
+    const mapDataLayerEventToMtm = function (dataLayerData) {
+        if (dataLayerData[0] !== 'event') {
+            return false;
+        }
+
+        if (dataLayerData[1] === undefined) {
+            return false;
+        }
+
+        const eventName = dataLayerData[1];
+
+        let eventData = {};
+
+        if (dataLayerData[2] instanceof Object) {
+            eventData = dataLayerData[2];
+
+        }
+
+        const mtmEvent = {
+            event: eventName,
+            ...eventData
+        };
+
+        return mtmEvent;
+    };
+
 
     window.dataLayer = window.dataLayer || [];
     window._mtm = window._mtm || [];
@@ -40,6 +66,12 @@ window.whenQuiLoaded().then(() => {
     require(['qui/QUI'], function(QUI) {
         QUI.addEvent('dataLayerPush', function(value) {
             window._mtm.push(value);
+
+            const mtmEvent = mapDataLayerEventToMtm(value);
+            if (mtmEvent) {
+                window._mtm.push(mtmEvent);
+            }
+
             convertedValue = mapDataLayerToPaq(value);
 
             if (window.MATOMO_TRACK_TO_PAQ && mapDataLayerToPaq(value)) {
