@@ -1,7 +1,7 @@
 window.whenQuiLoaded().then(() => {
     'use strict';
 
-    const mapDataLayerToPaq = function(value) {
+    const mapDataLayerEntryToPaq = function(value) {
         if (value[0] !== 'event') {
             return false;
         }
@@ -45,21 +45,20 @@ window.whenQuiLoaded().then(() => {
         return mtmEvent;
     };
 
-
     window.dataLayer = window.dataLayer || [];
     window._mtm = window._mtm || [];
-
-    let i, len, convertedValue;
 
     if (window.MATOMO_TRACK_TO_PAQ) {
         window._paq = window._paq || [];
 
-        for (i = 0, len = window.dataLayer.length; i < len; i++) {
-            convertedValue = mapDataLayerToPaq(window.dataLayer[i]);
+        for (let i = 0; i < window.dataLayer.length; i++) {
+            const paqData = mapDataLayerEntryToPaq(window.dataLayer[i]);
 
-            if (convertedValue) {
-                window._paq.push(convertedValue);
+            if (!paqData) {
+                continue;
             }
+
+            window._paq.push(paqData);
         }
     }
 
@@ -72,11 +71,17 @@ window.whenQuiLoaded().then(() => {
                 window._mtm.push(mtmEvent);
             }
 
-            convertedValue = mapDataLayerToPaq(value);
-
-            if (window.MATOMO_TRACK_TO_PAQ && mapDataLayerToPaq(value)) {
-                window._paq.push(convertedValue);
+            if (!window.MATOMO_TRACK_TO_PAQ) {
+                return;
             }
+
+            const paqData = mapDataLayerEntryToPaq(value);
+
+            if (!paqData) {
+                return;
+            }
+
+            window._paq.push(paqData);
         });
     });
 });
