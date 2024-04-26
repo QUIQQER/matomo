@@ -10,6 +10,8 @@ use QUI;
 use QUI\GDPR\CookieInterface;
 use QUI\Matomo\CookieUtils;
 
+use function sprintf;
+
 /**
  * Class QuiqqerSessionCookie
  *
@@ -46,7 +48,7 @@ class TestCookie implements CookieInterface
      */
     public function getLifetime(): string
     {
-        return \sprintf(
+        return sprintf(
             '%d %s',
             1,
             QUI::getLocale()->get('quiqqer/quiqqer', 'second')

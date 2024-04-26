@@ -6,6 +6,7 @@
 
 namespace QUI\Matomo;
 
+use QUI;
 use QUI\Exception;
 use QUI\System\Log;
 
@@ -24,7 +25,7 @@ class CookieUtils
     public static function getCookieCategorySetting(): string
     {
         try {
-            return \QUI::getRewrite()->getProject()->getConfig('matomo.settings.cookiecategory');
+            return QUI::getRewrite()->getProject()->getConfig('matomo.settings.cookiecategory');
         } catch (Exception $Exception) {
             Log::writeException($Exception);
         }

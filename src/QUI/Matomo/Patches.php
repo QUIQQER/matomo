@@ -4,6 +4,7 @@ namespace QUI\Matomo;
 
 use QUI;
 use QUI\Exception;
+use QUI\Projects\Manager;
 use QUI\Projects\Project;
 use QUI\System\Log;
 use QUI\Translator;
@@ -23,7 +24,7 @@ class Patches
      * Moves the previously used settings values to locale variables.
      * We need to do this in order to use the InputMultiLang control.
      */
-    public static function moveSiteIdsToLocaleVariables()
+    public static function moveSiteIdsToLocaleVariables(): void
     {
         try {
             $Package = QUI::getPackage('quiqqer/matomo');
@@ -32,7 +33,7 @@ class Patches
             $isPatchExecutedAlready = $Config->get('patches', self::SITE_IDS_TO_LOCALE_VARIABLES) == 1;
 
             if (!$isPatchExecutedAlready) {
-                $projectList = \QUI\Projects\Manager::getProjects(true);
+                $projectList = Manager::getProjects(true);
                 foreach ($projectList as $Project) {
                     /** @var Project $Project */
                     $langdataJSON = $Project->getConfig('matomo.settings.langdata');
@@ -55,7 +56,7 @@ class Patches
                     $wasLocaleVariableFound = false;
 
                     foreach ($languageData as $key => $data) {
-                        if (isset($data['id']) && !empty($data['id'])) {
+                        if (!empty($data['id'])) {
                             $localeVariableData[$key] = $data['id'];
                             $wasLocaleVariableFound = true;
                         }
@@ -83,10 +84,8 @@ class Patches
 
     /**
      * Migrate settings from quiqqer/piwik package into this package.
-     *
-     * @throws Exception
      */
-    public static function migratePiwikSettings()
+    public static function migratePiwikSettings(): void
     {
         $ProjectManager = QUI::getProjectManager();
         $projects = $ProjectManager::getProjects(true);
