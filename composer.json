@@ -23,7 +23,7 @@
   },
   "require": {
     "php": "^8",
-    "quiqqer/corn": "^2",
+    "quiqqer/core": "^2",
     "matomo/matomo-php-tracker": "^3",
     "quiqqer-asset/mustache": "*",
     "quiqqer/data-layer": "^2",
