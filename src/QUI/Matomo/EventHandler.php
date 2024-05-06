@@ -3,7 +3,6 @@
 namespace QUI\Matomo;
 
 use QUI;
-
 use QUI\Exception;
 
 use function is_array;
