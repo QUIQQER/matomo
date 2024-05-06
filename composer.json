@@ -7,27 +7,27 @@
     {
       "name": "Henning Leutz",
       "email": "leutz@pcsg.de",
-      "homepage": "https:\/\/www.pcsg.de",
+      "homepage": "https://www.pcsg.de",
       "role": "Developer"
     },
     {
       "name": "Jan Wennrich",
       "email": "wennrich@pcsg.de",
-      "homepage": "https:\/\/www.pcsg.de",
+      "homepage": "https://www.pcsg.de",
       "role": "Developer"
     }
   ],
   "support": {
     "email": "support@pcsg.de",
-    "url": "https:\/\/www.pcsg.de"
+    "url": "https://www.pcsg.de"
   },
   "require": {
-    "php": ">=7",
-    "quiqqer\/quiqqer": "*@dev",
-    "matomo/matomo-php-tracker": "3.*",
-    "quiqqer-asset\/mustache": "*",
-    "quiqqer/data-layer": "^1|*@dev",
-    "quiqqer/html-snippets": "^1|*@dev",
+    "php": "^8",
+    "quiqqer/core": "^2",
+    "matomo/matomo-php-tracker": "^3",
+    "quiqqer-asset/mustache": "*",
+    "quiqqer/data-layer": "^2",
+    "quiqqer/html-snippets": "^2",
     "ext-json": "*",
     "ext-mbstring": "*"
   },
@@ -39,7 +39,7 @@
   },
   "autoload": {
     "psr-4": {
-      "QUI\\Matomo\\": "src\/QUI\/Matomo"
+      "QUI\\Matomo\\": "src/QUI/Matomo"
     }
   }
 }

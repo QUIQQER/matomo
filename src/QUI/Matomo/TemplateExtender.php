@@ -13,7 +13,7 @@ use QUI;
  */
 class TemplateExtender
 {
-    public static function extendHeader(QUI\Template $Template, QUI\Interfaces\Projects\Site $Site)
+    public static function extendHeader(QUI\Template $Template, QUI\Interfaces\Projects\Site $Site): void
     {
         $Project = $Site->getProject();
         $trackToPaq = $Project->getConfig('matomo.settings.trackToPaq') ? 1 : 0;
@@ -22,7 +22,7 @@ class TemplateExtender
         $Template->extendHeader('<script src="' . URL_OPT_DIR . 'quiqqer/matomo/bin/dataLayer.js"></script>');
     }
 
-    public static function extendFooter(QUI\Template $Template, QUI\Interfaces\Projects\Site $Site)
+    public static function extendFooter(QUI\Template $Template, QUI\Interfaces\Projects\Site $Site): void
     {
         $Project = $Site->getProject();
 
@@ -46,13 +46,7 @@ class TemplateExtender
             return;
         }
 
-        try {
-            $Engine = QUI::getTemplateManager()->getEngine();
-        } catch (QUI\Exception $Exception) {
-            QUI\System\Log::addDebug($Exception->getMessage());
-
-            return;
-        }
+        $Engine = QUI::getTemplateManager()->getEngine();
 
         $Engine->assign([
             'matomoUrl' => $matomoUrl,

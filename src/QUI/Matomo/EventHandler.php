@@ -3,6 +3,7 @@
 namespace QUI\Matomo;
 
 use QUI;
+use QUI\Exception;
 
 use function is_array;
 
@@ -17,9 +18,9 @@ class EventHandler
 {
     /**
      * @param QUI\Template $Template
-     * @param QUI\Projects\Site $Site
+     * @param QUI\Interfaces\Projects\Site $Site
      */
-    public static function onTemplateSiteFetch($Template, $Site)
+    public static function onTemplateSiteFetch(QUI\Template $Template, QUI\Interfaces\Projects\Site $Site): void
     {
         TemplateExtender::extendHeader($Template, $Site);
         TemplateExtender::extendFooter($Template, $Site);
@@ -32,11 +33,11 @@ class EventHandler
      * @param array $config
      * @param array $params
      */
-    public static function onProjectConfigSave($project, array $config, array $params)
+    public static function onProjectConfigSave($project, array $config, array $params): void
     {
         try {
             $Project = QUI::getProject($project);
-        } catch (QUI\Exception $Exception) {
+        } catch (QUI\Exception) {
             return;
         }
 
@@ -64,7 +65,7 @@ class EventHandler
 
         try {
             $ProjectsConfig = QUI\Projects\Manager::getConfig();
-        } catch (QUI\Exception $Exception) {
+        } catch (QUI\Exception) {
             return;
         }
 
@@ -92,7 +93,7 @@ class EventHandler
 
         try {
             $ProjectsConfig->save();
-        } catch (QUI\Exception $Exception) {
+        } catch (QUI\Exception) {
             return;
         }
         // endregion
@@ -102,8 +103,9 @@ class EventHandler
      * Fired after the package has been installed.
      *
      * @param QUI\Package\Package $Package
+     * @throws Exception
      */
-    public static function onPackageInstallAfter(QUI\Package\Package $Package)
+    public static function onPackageInstallAfter(QUI\Package\Package $Package): void
     {
         if ($Package->getName() !== 'quiqqer/matomo') {
             return;

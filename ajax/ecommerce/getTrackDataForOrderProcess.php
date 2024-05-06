@@ -7,6 +7,7 @@
  * @return array
  */
 
+use QUI\ERP\Products\Category\Category;
 use QUI\ERP\Products\Handler\Products;
 
 QUI::$Ajax->registerFunction(
@@ -15,17 +16,8 @@ QUI::$Ajax->registerFunction(
         try {
             $Orders = QUI\ERP\Order\Handler::getInstance();
             $Order = $Orders->getOrderByHash($orderHash);
-
-            if (!$Order) {
-                return [];
-            }
-
             $Articles = $Order->getArticles();
-
-            if (!$Articles) {
-                return [];
-            }
-        } catch (QUI\Exception $Exception) {
+        } catch (QUI\Exception) {
             return [];
         }
 
@@ -54,7 +46,7 @@ QUI::$Ajax->registerFunction(
                 }
 
                 $categories = array_map(function ($Category) use ($Locale) {
-                    /* @var $Category \QUI\ERP\Products\Category\Category */
+                    /* @var $Category Category */
                     return [
                         'id' => $Category->getId(),
                         'title' => $Category->getTitle($Locale)

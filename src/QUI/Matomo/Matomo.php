@@ -2,8 +2,11 @@
 
 namespace QUI\Matomo;
 
+use MatomoTracker;
 use QUI;
 use QUI\Projects\Project;
+
+use function mb_strpos;
 
 /**
  * Matomo Helper
@@ -23,18 +26,18 @@ class Matomo
      * Return the Matomo client
      *
      * @param Project $Project
-     * @return \MatomoTracker
+     * @return MatomoTracker
      */
-    public static function getMatomoClient(Project $Project)
+    public static function getMatomoClient(Project $Project): MatomoTracker
     {
         $matomoUrl = $Project->getConfig('matomo.settings.url');
         $matomoSideId = $Project->getConfig('matomo.settings.id');
 
-        if (\mb_strpos($matomoUrl, '://') === false) {
+        if (mb_strpos($matomoUrl, '://') === false) {
             $matomoUrl = 'https://' . $matomoUrl;
         }
 
-        $Matomo = new \MatomoTracker($matomoSideId, $matomoUrl);
+        $Matomo = new MatomoTracker($matomoSideId, $matomoUrl);
 
         if ($Project->getConfig('matomo.settings.token')) {
             $Matomo->setTokenAuth($Project->getConfig('matomo.settings.token'));
@@ -48,10 +51,10 @@ class Matomo
      * Returns the site ID for a given project and language
      *
      * @param Project $Project
-     * @param $language
-     * @return string
+     * @param string|null $language
+     * @return int|string
      */
-    public static function getSiteId(Project $Project, $language = null)
+    public static function getSiteId(Project $Project, string $language = null): int|string
     {
         $group = self::getLocaleGroup($Project);
 
@@ -109,7 +112,7 @@ class Matomo
                 json_encode(htmlentities($code))
             );
             $ProjectsConfig->save();
-        } catch (QUI\Exception $Exception) {
+        } catch (QUI\Exception) {
             return false;
         }
 
@@ -119,14 +122,9 @@ class Matomo
 
     public static function getGeneralTagManagerCode(Project $Project): string
     {
-        try {
-            $value = $Project->getConfig(static::CONFIG_KEY_GENERAL_TAG_MANAGER_CODE);
-            return html_entity_decode(json_decode($value, true));
-        } catch (QUI\Exception $Exception) {
-            return '';
-        }
+        $value = $Project->getConfig(static::CONFIG_KEY_GENERAL_TAG_MANAGER_CODE);
+        return html_entity_decode(json_decode($value, true));
     }
-
 
     /**
      * Returns the Tag Manager Code for a given project and language
@@ -183,7 +181,7 @@ class Matomo
                 $localeKey,
                 $localeGroup
             );
-        } catch (QUI\Exception $Exception) {
+        } catch (QUI\Exception) {
             // Throws error if lang var already exists
         }
 
@@ -206,7 +204,7 @@ class Matomo
      * @param Project $Project
      * @return string
      */
-    private static function getLocaleGroup(Project $Project)
+    private static function getLocaleGroup(Project $Project): string
     {
         return 'project/' . $Project->getName();
     }
