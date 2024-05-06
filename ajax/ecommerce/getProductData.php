@@ -24,7 +24,7 @@ QUI::$Ajax->registerFunction(
                 'price' => $Product->getPrice()->getPrice(),
                 'url' => $Product->getUrl()
             ];
-        } catch (QUI\Exception $Exception) {
+        } catch (QUI\Exception) {
             return '';
         }
     },
