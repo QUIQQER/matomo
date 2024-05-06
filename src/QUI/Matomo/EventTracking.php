@@ -2,7 +2,10 @@
 
 namespace QUI\Matomo;
 
+use Exception;
 use QUI;
+use QUI\FrontendUsers\RegistrarInterface;
+use QUI\Interfaces\Users\User;
 
 /**
  * Class EventTracking
@@ -11,17 +14,17 @@ class EventTracking
 {
     /**
      * @param QUI\Users\User $User
-     * @param QUI\FrontendUsers\RegistrarInterface $Registrar
+     * @param RegistrarInterface $Registrar
      * @param string $registrationStatus
      */
     public static function onQuiqqerFrontendUsersUserRegister(
-        \QUI\Users\User $User,
-        \QUI\FrontendUsers\RegistrarInterface $Registrar,
+        User $User,
+        RegistrarInterface $Registrar,
         string $registrationStatus
-    ) {
+    ): void {
         try {
             $Tracker = Matomo::getMatomoClient(QUI::getRewrite()->getProject());
-        } catch (QUI\Exception $Exception) {
+        } catch (QUI\Exception) {
             return;
         }
 
@@ -31,7 +34,7 @@ class EventTracking
                 'registration',
                 'register'
             );
-        } catch (\Exception $Exception) {
+        } catch (Exception $Exception) {
             QUI\System\Log::addError($Exception->getMessage());
             QUI\System\Log::addError($Exception->getTraceAsString());
         }
@@ -39,15 +42,15 @@ class EventTracking
 
     /**
      * @param QUI\Users\User $User
-     * @param QUI\FrontendUsers\RegistrarInterface|bool $Registrar
+     * @param RegistrarInterface|null $Registrar
      */
     public static function onQuiqqerFrontendUsersUserActivate(
-        \QUI\Users\User $User,
-        $Registrar = null
-    ) {
+        User $User,
+        RegistrarInterface $Registrar = null
+    ): void {
         try {
             $Tracker = Matomo::getMatomoClient(QUI::getRewrite()->getProject());
-        } catch (QUI\Exception $Exception) {
+        } catch (QUI\Exception) {
             return;
         }
 
@@ -57,7 +60,7 @@ class EventTracking
                 'registration',
                 'activate'
             );
-        } catch (\Exception $Exception) {
+        } catch (Exception $Exception) {
             QUI\System\Log::addError($Exception->getMessage());
             QUI\System\Log::addError($Exception->getTraceAsString());
         }

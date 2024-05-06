@@ -32,7 +32,7 @@ class IgnoreCookie implements CookieInterface
     {
         try {
             return QUI::getRewrite()->getProject()->getConfig('matomo.settings.url');
-        } catch (QUI\Exception $Exception) {
+        } catch (QUI\Exception) {
             return QUI::getRequest()->getHost();
         }
     }

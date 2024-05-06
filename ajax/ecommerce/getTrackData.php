@@ -8,6 +8,7 @@
  */
 
 use QUI\ERP\Order\Handler as OrderHandler;
+use QUI\ERP\Products\Category\Category;
 use QUI\ERP\Products\Handler\Fields;
 use QUI\ERP\Products\Handler\Products;
 
@@ -20,7 +21,7 @@ QUI::$Ajax->registerFunction(
         } else {
             try {
                 $Basket = OrderHandler::getInstance()->getBasketById($basketId);
-            } catch (QUI\Exception $Exception) {
+            } catch (QUI\Exception) {
                 return [];
             }
         }
@@ -54,7 +55,7 @@ QUI::$Ajax->registerFunction(
             }
 
             $categories = array_map(function ($Category) use ($Locale) {
-                /* @var $Category \QUI\ERP\Products\Category\Category */
+                /* @var $Category Category */
                 return [
                     'id' => $Category->getId(),
                     'title' => $Category->getTitle($Locale)
