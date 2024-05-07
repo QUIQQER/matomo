@@ -51,7 +51,7 @@ class RefCookie implements CookieInterface
         return sprintf(
             '%d %s',
             6,
-            QUI::getLocale()->get('quiqqer/quiqqer', 'months')
+            QUI::getLocale()->get('quiqqer/core', 'months')
         );
     }
 

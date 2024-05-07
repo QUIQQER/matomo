@@ -51,7 +51,7 @@ class CvarCookie implements CookieInterface
         return sprintf(
             '%d %s',
             30,
-            QUI::getLocale()->get('quiqqer/quiqqer', 'minutes')
+            QUI::getLocale()->get('quiqqer/core', 'minutes')
         );
     }
 

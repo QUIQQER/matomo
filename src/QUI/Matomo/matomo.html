@@ -84,7 +84,7 @@
                     QUI.addEvent('onQuiqqerUserAuthLoginSuccess', function() {
                         require(['matomoTracker'], function(matomoTracker) {
                             matomoTracker.then(function(Tracker) {
-                                Tracker.trackEvent('quiqqer/quiqqer', 'login');
+                                Tracker.trackEvent('quiqqer/core', 'login');
                                 Tracker.setCustomUrl('/login');
                                 Tracker.trackPageView();
                             });
@@ -96,7 +96,7 @@
                     QUI.addEvent('onQuiqqerUserAuthLogout', function() {
                         require(['matomoTracker'], function(matomoTracker) {
                             matomoTracker.then(function(Tracker) {
-                                Tracker.trackEvent('quiqqer/quiqqer', 'logout');
+                                Tracker.trackEvent('quiqqer/core', 'logout');
                                 Tracker.setCustomUrl('/logout');
                                 Tracker.trackPageView();
                             });

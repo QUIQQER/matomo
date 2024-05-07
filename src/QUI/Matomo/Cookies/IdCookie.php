@@ -51,7 +51,7 @@ class IdCookie implements CookieInterface
         return sprintf(
             '%d %s',
             13,
-            QUI::getLocale()->get('quiqqer/quiqqer', 'months')
+            QUI::getLocale()->get('quiqqer/core', 'months')
         );
     }
 
