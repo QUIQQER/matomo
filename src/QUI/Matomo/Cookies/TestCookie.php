@@ -51,7 +51,7 @@ class TestCookie implements CookieInterface
         return sprintf(
             '%d %s',
             1,
-            QUI::getLocale()->get('quiqqer/quiqqer', 'second')
+            QUI::getLocale()->get('quiqqer/core', 'second')
         );
     }
 
