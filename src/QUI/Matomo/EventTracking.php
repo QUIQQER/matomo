@@ -46,7 +46,7 @@ class EventTracking
      */
     public static function onQuiqqerFrontendUsersUserActivate(
         User $User,
-        RegistrarInterface $Registrar = null
+        null|RegistrarInterface $Registrar = null
     ): void {
         try {
             $Tracker = Matomo::getMatomoClient(QUI::getRewrite()->getProject());
