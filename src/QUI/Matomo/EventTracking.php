@@ -47,8 +47,7 @@ class EventTracking
     public static function onQuiqqerFrontendUsersUserActivate(
         User $User,
         null | RegistrarInterface $Registrar = null // @phpstan-ignore-line
-    ): void
-    {
+    ): void {
         try {
             $Tracker = Matomo::getMatomoClient(QUI::getRewrite()->getProject());
         } catch (QUI\Exception) {
