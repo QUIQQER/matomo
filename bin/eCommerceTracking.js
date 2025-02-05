@@ -331,6 +331,12 @@ define('package/quiqqer/matomo/bin/eCommerceTracking', [
         trackOrder(orderHash);
     });
 
+
+    QUI.addEvent('onOrderSuccessful', function (Instance) {
+        trackOrder(Instance.getAttribute('orderHash'));
+    });
+
+
     QUI.addEvent('onQuiqqerOrderProcessLoad', function () {
         if (DEBUG) {
             console.log('track order process load ->');

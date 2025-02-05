@@ -13,6 +13,13 @@ use QUI\ERP\Products\Handler\Products;
 QUI::$Ajax->registerFunction(
     'package_quiqqer_matomo_ajax_ecommerce_getTrackDataForOrderProcess',
     function ($orderHash) {
+        if (
+            !class_exists('QUI\ERP\Order\Handler')
+            || !class_exists('QUI\ERP\Products\Handler\Products')
+        ) {
+            return [];
+        }
+
         try {
             $Orders = QUI\ERP\Order\Handler::getInstance();
             $Order = $Orders->getOrderByHash($orderHash);

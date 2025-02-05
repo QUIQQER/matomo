@@ -10,6 +10,10 @@
 QUI::$Ajax->registerFunction(
     'package_quiqqer_matomo_ajax_ecommerce_getCategoryData',
     function ($project, $siteId) {
+        if (!class_exists('QUI\ERP\Products\Handler\Categories')) {
+            return '';
+        }
+
         try {
             $Project = QUI::getProjectManager()->decode($project);
             $Site = $Project->get($siteId);
