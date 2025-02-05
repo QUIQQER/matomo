@@ -13,6 +13,14 @@ use QUI\ERP\Products\Handler\Products;
 QUI::$Ajax->registerFunction(
     'package_quiqqer_matomo_ajax_ecommerce_getProductData',
     function ($productId) {
+        if (!class_exists('QUI\ERP\Products\Handler\Products')) {
+            return '';
+        }
+
+        if (!class_exists('QUI\ERP\Products\Handler\Fields')) {
+            return '';
+        }
+
         try {
             $productId = (int)$productId;
             $Product = Products::getProduct($productId);

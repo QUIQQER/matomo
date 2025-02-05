@@ -10,6 +10,10 @@
 QUI::$Ajax->registerFunction(
     'package_quiqqer_matomo_ajax_ecommerce_getOrderData',
     function ($orderHash) {
+        if (!class_exists('QUI\ERP\Order\Handler')) {
+            return '';
+        }
+
         try {
             $Order = QUI\ERP\Order\Handler::getInstance()->getOrderByHash($orderHash);
             $Products = $Order->getArticles();
@@ -20,7 +24,6 @@ QUI::$Ajax->registerFunction(
 
             // @todo shipping amount
             // @todo discount amount
-
 
             return [
                 'sum' => $calculations['sum'],
