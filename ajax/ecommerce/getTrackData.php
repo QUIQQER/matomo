@@ -15,6 +15,16 @@ use QUI\ERP\Products\Handler\Products;
 QUI::$Ajax->registerFunction(
     'package_quiqqer_matomo_ajax_ecommerce_getTrackData',
     function ($basketId, $products) {
+        if (
+            !class_exists('QUI\ERP\Order\Basket\BasketGuest')
+            || !class_exists('QUI\ERP\Order\Handler')
+            || !class_exists('QUI\ERP\Products\Handler\Products')
+            || !class_exists('QUI\ERP\Products\Utils\Package')
+            || !class_exists('QUI\ERP\Products\Handler\Fields')
+        ) {
+            return [];
+        }
+
         if (!QUI::getUserBySession()->getId()) {
             $Basket = new QUI\ERP\Order\Basket\BasketGuest();
             $Basket->import(json_decode($products, true));

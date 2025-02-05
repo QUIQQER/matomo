@@ -58,7 +58,7 @@ class Matomo
      * @param string|null $language
      * @return int|string
      */
-    public static function getSiteId(Project $Project, string $language = null): int|string
+    public static function getSiteId(Project $Project, null|string $language = null): int|string
     {
         $group = self::getLocaleGroup($Project);
 
