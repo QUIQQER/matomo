@@ -31,7 +31,7 @@ class Matomo
     public static function getMatomoClient(Project $Project)
     {
         $matomoUrl = $Project->getConfig('matomo.settings.url');
-        $matomoSideId = $Project->getConfig('matomo.settings.id');
+        $matomoSideId = (int)$Project->getConfig('matomo.settings.id');
 
         if (!$matomoUrl || !$matomoSideId) {
             throw new \QUI\Exception('Matomo host not configured');
