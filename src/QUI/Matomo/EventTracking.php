@@ -42,7 +42,7 @@ class EventTracking
 
     /**
      * @param QUI\Users\User $User
-     * @param RegistrarInterface|null $Registrar
+     * @param RegistrarInterface|bool $Registrar
      */
     public static function onQuiqqerFrontendUsersUserActivate(
         User $User,
