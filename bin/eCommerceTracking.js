@@ -17,7 +17,7 @@ define('package/quiqqer/matomo/bin/eCommerceTracking', [
     let lastOrderTrack = null;
 
     function trackBasket(Basket) {
-        if (!parseInt(QUIQQER_USER.id)) {
+        if (!QUIQQER_USER.isLoggedIn) {
             return new Promise(function (resolve) {
                 let products = [];
                 let basketProducts = Basket.getProducts();
