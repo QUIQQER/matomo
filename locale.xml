@@ -158,6 +158,46 @@
             However, if the Tag Manager is configured manually, it is recommended to deactivate this option,
             to avoid conflicts or data overlaps.]]></en>
         </locale>
+        <locale name="matomo.settings.userIdTracking.isEnabled">
+            <de><![CDATA[Benutzer-ID tracken]]></de>
+            <en><![CDATA[Track user ID]]></en>
+        </locale>
+        <locale name="matomo.settings.userIdTracking.isEnabled.description">
+            <de><![CDATA[Wenn aktiviert, wird die QUIQQER Benutzer-ID an Matomo übertragen.]]></de>
+            <en><![CDATA[If enabled, the QUIQQER user ID is sent to Matomo.]]></en>
+        </locale>
+        <locale name="matomo.settings.userIdTracking.cookieCategory">
+            <de><![CDATA[Consent-Kategorie für Benutzer-ID Tracking]]></de>
+            <en><![CDATA[Consent category for user ID tracking]]></en>
+        </locale>
+        <locale name="matomo.settings.userIdTracking.cookieCategory.description">
+            <de><![CDATA[Nur relevant, wenn quiqqer/gdpr installiert ist. Definiert die benötigte Consent-Kategorie für das Tracking der Benutzer-ID.]]></de>
+            <en><![CDATA[Only relevant if quiqqer/gdpr is installed. Defines the required consent category for tracking the user ID.]]></en>
+        </locale>
+        <locale name="matomo.settings.userEmailTracking.isEnabled">
+            <de><![CDATA[Benutzer E-Mail tracken]]></de>
+            <en><![CDATA[Track user email]]></en>
+        </locale>
+        <locale name="matomo.settings.userEmailTracking.isEnabled.description">
+            <de><![CDATA[Wenn aktiviert, wird die QUIQQER Benutzer E-Mail an Matomo übertragen.]]></de>
+            <en><![CDATA[If enabled, the QUIQQER user email is sent to Matomo.]]></en>
+        </locale>
+        <locale name="matomo.settings.userEmailTracking.cookieCategory">
+            <de><![CDATA[Consent-Kategorie für Benutzer E-Mail Tracking]]></de>
+            <en><![CDATA[Consent category for user email tracking]]></en>
+        </locale>
+        <locale name="matomo.settings.userEmailTracking.cookieCategory.description">
+            <de><![CDATA[Nur relevant, wenn quiqqer/gdpr installiert ist. Definiert die benötigte Consent-Kategorie für das Tracking der Benutzer E-Mail.]]></de>
+            <en><![CDATA[Only relevant if quiqqer/gdpr is installed. Defines the required consent category for tracking the user email.]]></en>
+        </locale>
+        <locale name="matomo.settings.userEmailTracking.customDimensionId">
+            <de><![CDATA[Custom Dimension ID für Benutzer E-Mail]]></de>
+            <en><![CDATA[Custom dimension ID for user email]]></en>
+        </locale>
+        <locale name="matomo.settings.userEmailTracking.customDimensionId.description">
+            <de><![CDATA[Matomo Custom Dimension ID, in die die Benutzer E-Mail geschrieben wird.]]></de>
+            <en><![CDATA[Matomo custom dimension ID that receives the user email.]]></en>
+        </locale>
 
         <locale name="user.profile.title">
             <de><![CDATA[Matomo Profil Einstellungen]]></de>
@@ -239,6 +279,16 @@
         <locale name="cookie.sessid.lifetime">
             <de><![CDATA[Temporär]]></de>
             <en><![CDATA[Temporary]]></en>
+        </locale>
+
+        <locale name="cookie.userIdTracking.purpose">
+            <de><![CDATA[Wird verwendet, um die Einwilligung für das Tracking der Benutzer-ID in Matomo einzuholen. Es wird kein Cookie gesetzt.]]></de>
+            <en><![CDATA[Used to collect consent for tracking the user ID in Matomo. No cookie is set.]]></en>
+        </locale>
+
+        <locale name="cookie.userEmailTracking.purpose">
+            <de><![CDATA[Wird verwendet, um die Einwilligung für das Tracking der Benutzer-E-Mail in Matomo einzuholen. Es wird kein Cookie gesetzt.]]></de>
+            <en><![CDATA[Used to collect consent for tracking the user email in Matomo. No cookie is set.]]></en>
         </locale>
 
         <!-- region Cookie Settings -->

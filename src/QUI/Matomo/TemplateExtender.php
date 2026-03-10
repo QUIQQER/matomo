@@ -43,16 +43,35 @@ class TemplateExtender
         }
 
         if (empty($matomoUrl) || empty($matomoSiteId)) {
+            QUI\System\Log::addInfo("Matomo is disabled: No URL or site id is specified in the project settings");
             return;
         }
 
         $Engine = QUI::getTemplateManager()->getEngine();
 
+        $SessionUser = QUI::getUserBySession();
+        $isSessionUserAuthenticated = QUI::getUsers()->isAuth($SessionUser);
+
+        $userUuid = false;
+        $userEmail = false;
+
+        if ($isSessionUserAuthenticated) {
+            $userUuid = (string)$SessionUser->getUUID();
+            $userEmail = (string)$SessionUser->getAttribute('email');
+        }
+
         $Engine->assign([
             'matomoUrl' => $matomoUrl,
             'matomoSideId' => $matomoSiteId,
             'eCommerce' => QUI::getPackageManager()->isInstalled('quiqqer/order') ? 1 : 0,
-            'cookieCategory' => CookieUtils::getCookieCategorySetting()
+            'matomoTrackingCookieCategory' => CookieUtils::getCookieCategorySetting(),
+            'userUuid' => $userUuid,
+            'userEmail' => $userEmail,
+            'isUserIdTrackingEnabled' => (int) $Project->getConfig('matomo.settings.userIdTracking.isEnabled'),
+            'userIdTrackingCookieCategory' => CookieUtils::getUserIdTrackingCookieCategory(),
+            'isUserEmailTrackingEnabled' => (int) $Project->getConfig('matomo.settings.userEmailTracking.isEnabled'),
+            'userEmailTrackingCookieCategory' => CookieUtils::getUserEmailTrackingCookieCategory(),
+            'userEmailTrackingCustomDimensionId' => (int) $Project->getConfig('matomo.settings.userEmailTracking.customDimensionId'),
         ]);
 
         $Template->extendFooter(
