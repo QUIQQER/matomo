@@ -43,6 +43,7 @@ class TemplateExtender
         }
 
         if (empty($matomoUrl) || empty($matomoSiteId)) {
+            QUI\System\Log::addInfo("Matomo is disabled: No URL or site id is specified in the project settings");
             return;
         }
 
