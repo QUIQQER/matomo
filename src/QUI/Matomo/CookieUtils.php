@@ -32,4 +32,32 @@ class CookieUtils
 
         return 'statistics';
     }
+
+    /**
+     * Returns the consent category for user ID tracking.
+     */
+    public static function getUserIdTrackingCookieCategory(): string
+    {
+        try {
+            return QUI::getRewrite()->getProject()->getConfig('matomo.settings.userIdTracking.cookieCategory');
+        } catch (Exception $Exception) {
+            Log::writeException($Exception);
+        }
+
+        return 'marketing';
+    }
+
+    /**
+     * Returns the consent category for user email tracking.
+     */
+    public static function getUserEmailTrackingCookieCategory(): string
+    {
+        try {
+            return QUI::getRewrite()->getProject()->getConfig('matomo.settings.userEmailTracking.cookieCategory');
+        } catch (Exception $Exception) {
+            Log::writeException($Exception);
+        }
+
+        return 'marketing';
+    }
 }

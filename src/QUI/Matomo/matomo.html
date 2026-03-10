@@ -4,9 +4,32 @@
 
     (function() {
         const u = '//{$matomoUrl}/';
+        const matomoTrackingCookieCategory = '{$matomoTrackingCookieCategory}';
+        const isUserIdTrackingEnabled = {$isUserIdTrackingEnabled};
+        const userIdTrackingCookieCategory = '{$userIdTrackingCookieCategory}';
+        const isUserEmailTrackingEnabled = {$isUserEmailTrackingEnabled};
+        const userEmailTrackingCookieCategory = '{$userEmailTrackingCookieCategory}';
+        const userEmailTrackingCustomDimensionId = {$userEmailTrackingCustomDimensionId};
+        const userUuid = '{$userUuid}';
+        const userEmail = '{$userEmail}';
+        const hasConsentForCategory = function(category) {
+            if (typeof GDPR === 'undefined') {
+                return true;
+            }
 
-        if (typeof GDPR !== 'undefined' && !GDPR.isCookieCategoryAccepted('{$cookieCategory}')) {
+            return GDPR.isCookieCategoryAccepted(category);
+        };
+
+        if (!hasConsentForCategory(matomoTrackingCookieCategory)) {
             _paq.push(['disableCookies']);
+        }
+
+        if (isUserIdTrackingEnabled && userUuid !== '' && hasConsentForCategory(userIdTrackingCookieCategory)) {
+            _paq.push(['setUserId', userUuid]);
+        }
+
+        if (isUserEmailTrackingEnabled && userEmail !== '' && Number.isInteger(userEmailTrackingCustomDimensionId) && hasConsentForCategory(userEmailTrackingCookieCategory)) {
+            _paq.push(['setCustomDimension', userEmailTrackingCustomDimensionId, userEmail]);
         }
 
         _paq.push(['trackPageView']);

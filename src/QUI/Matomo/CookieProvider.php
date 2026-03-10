@@ -17,6 +17,8 @@ use QUI\Matomo\Cookies\RefCookie;
 use QUI\Matomo\Cookies\SesCookie;
 use QUI\Matomo\Cookies\SessIdCookie;
 use QUI\Matomo\Cookies\TestCookie;
+use QUI\Matomo\Cookies\UserEmailTracking;
+use QUI\Matomo\Cookies\UserIdTracking;
 
 /**
  * Class QuiqqerCookieProvider
@@ -36,7 +38,9 @@ class CookieProvider implements CookieProviderInterface
             new RefCookie(),
             new SesCookie(),
             new SessIdCookie(),
-            new TestCookie()
+            new TestCookie(),
+            new UserIdTracking(),
+            new UserEmailTracking()
         ]);
     }
 }
