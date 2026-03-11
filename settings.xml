@@ -29,6 +29,26 @@
                         <type><![CDATA[bool]]></type>
                         <defaultvalue><![CDATA[1]]></defaultvalue>
                     </conf>
+                    <conf name="userIdTracking.isEnabled">
+                        <type><![CDATA[bool]]></type>
+                        <defaultvalue><![CDATA[0]]></defaultvalue>
+                    </conf>
+                    <conf name="userIdTracking.cookieCategory">
+                        <type><![CDATA[string]]></type>
+                        <defaultvalue><![CDATA[marketing]]></defaultvalue>
+                    </conf>
+                    <conf name="userEmailTracking.isEnabled">
+                        <type><![CDATA[bool]]></type>
+                        <defaultvalue><![CDATA[0]]></defaultvalue>
+                    </conf>
+                    <conf name="userEmailTracking.cookieCategory">
+                        <type><![CDATA[string]]></type>
+                        <defaultvalue><![CDATA[marketing]]></defaultvalue>
+                    </conf>
+                    <conf name="userEmailTracking.customDimensionId">
+                        <type><![CDATA[int]]></type>
+                        <defaultvalue><![CDATA[0]]></defaultvalue>
+                    </conf>
                 </section>
                 <section name="matomo.settings.tagmanager">
                     <conf name="enabled">
@@ -131,6 +151,35 @@
                                             var="matomo.settings.useTokenForStatisticsDisplay.description"/>
                                 </description>
                             </input>
+
+                            <input conf="matomo.settings.userIdTracking.isEnabled" type="checkbox">
+                                <text>
+                                    <locale group="quiqqer/matomo" var="matomo.settings.userIdTracking.isEnabled"/>
+                                </text>
+                                <description>
+                                    <locale group="quiqqer/matomo" var="matomo.settings.userIdTracking.isEnabled.description"/>
+                                </description>
+                            </input>
+
+                            <input conf="matomo.settings.userEmailTracking.isEnabled" type="checkbox">
+                                <text>
+                                    <locale group="quiqqer/matomo" var="matomo.settings.userEmailTracking.isEnabled"/>
+                                </text>
+                                <description>
+                                    <locale group="quiqqer/matomo" var="matomo.settings.userEmailTracking.isEnabled.description"/>
+                                </description>
+                            </input>
+
+                            <input conf="matomo.settings.userEmailTracking.customDimensionId" type="number">
+                                <text>
+                                    <locale group="quiqqer/matomo"
+                                            var="matomo.settings.userEmailTracking.customDimensionId"/>
+                                </text>
+                                <description>
+                                    <locale group="quiqqer/matomo"
+                                            var="matomo.settings.userEmailTracking.customDimensionId.description"/>
+                                </description>
+                            </input>
                         </settings>
 
                         <settings>
@@ -144,6 +193,50 @@
                                 </text>
                                 <description>
                                     <locale group="quiqqer/matomo" var="matomo.settings.cookiecategory.description"/>
+                                </description>
+                                <option value="essential">
+                                    <locale group="quiqqer/matomo" var="matomo.settings.cookiecategory.essential"/>
+                                </option>
+                                <option value="preferences">
+                                    <locale group="quiqqer/matomo" var="matomo.settings.cookiecategory.preferences"/>
+                                </option>
+                                <option value="statistics">
+                                    <locale group="quiqqer/matomo" var="matomo.settings.cookiecategory.statistics"/>
+                                </option>
+                                <option value="marketing">
+                                    <locale group="quiqqer/matomo" var="matomo.settings.cookiecategory.marketing"/>
+                                </option>
+                            </select>
+
+                            <select conf="matomo.settings.userIdTracking.cookieCategory">
+                                <text>
+                                    <locale group="quiqqer/matomo" var="matomo.settings.userIdTracking.cookieCategory"/>
+                                </text>
+                                <description>
+                                    <locale group="quiqqer/matomo"
+                                            var="matomo.settings.userIdTracking.cookieCategory.description"/>
+                                </description>
+                                <option value="essential">
+                                    <locale group="quiqqer/matomo" var="matomo.settings.cookiecategory.essential"/>
+                                </option>
+                                <option value="preferences">
+                                    <locale group="quiqqer/matomo" var="matomo.settings.cookiecategory.preferences"/>
+                                </option>
+                                <option value="statistics">
+                                    <locale group="quiqqer/matomo" var="matomo.settings.cookiecategory.statistics"/>
+                                </option>
+                                <option value="marketing">
+                                    <locale group="quiqqer/matomo" var="matomo.settings.cookiecategory.marketing"/>
+                                </option>
+                            </select>
+
+                            <select conf="matomo.settings.userEmailTracking.cookieCategory">
+                                <text>
+                                    <locale group="quiqqer/matomo" var="matomo.settings.userEmailTracking.cookieCategory"/>
+                                </text>
+                                <description>
+                                    <locale group="quiqqer/matomo"
+                                            var="matomo.settings.userEmailTracking.cookieCategory.description"/>
                                 </description>
                                 <option value="essential">
                                     <locale group="quiqqer/matomo" var="matomo.settings.cookiecategory.essential"/>
