@@ -22,7 +22,7 @@
         "url": "https://www.pcsg.de"
     },
     "require": {
-        "php": "^8",
+        "php": "^8.2",
         "quiqqer/core": "^2.9",
         "matomo/matomo-php-tracker": "^3",
         "quiqqer-asset/mustache": "*",
