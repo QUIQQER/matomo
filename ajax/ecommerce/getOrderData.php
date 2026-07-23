@@ -7,7 +7,7 @@
  * @return array
  */
 
-QUI::$Ajax->registerFunction(
+QUI::getAjax()->registerFunction(
     'package_quiqqer_matomo_ajax_ecommerce_getOrderData',
     function ($orderHash) {
         if (!class_exists('QUI\ERP\Order\Handler')) {

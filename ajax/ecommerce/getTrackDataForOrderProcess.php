@@ -10,7 +10,7 @@
 use QUI\ERP\Products\Category\Category;
 use QUI\ERP\Products\Handler\Products;
 
-QUI::$Ajax->registerFunction(
+QUI::getAjax()->registerFunction(
     'package_quiqqer_matomo_ajax_ecommerce_getTrackDataForOrderProcess',
     function ($orderHash) {
         if (

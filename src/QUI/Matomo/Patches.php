@@ -27,8 +27,7 @@ class Patches
     public static function moveSiteIdsToLocaleVariables(): void
     {
         try {
-            $Package = QUI::getPackage('quiqqer/matomo');
-            $Config = $Package->getConfig();
+            $Config = Settings::getConfig();
 
             $isPatchExecutedAlready = $Config->get('patches', self::SITE_IDS_TO_LOCALE_VARIABLES) == 1;
 
