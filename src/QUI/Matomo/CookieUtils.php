@@ -25,7 +25,13 @@ class CookieUtils
     public static function getCookieCategorySetting(): string
     {
         try {
-            return QUI::getRewrite()->getProject()->getConfig('matomo.settings.cookiecategory');
+            $category = (string)QUI::getRewrite()
+                ->getProject()
+                ?->getConfig('matomo.settings.cookiecategory');
+
+            if ($category !== '') {
+                return $category;
+            }
         } catch (Exception $Exception) {
             Log::writeException($Exception);
         }
@@ -39,7 +45,13 @@ class CookieUtils
     public static function getUserIdTrackingCookieCategory(): string
     {
         try {
-            return QUI::getRewrite()->getProject()->getConfig('matomo.settings.userIdTracking.cookieCategory');
+            $category = (string)QUI::getRewrite()
+                ->getProject()
+                ?->getConfig('matomo.settings.userIdTracking.cookieCategory');
+
+            if ($category !== '') {
+                return $category;
+            }
         } catch (Exception $Exception) {
             Log::writeException($Exception);
         }
@@ -53,7 +65,13 @@ class CookieUtils
     public static function getUserEmailTrackingCookieCategory(): string
     {
         try {
-            return QUI::getRewrite()->getProject()->getConfig('matomo.settings.userEmailTracking.cookieCategory');
+            $category = (string)QUI::getRewrite()
+                ->getProject()
+                ?->getConfig('matomo.settings.userEmailTracking.cookieCategory');
+
+            if ($category !== '') {
+                return $category;
+            }
         } catch (Exception $Exception) {
             Log::writeException($Exception);
         }

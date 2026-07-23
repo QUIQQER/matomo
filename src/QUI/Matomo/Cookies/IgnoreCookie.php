@@ -31,10 +31,18 @@ class IgnoreCookie implements CookieInterface
     public function getOrigin(): string
     {
         try {
-            return QUI::getRewrite()->getProject()->getConfig('matomo.settings.url');
+            $origin = (string)QUI::getRewrite()
+                ->getProject()
+                ?->getConfig('matomo.settings.url');
+
+            if ($origin !== '') {
+                return $origin;
+            }
         } catch (QUI\Exception) {
-            return QUI::getRequest()->getHost();
+            // Use the request host below.
         }
+
+        return QUI::getRequest()->getHost();
     }
 
     /**
