@@ -29,9 +29,9 @@ class EventHandler
     /**
      * Listens to project config save
      *
-     * @param $project
-     * @param array $config
-     * @param array $params
+     * @param string $project
+     * @param array<string, mixed> $config
+     * @param array<string, mixed> $params
      */
     public static function onProjectConfigSave($project, array $config, array $params): void
     {
@@ -74,12 +74,12 @@ class EventHandler
 
         // Get the language data
         $languageDataJSON = $ProjectsConfig->getValue($projectName, $settingKey);
-        if (empty($languageDataJSON)) {
+        if (!is_string($languageDataJSON) || $languageDataJSON === '') {
             return;
         }
 
         $languageData = json_decode($languageDataJSON, true);
-        if (empty($languageData)) {
+        if (!is_array($languageData) || $languageData === []) {
             return;
         }
 
@@ -88,9 +88,14 @@ class EventHandler
             unset($languageData[$language]['url']);
         }
 
-        // Set the new config value
-        $ProjectsConfig->setValue($projectName, $settingKey, json_encode($languageData));
+        $encodedLanguageData = json_encode($languageData);
 
+        if ($encodedLanguageData === false) {
+            return;
+        }
+
+        // Set the new config value
+        $ProjectsConfig->setValue($projectName, $settingKey, $encodedLanguageData);
         try {
             $ProjectsConfig->save();
         } catch (QUI\Exception) {

@@ -158,6 +158,24 @@
             However, if the Tag Manager is configured manually, it is recommended to deactivate this option,
             to avoid conflicts or data overlaps.]]></en>
         </locale>
+        <locale name="matomo.settings.dataLayerBridge">
+            <de><![CDATA[Data Layer an den Matomo Tag Manager weiterleiten]]></de>
+            <en><![CDATA[Forward data layer to Matomo Tag Manager]]></en>
+        </locale>
+        <locale name="matomo.settings.dataLayerBridge.description">
+            <de><![CDATA[Leitet neue Einträge aus dem QUIQQER Data Layer an den Matomo Tag Manager weiter.
+            Wenn der Synchronisierungsstatus über die Matomo-API ermittelt werden kann, wird diese Einstellung automatisch gesteuert.]]></de>
+            <en><![CDATA[Forwards new entries from the QUIQQER data layer to Matomo Tag Manager.
+            If the synchronisation status can be retrieved via the Matomo API, this setting is controlled automatically.]]></en>
+        </locale>
+        <locale name="matomo.settings.dataLayerBridge.automatic.syncEnabled">
+            <de><![CDATA[Matomo synchronisiert den Data Layer automatisch. Die QUIQQER-Weiterleitung ist deaktiviert.]]></de>
+            <en><![CDATA[Matomo synchronises the data layer automatically. The QUIQQER bridge is disabled.]]></en>
+        </locale>
+        <locale name="matomo.settings.dataLayerBridge.automatic.syncDisabled">
+            <de><![CDATA[Die Matomo-Synchronisierung ist deaktiviert. Die QUIQQER-Weiterleitung ist automatisch aktiv.]]></de>
+            <en><![CDATA[Matomo synchronisation is disabled. The QUIQQER bridge is enabled automatically.]]></en>
+        </locale>
         <locale name="matomo.settings.userIdTracking.isEnabled">
             <de><![CDATA[Benutzer-ID tracken]]></de>
             <en><![CDATA[Track user ID]]></en>
