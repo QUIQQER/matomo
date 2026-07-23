@@ -51,23 +51,27 @@ define('package/quiqqer/matomo/bin/eCommerceTracking', [
         return new Promise(function (resolve) {
             if (typeof OrderProcess !== 'undefined') {
                 if (typeOf(OrderProcess) === 'package/quiqqer/order/bin/frontend/classes/Basket') {
+                    const Basket = OrderProcess;
                     const Node = document.getElement('[data-qui="package/quiqqer/order/bin/frontend/controls/OrderProcess"]');
 
-                    if (!OrderProcess.isLoaded()) {
+                    if (!Basket.isLoaded()) {
+                        resolve({products: []});
                         return;
                     }
 
                     if (!Node) {
-                        trackBasket(OrderProcess).then(resolve);
+                        trackBasket(Basket).then(resolve);
                         return;
                     }
 
-                    OrderProcess = QUI.Controls.getById(Node.get('data-quiid'));
+                    const OrderProcessControl = QUI.Controls.getById(Node.get('data-quiid'));
 
-                    if (!OrderProcess) {
-                        trackBasket(OrderProcess).then(resolve);
+                    if (!OrderProcessControl) {
+                        trackBasket(Basket).then(resolve);
                         return;
                     }
+
+                    OrderProcess = OrderProcessControl;
                 }
 
                 OrderProcess.getOrder().then(function (orderHash) {
