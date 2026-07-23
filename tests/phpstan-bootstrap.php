@@ -14,3 +14,4 @@ require_once __DIR__ . '/../../../../bootstrap.php';
 require_once __DIR__ . '/stubs/GdprCookieInterface.php';
 require_once __DIR__ . '/stubs/GdprCookieCollection.php';
 require_once __DIR__ . '/stubs/GdprCookieProviderInterface.php';
+require_once __DIR__ . '/stubs/FrontendUsersRegistrarInterface.php';
