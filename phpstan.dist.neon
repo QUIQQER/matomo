@@ -2,12 +2,9 @@ includes:
     - phpstan-baseline.neon
 
 parameters:
-    level: 5
+    level: 8
     paths:
         - src
         - ajax
-    excludePaths:
-        - src/QUI/Matomo/Cookies/*
-        - src/QUI/Matomo/CookieProvider.php
     bootstrapFiles:
         - tests/phpstan-bootstrap.php
