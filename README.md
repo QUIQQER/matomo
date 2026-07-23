@@ -45,4 +45,4 @@ of the project.
 License
 -------
 
-GPL-3.0+
+GPL-3.0-or-later

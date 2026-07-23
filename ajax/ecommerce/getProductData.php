@@ -10,7 +10,7 @@
 use QUI\ERP\Products\Handler\Fields;
 use QUI\ERP\Products\Handler\Products;
 
-QUI::$Ajax->registerFunction(
+QUI::getAjax()->registerFunction(
     'package_quiqqer_matomo_ajax_ecommerce_getProductData',
     function ($productId) {
         if (!class_exists('QUI\ERP\Products\Handler\Products')) {
@@ -28,7 +28,7 @@ QUI::$Ajax->registerFunction(
             return [
                 'productNo' => $Product->getField(Fields::FIELD_PRODUCT_NO)->getValue(),
                 'title' => $Product->getTitle(),
-                'category' => $Product->getCategory()->getTitle(),
+                'category' => $Product->getCategory()?->getTitle() ?? '',
                 'price' => $Product->getPrice()->getPrice(),
                 'url' => $Product->getUrl()
             ];

@@ -7,7 +7,7 @@
  * @return array
  */
 
-QUI::$Ajax->registerFunction(
+QUI::getAjax()->registerFunction(
     'package_quiqqer_matomo_ajax_ecommerce_getCategoryData',
     function ($project, $siteId) {
         if (!class_exists('QUI\ERP\Products\Handler\Categories')) {

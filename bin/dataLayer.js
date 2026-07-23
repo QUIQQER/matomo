@@ -46,7 +46,10 @@ window.whenQuiLoaded().then(() => {
     };
 
     window.dataLayer = window.dataLayer || [];
-    window._mtm = window._mtm || [];
+
+    if (window.MATOMO_USE_DATA_LAYER_BRIDGE) {
+        window._mtm = window._mtm || [];
+    }
 
     if (window.MATOMO_TRACK_TO_PAQ) {
         window._paq = window._paq || [];
@@ -64,11 +67,13 @@ window.whenQuiLoaded().then(() => {
 
     require(['qui/QUI'], function(QUI) {
         QUI.addEvent('dataLayerPush', function(value) {
-            window._mtm.push(value);
+            if (window.MATOMO_USE_DATA_LAYER_BRIDGE) {
+                window._mtm.push(value);
 
-            const mtmEvent = mapDataLayerEventToMtm(value);
-            if (mtmEvent) {
-                window._mtm.push(mtmEvent);
+                const mtmEvent = mapDataLayerEventToMtm(value);
+                if (mtmEvent) {
+                    window._mtm.push(mtmEvent);
+                }
             }
 
             if (!window.MATOMO_TRACK_TO_PAQ) {

@@ -17,8 +17,14 @@ class TemplateExtender
     {
         $Project = $Site->getProject();
         $trackToPaq = $Project->getConfig('matomo.settings.trackToPaq') ? 1 : 0;
+        $useDataLayerBridge = (new TagManagerSync())->shouldUseQuiqqerBridge($Project) ? 1 : 0;
 
-        $Template->extendHeader('<script data-no-cache="1">window.MATOMO_TRACK_TO_PAQ = ' . $trackToPaq . ';</script>');
+        $Template->extendHeader(
+            '<script data-no-cache="1">'
+            . 'window.MATOMO_TRACK_TO_PAQ = ' . $trackToPaq . ';'
+            . 'window.MATOMO_USE_DATA_LAYER_BRIDGE = ' . $useDataLayerBridge . ';'
+            . '</script>'
+        );
         $Template->extendHeader('<script src="' . URL_OPT_DIR . 'quiqqer/matomo/bin/dataLayer.js"></script>');
     }
 

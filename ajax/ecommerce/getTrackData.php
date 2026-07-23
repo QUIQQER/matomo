@@ -12,7 +12,7 @@ use QUI\ERP\Products\Category\Category;
 use QUI\ERP\Products\Handler\Fields;
 use QUI\ERP\Products\Handler\Products;
 
-QUI::$Ajax->registerFunction(
+QUI::getAjax()->registerFunction(
     'package_quiqqer_matomo_ajax_ecommerce_getTrackData',
     function ($basketId, $products) {
         if (
@@ -37,14 +37,12 @@ QUI::$Ajax->registerFunction(
         }
 
         $Locale = QUI::getLocale();
-        $List = $Basket->getProducts();
+        $list = $Basket->getProducts()->toArray();
+        $products = $list['products'] ?? [];
 
-        if (!$List) {
+        if ($products === []) {
             return [];
         }
-
-        $list = $List->toArray();
-        $products = $list['products'];
 
         // generate result
         $result = [];
