@@ -54,6 +54,10 @@
                     <conf name="enabled">
                         <type><![CDATA[boolean]]></type>
                     </conf>
+                    <conf name="dataLayerBridge">
+                        <type><![CDATA[bool]]></type>
+                        <defaultvalue><![CDATA[1]]></defaultvalue>
+                    </conf>
                     <conf name="code.general">
                         <type><![CDATA[string]]></type>
                     </conf>
@@ -139,6 +143,19 @@
                                 <description>
                                     <locale group="quiqqer/matomo"
                                             var="matomo.settings.trackToPaq.description"/>
+                                </description>
+                            </input>
+
+                            <input conf="matomo.settings.tagmanager.dataLayerBridge"
+                                   type="checkbox"
+                                   data-qui="package/quiqqer/matomo/bin/controls/DataLayerBridgeSetting"
+                            >
+                                <text>
+                                    <locale group="quiqqer/matomo" var="matomo.settings.dataLayerBridge"/>
+                                </text>
+                                <description>
+                                    <locale group="quiqqer/matomo"
+                                            var="matomo.settings.dataLayerBridge.description"/>
                                 </description>
                             </input>
 

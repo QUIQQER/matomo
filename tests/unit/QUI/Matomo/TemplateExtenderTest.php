@@ -13,7 +13,12 @@ class TemplateExtenderTest extends TestCase
     public function testHeaderAddsDataLayerConfigurationAndScript(): void
     {
         $Project = $this->createMock(Project::class);
-        $Project->method('getConfig')->with('matomo.settings.trackToPaq')->willReturn(true);
+        $Project->method('getConfig')->willReturnCallback(
+            static fn(bool|string $key = false): mixed => match ($key) {
+                'matomo.settings.trackToPaq' => true,
+                default => null
+            }
+        );
 
         $Site = $this->createMock(Site::class);
         $Site->method('getProject')->willReturn($Project);
@@ -31,7 +36,10 @@ class TemplateExtenderTest extends TestCase
         TemplateExtender::extendHeader($Template, $Site);
 
         self::assertSame(
-            '<script data-no-cache="1">window.MATOMO_TRACK_TO_PAQ = 1;</script>',
+            '<script data-no-cache="1">'
+            . 'window.MATOMO_TRACK_TO_PAQ = 1;'
+            . 'window.MATOMO_USE_DATA_LAYER_BRIDGE = 1;'
+            . '</script>',
             $headerExtensions[0]
         );
         self::assertStringContainsString(

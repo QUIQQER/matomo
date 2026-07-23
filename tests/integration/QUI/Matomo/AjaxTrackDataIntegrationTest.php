@@ -21,6 +21,7 @@ class AjaxTrackDataIntegrationTest extends TestCase
         'ecommerce/getProductData.php',
         'ecommerce/getTrackData.php',
         'ecommerce/getTrackDataForOrderProcess.php',
+        'getDataLayerBridgeStatus.php',
         'getGeneralTagManagerCode.php',
         'md5.php'
     ];
@@ -45,6 +46,7 @@ class AjaxTrackDataIntegrationTest extends TestCase
                 'package_quiqqer_matomo_ajax_ecommerce_getProductData',
                 'package_quiqqer_matomo_ajax_ecommerce_getTrackData',
                 'package_quiqqer_matomo_ajax_ecommerce_getTrackDataForOrderProcess',
+                'package_quiqqer_matomo_ajax_getDataLayerBridgeStatus',
                 'package_quiqqer_matomo_ajax_getGeneralTagManagerCode',
                 'package_quiqqer_matomo_ajax_md5'
             ] as $callableName
