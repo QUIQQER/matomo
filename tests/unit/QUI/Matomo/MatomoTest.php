@@ -2,7 +2,6 @@
 
 namespace QUI\Tests\Matomo\Unit;
 
-use MatomoTracker;
 use PHPUnit\Framework\TestCase;
 use QUI\Exception;
 use QUI\Matomo\Matomo;
@@ -35,7 +34,10 @@ class MatomoTest extends TestCase
 
         self::assertSame(42, $Tracker->idSite);
         self::assertSame('secret-token', $Tracker->token_auth);
-        self::assertSame('https://stats.example.test', MatomoTracker::$URL);
+        self::assertStringStartsWith(
+            'https://stats.example.test/matomo.php?',
+            $Tracker->getUrlTrackEvent('test', 'test')
+        );
     }
 
     public function testMatomoClientPreservesExistingProtocol(): void
@@ -49,8 +51,11 @@ class MatomoTest extends TestCase
         $Tracker = Matomo::getMatomoClient($Project);
 
         self::assertSame(12, $Tracker->idSite);
-        self::assertSame('http://stats.example.test', MatomoTracker::$URL);
-        self::assertFalse($Tracker->token_auth);
+        self::assertStringStartsWith(
+            'http://stats.example.test/matomo.php?',
+            $Tracker->getUrlTrackEvent('test', 'test')
+        );
+        self::assertNull($Tracker->token_auth);
     }
 
     public function testGeneralTagManagerCodeIsDecoded(): void

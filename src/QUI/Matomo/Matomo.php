@@ -28,10 +28,11 @@ class Matomo
      * @param Project $Project
      * @return MatomoTracker
      */
-    public static function getMatomoClient(Project $Project)
+    public static function getMatomoClient(Project $Project): MatomoTracker
     {
-        $matomoUrl = $Project->getConfig('matomo.settings.url');
+        $matomoUrl = (string)$Project->getConfig('matomo.settings.url');
         $matomoSideId = (int)$Project->getConfig('matomo.settings.id');
+        $token = (string)$Project->getConfig('matomo.settings.token');
 
         if (!$matomoUrl || !$matomoSideId) {
             throw new \QUI\Exception('Matomo host not configured');
@@ -41,10 +42,10 @@ class Matomo
             $matomoUrl = 'https://' . $matomoUrl;
         }
 
-        $Matomo = new \MatomoTracker($matomoSideId, $matomoUrl);
+        $Matomo = new MatomoTracker($matomoSideId, $matomoUrl);
 
-        if ($Project->getConfig('matomo.settings.token')) {
-            $Matomo->setTokenAuth($Project->getConfig('matomo.settings.token'));
+        if ($token !== '') {
+            $Matomo->setTokenAuth($token);
         }
 
         return $Matomo;
