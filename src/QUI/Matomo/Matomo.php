@@ -76,8 +76,7 @@ class Matomo
         // No value set for this language, therefore return the general ID
         // TODO: replace with the code above, if the mentioned bug is fixed.
         if (
-            !is_string($siteId)
-            || $siteId === ''
+            $siteId === ''
             || $siteId === '[' . $group . '] ' . self::LOCALE_KEY_SITE_IDS
         ) {
             return (int)$Project->getConfig('matomo.settings.id');
@@ -174,7 +173,7 @@ class Matomo
         );
 
         // Value for this language is empty, return the general TagManager code
-        if (!is_string($tagManagerCode) || $tagManagerCode === '') {
+        if ($tagManagerCode === '') {
             return static::getGeneralTagManagerCode($Project);
         }
 
