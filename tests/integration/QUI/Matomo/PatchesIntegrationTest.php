@@ -80,9 +80,7 @@ class PatchesIntegrationTest extends TestCase
             $language = $configuration['default_lang'] ?? 'en';
             $template = $configuration['template'] ?? false;
             $Project = $this->createMock(Project::class);
-            $Project->method('getAttribute')
-                ->with('template')
-                ->willReturn($template);
+            $Project->method('getTemplate')->willReturn($template);
 
             if ($isFirstProject) {
                 $Project->method('getName')->willReturn(self::PATCH_PROJECT_NAME);
