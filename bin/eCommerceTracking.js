@@ -84,9 +84,7 @@ define('package/quiqqer/matomo/bin/eCommerceTracking', [
                 return;
             }
 
-            require(['package/quiqqer/order/bin/frontend/Basket'], function (Basket) {
-                trackBasket(Basket).then(resolve);
-            });
+            resolve({products: []});
         });
     }
 
@@ -269,19 +267,26 @@ define('package/quiqqer/matomo/bin/eCommerceTracking', [
      */
 
     // basket tracking
-    require(['package/quiqqer/order/bin/frontend/Basket'], function (Basket) {
-        Basket.addEvent('onAdd', track);
-        Basket.addEvent('onRemove', track);
+    QUI.addEvent('onQuiqqerOrderBasketAdd', function (Basket) {
+        track(Basket).catch(function (err) {
+            console.error(err);
+        });
+    });
 
-        Basket.addEvent('onClear', function () {
-            if (DEBUG) {
-                console.log('track clear');
-            }
+    QUI.addEvent('onQuiqqerOrderBasketRemove', function (Basket) {
+        track(Basket).catch(function (err) {
+            console.error(err);
+        });
+    });
 
-            matomoTracker.then(function (Tracker) {
-                Tracker.clearEcommerceCart();
-                Tracker.trackEcommerceCartUpdate(0);
-            });
+    QUI.addEvent('onQuiqqerOrderBasketClear', function () {
+        if (DEBUG) {
+            console.log('track clear');
+        }
+
+        matomoTracker.then(function (Tracker) {
+            Tracker.clearEcommerceCart();
+            Tracker.trackEcommerceCartUpdate(0);
         });
     });
 
@@ -320,7 +325,7 @@ define('package/quiqqer/matomo/bin/eCommerceTracking', [
             Tracker.trackPageView(url);
         });
 
-        track().catch(function (err) {
+        track(OrderProcess).catch(function (err) {
             console.error(err);
         });
     });
@@ -341,12 +346,12 @@ define('package/quiqqer/matomo/bin/eCommerceTracking', [
     });
 
 
-    QUI.addEvent('onQuiqqerOrderProcessLoad', function () {
+    QUI.addEvent('onQuiqqerOrderProcessLoad', function (OrderProcess) {
         if (DEBUG) {
             console.log('track order process load ->');
         }
 
-        track().catch(function (err) {
+        track(OrderProcess).catch(function (err) {
             console.error(err);
         });
     });
