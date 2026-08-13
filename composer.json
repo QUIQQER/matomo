@@ -5,21 +5,17 @@
     "license": "GPL-3.0-or-later",
     "authors": [
         {
-            "name": "Henning Leutz",
-            "email": "leutz@pcsg.de",
-            "homepage": "https://www.pcsg.de",
-            "role": "Developer"
-        },
-        {
-            "name": "Jan Wennrich",
-            "email": "wennrich@pcsg.de",
-            "homepage": "https://www.pcsg.de",
-            "role": "Developer"
+            "name": "PCSG - Computer & Internet Service OHG",
+            "email": "info@quiqqer.com",
+            "homepage": "https://www.quiqqer.com",
+            "role": "Maintainer"
         }
     ],
+    "homepage": "https://www.quiqqer.com",
     "support": {
         "email": "support@pcsg.de",
-        "url": "https://www.pcsg.de"
+        "issues": "https://dev.quiqqer.com/quiqqer/matomo/-/issues",
+        "source": "https://dev.quiqqer.com/quiqqer/matomo"
     },
     "require": {
         "php": "^8.2",

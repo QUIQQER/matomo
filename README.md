@@ -1,48 +1,61 @@
 ![QUIQQER Matomo](bin/images/Readme.jpg)
 
-Matomo
-========
+# Matomo for QUIQQER
 
-Integrates Matomo analytics into QUIQQER. 
-Matomo is the leading open-source analytics platform that gives you more than just powerful analytics.
+Integrates the open-source Matomo analytics platform into QUIQQER projects.
 
+## Features
 
-Package name:
+- Adds Matomo tracking to QUIQQER projects.
+- Supports project-wide and language-specific Matomo site IDs.
+- Integrates Matomo Tag Manager and the QUIQQER data layer.
+- Provides optional ecommerce and user tracking integrations.
+- Displays Matomo statistics in the QUIQQER administration.
 
-    quiqqer/matomo
+## Installation
 
+Install the package through QUIQQER's package management or Composer:
 
-Features
---------
+```shell
+composer require quiqqer/matomo
+```
 
-- Embed Matomo in your QUIQQER Projects
+Run the QUIQQER setup after installation so the package configuration and event registrations are imported.
 
+## Configuration
 
-Installation
-------------
+Open the Matomo section in the project settings and configure the Matomo server URL and site ID. Optional settings
+include language-specific site IDs, an API access token, Tag Manager container code, consent categories, user tracking,
+and the data-layer bridge.
 
-The Package name is: quiqqer/matomo
+The access token is only required when Matomo statistics should be displayed in the administration. Treat it as a secret
+and do not expose it in frontend code.
 
+## Usage
 
-Contribute
-----------
+Once enabled for a project, the package injects the configured Matomo tracking or Tag Manager code into rendered pages.
+The Matomo entry in the administration opens the statistics view when the required server URL, site ID, and optional
+access token are configured.
 
-- Issue Tracker: https://dev.quiqqer.com/quiqqer/matomo/issues
-- Source Code: https://dev.quiqqer.com/quiqqer/matomo
-- Wiki: https://dev.quiqqer.com/quiqqer/matomo/wikis/home
+Ecommerce and frontend-user tracking are activated automatically when the corresponding optional QUIQQER packages are
+installed.
 
+## Development
 
-Support
--------
+Initialize and run the package-local quality tools with:
 
-If you have found errors, wishes or suggestions for improvement,
-you can contact us by email at support@pcsg.de.
+```shell
+composer dev:init
+composer test
+```
 
-We will try to meet your needs or send them to the responsible developers
-of the project.
+- [Issue tracker](https://dev.quiqqer.com/quiqqer/matomo/-/issues)
+- [Source code](https://dev.quiqqer.com/quiqqer/matomo)
 
+## Support
 
-License
--------
+For errors, feature requests, or other feedback, contact `support@pcsg.de` or use the issue tracker.
+
+## License
 
 GPL-3.0-or-later
