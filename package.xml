@@ -8,6 +8,36 @@
             <locale group="quiqqer/matomo" var="package.description"/>
         </description>
 
+        <capabilities schemaVersion="1">
+            <capability id="analytics.web-analytics">
+                <title>Matomo web analytics</title>
+                <description>
+                    Tracks page views, links and user lifecycle events in Matomo with consent-aware visitor identification.
+                </description>
+            </capability>
+
+            <capability id="analytics.ecommerce-tracking">
+                <title>Matomo ecommerce tracking</title>
+                <description>
+                    Tracks product and category views, basket updates, checkout steps and completed orders in Matomo.
+                </description>
+            </capability>
+
+            <capability id="analytics.tag-management">
+                <title>Matomo Tag Manager integration</title>
+                <description>
+                    Integrates project- and language-specific Matomo containers and forwards QUIQQER data-layer events.
+                </description>
+            </capability>
+
+            <capability id="analytics.reporting-dashboard">
+                <title>Matomo statistics dashboard</title>
+                <description>
+                    Embeds project-specific Matomo statistics in the QUIQQER administration with configured authentication.
+                </description>
+            </capability>
+        </capabilities>
+
         <support>
             <email><![CDATA[support@pcsg.de]]></email>
             <forum><![CDATA[https://community.quiqqer.com]]></forum>
