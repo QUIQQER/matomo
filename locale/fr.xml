@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<locales>
+    <groups name="quiqqer/matomo" datatype="php,js">
+        <locale name="package.title">
+<fr><![CDATA[QUIQQER - Matomo]]></fr>
+        </locale>
+        <locale name="package.description">
+<fr><![CDATA[Intègre Matomo à QUIQQER. Matomo est la principale plateforme d’analyse open source et offre bien plus que de puissants outils d’analyse.]]></fr>
+        </locale>
+
+        <locale name="matomo.settings.url">
+<fr><![CDATA[URL du serveur]]></fr>
+        </locale>
+
+        <locale name="matomo.settings.id">
+<fr><![CDATA[ID de site général]]></fr>
+        </locale>
+
+        <locale name="matomo.settings.token">
+<fr><![CDATA[Jeton d’accès (facultatif)]]></fr>
+        </locale>
+
+        <locale name="matomo.settings.useTokenForStatisticsDisplay">
+<fr><![CDATA[Utiliser également le jeton d’accès pour afficher les statistiques Matomo dans l’administration]]></fr>
+        </locale>
+        <locale name="matomo.settings.useTokenForStatisticsDisplay.description">
+<fr><![CDATA[<br>Remarque : le <a href="https://plugins.matomo.org/LoginTokenAuth" target="_blank" rel="noopener">plugin LoginTokenAuth</a> doit être activé dans l’instance Matomo. Le jeton ne doit PAS appartenir à un superutilisateur de cette instance.<br>Si vous ne souhaitez pas utiliser la connexion par jeton, vous pouvez enregistrer les identifiants Matomo dans le profil utilisateur QUIQQER.]]></fr>
+        </locale>
+
+        <locale name="matomo.settings.siteIds">
+<fr><![CDATA[ID de site par langue]]></fr>
+        </locale>
+    </groups>
+
+    <groups name="quiqqer/matomo" datatype="js">
+        <locale name="panel.error.settings.missing">
+<fr><![CDATA[Matomo n’est pas encore configuré pour ce projet.<br/>Vous pouvez le configurer dans les paramètres du projet.]]></fr>
+        </locale>
+        <locale name="panel.notice.userdata.missing">
+<fr><![CDATA[Pour vous connecter automatiquement, ajoutez vos identifiants Matomo aux paramètres utilisateur ou activez la connexion par jeton dans les paramètres du projet.]]></fr>
+        </locale>
+        <locale name="panel.notice.token.missing">
+<fr><![CDATA[Pour vous connecter automatiquement, enregistrez un jeton Matomo dans les paramètres du projet ou désactivez la connexion par jeton.]]></fr>
+        </locale>
+        <locale name="panel.matomo.title">
+<fr><![CDATA[Statistiques Matomo]]></fr>
+        </locale>
+    </groups>
+
+    <groups name="quiqqer/matomo" datatype="php">
+        <locale name="matomo.settings.title">
+<fr><![CDATA[Matomo]]></fr>
+        </locale>
+        <locale name="matomo.settings.general.title">
+<fr><![CDATA[Paramètres Matomo]]></fr>
+        </locale>
+        <locale name="matomo.settings.projects.title">
+<fr><![CDATA[Paramètres par langue du projet (remplacent les paramètres généraux)]]></fr>
+        </locale>
+        <locale name="menu.matomo.title">
+<fr><![CDATA[Statistiques Matomo]]></fr>
+        </locale>
+
+        <locale name="matomo.settings.url.description">
+<fr><![CDATA[L’URL de votre serveur de suivi Matomo. Saisissez-la sans le protocole, par exemple : stats.server.com.]]></fr>
+        </locale>
+
+        <locale name="matomo.settings.siteIds.description">
+<fr><![CDATA[Définissez un ID de site pour chaque langue. Il remplace l’ID de site général pour les langues indiquées ici.]]></fr>
+        </locale>
+
+        <locale name="matomo.settings.id.description">
+<fr><![CDATA[Utilisé pour les langues du projet sans valeur définie dans « ID de site par langue ».]]></fr>
+        </locale>
+
+        <locale name="matomo.settings.token.description">
+<fr><![CDATA[Utilisé pour authentifier les requêtes API. Pour en savoir plus, cliquez <a href="https://matomo.org/faq/general/faq_114/" target="_blank" rel="noopener">ici</a>.]]></fr>
+        </locale>
+
+        <locale name="matomo.settings.tagmanager.title">
+<fr><![CDATA[Matomo Tag Manager]]></fr>
+        </locale>
+        <locale name="matomo.settings.tagmanager.enabled.text">
+<fr><![CDATA[Activer Tag Manager]]></fr>
+        </locale>
+        <locale name="matomo.settings.tagmanager.code.general">
+<fr><![CDATA[Code Tag Manager général]]></fr>
+        </locale>
+        <locale name="matomo.settings.tagmanager.code.general.description" html="true">
+<fr><![CDATA[Utilisé pour les langues du projet sans valeur définie dans « Codes Tag Manager par langue ».<br>Suivez la <a href="https://matomo.org/docs/tag-manager/" target="_blank" rel="noopener noreferrer">documentation Matomo</a> pour générer le code Tag Manager.]]></fr>
+        </locale>
+        <locale name="matomo.settings.tagmanager.code.languages">
+<fr><![CDATA[Codes Tag Manager par langue]]></fr>
+        </locale>
+        <locale name="matomo.settings.tagmanager.code.languages.description" html="true">
+<fr><![CDATA[Définissez un code Tag Manager pour chaque langue. Il remplace le code général pour les langues indiquées ici.<br>Suivez la <a href="https://matomo.org/docs/tag-manager/" target="_blank" rel="noopener noreferrer">documentation Matomo</a> pour générer le code Tag Manager.]]></fr>
+        </locale>
+        <locale name="matomo.settings.trackToPaq">
+<fr><![CDATA[Toujours envoyer la couche de données à Matomo]]></fr>
+        </locale>
+        <locale name="matomo.settings.trackToPaq.description">
+<fr><![CDATA[L’option « Toujours envoyer la couche de données à Matomo » transfère automatiquement à Matomo toutes les variables de la couche de données. Elle simplifie l’analyse en enregistrant les interactions des utilisateurs et les informations du site. Si Tag Manager est configuré manuellement, il est recommandé de désactiver cette option pour éviter les conflits ou les doublons.]]></fr>
+        </locale>
+        <locale name="matomo.settings.dataLayerBridge">
+<fr><![CDATA[Transmettre la couche de données à Matomo Tag Manager]]></fr>
+        </locale>
+        <locale name="matomo.settings.dataLayerBridge.description">
+<fr><![CDATA[Transmet les nouvelles entrées de la couche de données QUIQQER à Matomo Tag Manager. Si l’état de synchronisation peut être récupéré via l’API Matomo, ce paramètre est géré automatiquement.]]></fr>
+        </locale>
+        <locale name="matomo.settings.dataLayerBridge.automatic.syncEnabled">
+<fr><![CDATA[Matomo synchronise automatiquement la couche de données. La transmission par QUIQQER est désactivée.]]></fr>
+        </locale>
+        <locale name="matomo.settings.dataLayerBridge.automatic.syncDisabled">
+<fr><![CDATA[La synchronisation Matomo est désactivée. La transmission par QUIQQER est activée automatiquement.]]></fr>
+        </locale>
+        <locale name="matomo.settings.userIdTracking.isEnabled">
+<fr><![CDATA[Suivre l’ID utilisateur]]></fr>
+        </locale>
+        <locale name="matomo.settings.userIdTracking.isEnabled.description">
+<fr><![CDATA[Si cette option est activée, l’ID utilisateur QUIQQER est envoyé à Matomo.]]></fr>
+        </locale>
+        <locale name="matomo.settings.userIdTracking.cookieCategory">
+<fr><![CDATA[Catégorie de consentement pour le suivi de l’ID utilisateur]]></fr>
+        </locale>
+        <locale name="matomo.settings.userIdTracking.cookieCategory.description">
+<fr><![CDATA[S’applique uniquement si quiqqer/gdpr est installé. Définit la catégorie de consentement requise pour le suivi de l’ID utilisateur.]]></fr>
+        </locale>
+        <locale name="matomo.settings.userEmailTracking.isEnabled">
+<fr><![CDATA[Suivre l’adresse e-mail de l’utilisateur]]></fr>
+        </locale>
+        <locale name="matomo.settings.userEmailTracking.isEnabled.description">
+<fr><![CDATA[Si cette option est activée, l’adresse e-mail de l’utilisateur QUIQQER est envoyée à Matomo.]]></fr>
+        </locale>
+        <locale name="matomo.settings.userEmailTracking.cookieCategory">
+<fr><![CDATA[Catégorie de consentement pour le suivi de l’adresse e-mail de l’utilisateur]]></fr>
+        </locale>
+        <locale name="matomo.settings.userEmailTracking.cookieCategory.description">
+<fr><![CDATA[S’applique uniquement si quiqqer/gdpr est installé. Définit la catégorie de consentement requise pour le suivi de l’adresse e-mail de l’utilisateur.]]></fr>
+        </locale>
+        <locale name="matomo.settings.userEmailTracking.customDimensionId">
+<fr><![CDATA[ID de la dimension personnalisée pour l’adresse e-mail de l’utilisateur]]></fr>
+        </locale>
+        <locale name="matomo.settings.userEmailTracking.customDimensionId.description">
+<fr><![CDATA[ID de la dimension personnalisée Matomo dans laquelle l’adresse e-mail de l’utilisateur est enregistrée.]]></fr>
+        </locale>
+
+        <locale name="user.profile.title">
+<fr><![CDATA[Paramètres du profil Matomo]]></fr>
+        </locale>
+        <locale name="user.profile.pass">
+<fr><![CDATA[Mot de passe Matomo]]></fr>
+        </locale>
+        <locale name="user.profile.pass.description">
+<fr><![CDATA[Pour se connecter à Matomo avec un nom d’utilisateur et un mot de passe, les nouvelles instances Matomo en version 4.4.0 ou ultérieure doivent être configurées ainsi : <pre>[General]<br>login_allow_logme = 1</pre>Pour en savoir plus, cliquez <a href="https://matomo.org/faq/how-to/faq_30/" target="_blank" rel="noopener">ici</a>.]]></fr>
+        </locale>
+        <locale name="user.profile.login">
+<fr><![CDATA[Nom d’utilisateur Matomo]]></fr>
+        </locale>
+
+<!-- region cookies -->
+        <locale name="cookie.id.purpose">
+<fr><![CDATA[Utilisé pour enregistrer des informations sur l’utilisateur, par exemple un ID de visiteur unique.]]></fr>
+        </locale>
+
+        <locale name="cookie.ref.purpose">
+<fr><![CDATA[Utilisé pour enregistrer les informations d’attribution, par exemple la page d’origine qui a conduit le visiteur au site.]]></fr>
+        </locale>
+
+        <locale name="cookie.ses.purpose">
+<fr><![CDATA[Utilisé pour enregistrer temporairement les données de la visite.]]></fr>
+        </locale>
+
+        <locale name="cookie.cvar.purpose">
+<fr><![CDATA[Utilisé pour enregistrer temporairement les données de la visite.]]></fr>
+        </locale>
+
+        <locale name="cookie.hsr.purpose">
+<fr><![CDATA[Utilisé pour enregistrer temporairement les données de la visite.]]></fr>
+        </locale>
+
+        <locale name="cookie.test.purpose">
+<fr><![CDATA[Utilisé pour vérifier si le navigateur du visiteur accepte les cookies.]]></fr>
+        </locale>
+
+        <locale name="cookie.consent.purpose">
+<fr><![CDATA[Utilisé pour mémoriser le consentement donné par l’utilisateur.]]></fr>
+        </locale>
+        <locale name="cookie.consent.lifetime">
+<fr><![CDATA[Illimitée]]></fr>
+        </locale>
+
+        <locale name="cookie.ignore.purpose">
+<fr><![CDATA[Indique que l’utilisateur est exclu du suivi.]]></fr>
+        </locale>
+        <locale name="cookie.ignore.lifetime">
+<fr><![CDATA[Illimitée]]></fr>
+        </locale>
+
+        <locale name="cookie.sessid.purpose">
+<fr><![CDATA[Créé lors de l’utilisation de la fonction de refus du suivi. Aide à prévenir les problèmes de sécurité CSRF.]]></fr>
+        </locale>
+        <locale name="cookie.sessid.lifetime">
+<fr><![CDATA[Temporaire]]></fr>
+        </locale>
+
+        <locale name="cookie.userIdTracking.purpose">
+<fr><![CDATA[Utilisé pour recueillir le consentement au suivi de l’ID utilisateur dans Matomo. Aucun cookie n’est créé.]]></fr>
+        </locale>
+
+        <locale name="cookie.userEmailTracking.purpose">
+<fr><![CDATA[Utilisé pour recueillir le consentement au suivi de l’adresse e-mail de l’utilisateur dans Matomo. Aucun cookie n’est créé.]]></fr>
+        </locale>
+
+<!-- region Cookie Settings -->
+        <locale name="matomo.settings.cookies.title">
+<fr><![CDATA[Paramètres des cookies Matomo]]></fr>
+        </locale>
+
+        <locale name="matomo.settings.cookiecategory">
+<fr><![CDATA[Catégorie de cookies]]></fr>
+        </locale>
+
+        <locale name="matomo.settings.cookiecategory.description">
+<fr><![CDATA[S’applique uniquement si quiqqer/gdpr est installé. Définit la catégorie à laquelle appartiennent les cookies Matomo.]]></fr>
+        </locale>
+
+        <locale name="matomo.settings.cookiecategory.essential">
+<fr><![CDATA[Essentiels]]></fr>
+        </locale>
+
+        <locale name="matomo.settings.cookiecategory.preferences">
+<fr><![CDATA[Préférences]]></fr>
+        </locale>
+
+        <locale name="matomo.settings.cookiecategory.statistics">
+<fr><![CDATA[Statistiques]]></fr>
+        </locale>
+
+        <locale name="matomo.settings.cookiecategory.marketing">
+<fr><![CDATA[Marketing]]></fr>
+        </locale>
+<!-- endregion -->
+<!-- endregion -->
+    </groups>
+</locales>
