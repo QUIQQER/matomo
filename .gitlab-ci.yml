@@ -5,3 +5,10 @@ include:
       php-83: true
       php-84: true
       php-85: true
+
+javascript-tests:
+  stage: test
+  image: node:22-alpine
+  before_script: []
+  script:
+    - node --test tests/javascript/dataLayer.test.cjs

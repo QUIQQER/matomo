@@ -6,6 +6,11 @@ window.whenQuiLoaded().then(() => {
             return false;
         }
 
+        // The native tracker already records page views; do not count them as interactions.
+        if (value[1] === 'page_view') {
+            return false;
+        }
+
         if (typeof value[2] === 'undefined') {
             value[2] = {};
         }
