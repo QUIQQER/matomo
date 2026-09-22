@@ -1,25 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<user>
+<quiqqer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="https://www.quiqqer.com/docs/schemas/2.x/user.xsd">
+    <user>
+        <attributes>
+            <attribute encrypt="1">quiqqer.matomo.pass</attribute>
+            <attribute encrypt="1">quiqqer.matomo.login</attribute>
+        </attributes>
 
-    <attributes>
-        <attribute encrypt="1">quiqqer.matomo.pass</attribute>
-        <attribute encrypt="1">quiqqer.matomo.login</attribute>
-    </attributes>
+        <profile>
+            <tab name="MATOMO">
+                <text>Matomo</text>
+                <image>fa fa-line-chart</image>
+                <template>OPT_DIR/quiqqer/matomo/template/profile.html</template>
+            </tab>
+        </profile>
 
-    <profile>
-        <tab name="MATOMO">
-            <text>Matomo</text>
-            <image>fa fa-line-chart</image>
-            <template>OPT_DIR/quiqqer/matomo/template/profile.html</template>
-        </tab>
-    </profile>
-
-
-    <window>
-        <tab name="MATOMO">
-            <text>Matomo</text>
-            <image>fa fa-line-chart</image>
-            <template>OPT_DIR/quiqqer/matomo/template/profile.html</template>
-        </tab>
-    </window>
-</user>
+        <window>
+            <categories>
+                <category name="MATOMO" index="5">
+                    <title>Matomo</title>
+                    <icon>fa fa-line-chart</icon>
+                    <settings name="matomo-profile">
+                        <title>
+                            <locale group="quiqqer/matomo" var="user.profile.title"/>
+                        </title>
+                        <input conf="quiqqer.matomo.login" type="text">
+                            <text>
+                                <locale group="quiqqer/matomo" var="user.profile.login"/>
+                            </text>
+                        </input>
+                        <input conf="quiqqer.matomo.pass" type="text">
+                            <text>
+                                <locale group="quiqqer/matomo" var="user.profile.pass"/>
+                            </text>
+                            <description>
+                                <locale group="quiqqer/matomo" var="user.profile.pass.description"/>
+                            </description>
+                        </input>
+                    </settings>
+                </category>
+            </categories>
+        </window>
+    </user>
+</quiqqer>
